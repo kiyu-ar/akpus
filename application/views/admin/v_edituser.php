@@ -1,4 +1,12 @@
 <div>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
+            <li class="crumb"><a href="<?=base_url('user') ?>">Kelola User</a></li>
+            <li class="crumb">Edit User</li>
+        </ol>
+    </nav>
+<div>
     <?php foreach ($login as $log) {?>
     <form action="<?php echo base_url().'user/update'; ?>" method="post">
         <div class="form-group">

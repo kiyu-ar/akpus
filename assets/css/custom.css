@@ -1,3 +1,27 @@
+nav.crumbs{
+    background-color: lightblue;
+    color: black;
+}
+.crumb a{
+    text-decoration: none;
+    color: black;
+}
+.crumbs ol {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.crumb {
+    display: inline-block;
+}
+.crumb a::after {
+    display: inline-block;
+    color: #000;
+    content: '/';
+    font-size: 80%;
+    font-weight: bold;
+    padding: 0 3px;
+}
 .login-button:hover {
     background-color: blueviolet;
   }
@@ -23,22 +47,22 @@ td.btnsq{
 .subdiv{
     font-size: 1em;
 }
-table#customers {
+table#themed {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
   
-table#customers td, #customers th {
+table#themed td, #themed th {
     border: 1px solid #ddd;
     padding: 8px;
   }
   
-table#customers tr:nth-child(even){background-color: #f2f2f2;}
+table#themed tr:nth-child(even){background-color: #f2f2f2;}
   
-table#customers tr:hover {background-color: #ddd;}
+table#themed tr:hover {background-color: #ddd;}
   
-table#customers th {
+table#themed th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;

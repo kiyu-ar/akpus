@@ -5,7 +5,16 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 </head>
 <div>
-    <table></table>
+    <table>
+        <tr>
+            <th>No</th>
+        </tr>
+    <?php foreach ($var as $row) : ?>
+        <tr>
+            <td><?php echo $row->column ?></td>
+        </tr>
+    <?php endforeach; ?>
+    </table>
 </div>
 
 </html>

@@ -1,3 +1,10 @@
+<nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
+            <li class="crumb"><a href="#">Informasi Pemustaka</a></li>
+            <li class="crumb">Data Sirkulasi</li>
+        </ol>
+    </nav>
 <div>
     <div>
     <h4>Peminjaman per Prodi per Bulan per Tahun</h4>

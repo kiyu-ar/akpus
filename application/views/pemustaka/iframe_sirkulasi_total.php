@@ -22,8 +22,7 @@
                 <th>Desember</th>
                 <th>Total</th>
             </tr>
-            <?php 
-        foreach ($sirkulasi_t as $row) : ?>
+            <?php foreach ($sirkulasi_t as $row) : ?>
             <tr>
                 <td><?php echo $row->tahun ?></td>
                 <td><?php echo $row->januari ?></td>

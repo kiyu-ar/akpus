@@ -1,4 +1,11 @@
 <div>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="#">Home</a></li>
+            <li class="crumb"><a href="#">Informasi Koleksi</a></li>
+            <li class="crumb">Jenis Koleksi Cetak</li>
+        </ol>
+    </nav>
     <a href="#buku"><button class="btn">Buku</button></a>
     <a href="#referensi"><button class="btn">Referensi</button></a>
     <a href="#ta"><button class="btn">Tugas Akhir, Skripsi, Tesis, Disertasi</button></a>
@@ -28,20 +35,32 @@
 </div>
 <hr>
 <div id="prosiding" class="anchor">
+    <?php if(($this->session->userdata('status')=='login')){ ?>
+    <div style="float:right"><a href="koleksi/edit_tabel/1"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Prosiding">Edit Data</button></a></div>
+    <?php } ?>
     <h4>Prosiding : manual</h4>
     <p>Buku</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ipsum inventore quas, enim pariatur consequatur adipisci laboriosam quo neque eos asperiores harum alias sequi perspiciatis? Totam necessitatibus veniam sunt nisi?</p> 
 </div>
 <hr>
 <div id="jurnal" class="anchor">
+    <?php if(($this->session->userdata('status')=='login')){ ?>
+    <div style="float:right"><a href="koleksi/edit_tabel/2"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Jurnal">Edit Data</button></a></div>
+    <?php } ?>
     <h4>Jurnal : manual</h4>
     <p>Buku</p>
     
 </div>
 <hr>
 <div id="koran" class="anchor">
+    <?php if(($this->session->userdata('status')=='login')){ ?>
+    <div style="float:right"><a href="koleksi/edit_tabel/3"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Koran">Edit Data</button></a></div>
+    <?php } ?>
     <h4>Koran dan Majalah : manual</h4>
-    <p>Buku</p>
+    <p>Koran</p>
+    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/koran" frameborder="0"></iframe>
+    <p>Majalah</p>
+    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/majalah" frameborder="0"></iframe>
     
 </div>
 <hr>

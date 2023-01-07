@@ -1,6 +1,11 @@
+<nav class="crumbs">
+    <ol>
+        <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
+        <li class="crumb"><a href="#">Informasi Pemustaka</a></li>
+        <li class="crumb">Data Unggah Mandiri</li>
+    </ol>
+</nav>
 <div>
-<!-- <h4 style="text-align: right">Data Unggah Mandiri</h4> -->
-<!-- <hr> -->
     <div>
     <h4>Unggah Mandiri per Prodi</h4>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat praesentium ipsa repellat eaque quis doloremque neque doloribus dolorum maxime, esse maiores natus enim sint odit rem magni! Ipsa, in?</p>

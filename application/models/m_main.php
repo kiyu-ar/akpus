@@ -1,5 +1,14 @@
 <?php
     class M_main extends CI_Model{
+    // Informasi Koleksi
+        public function get_koran(){
+            return $this->db->get('list_koran')->result();
+        }
+        public function get_majalah(){
+            return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia from list_majalah')->result();
+        }
+
+    // Informasi Pemustaka
         public function get_fakultas(){
             return $this->db->get('tbl_fakultas')->result();
         }
@@ -91,6 +100,7 @@
             JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1 
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
+    // Informasi SOP
         public function get_divisi_sop(){
             return $this->db->get('tbl_divisi_sop')->result();
         }

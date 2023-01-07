@@ -1,4 +1,12 @@
 <div>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
+            <li class="crumb"><a href="#">Informasi SOP</a></li>
+            <li class="crumb">SOP Pengolahan</li>
+        </ol>
+    </nav>
+<div>
 <?php $a=0; ?>
 <div style="float:left;">
   <button class="btn btn-primary" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahdivisi"><i class="fa fa-plus"></i>Tambah Divisi</button>

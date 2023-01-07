@@ -1,4 +1,11 @@
 <div>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
+            <li class="crumb">Kelola User</li>
+        </ol>
+    </nav>
+<div>
   <div style="float:left;">
     <button class="btn btn-primary" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahuser"><i class="fa fa-plus"></i>Tambah User</button>
   </div>
