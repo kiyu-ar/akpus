@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 </head>
 <div>
-    <table id="customers"> 
+    <table id="themed"> 
             <tr>
                 <th>Tahun</th>
                 <th>Januari</th>

@@ -9,7 +9,7 @@
     if(empty($mandiri_p)){
         echo "<h4 style='background:cyan'>pilih fakultas dan prodi<h4>";
     }else{?>
-        <table id="customers"> 
+        <table id="themed"> 
         <tr>
             <th>Tahun</th>
             <th>Januari</th>
