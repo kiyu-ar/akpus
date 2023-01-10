@@ -28,7 +28,7 @@
     <?php 
     $no = 1;
     foreach ($login as $log) : ?>
-        <tr id="boostrap-override">
+        <tr>
             <td><?php echo $no++?></td>
             <td><?php echo $log->username ?></td>
             <td><?php echo $log->nama ?></td>

@@ -1,6 +1,13 @@
 <?php
     class M_main extends CI_Model{
-    // Informasi Koleksi
+        public function input_data($data, $table){
+            $this->db->insert($table, $data);
+        }
+        public function delete_data($where, $tabel){
+            $this->db->where($where);
+            $this->db->delete($tabel);
+        }
+//---Informasi Koleksi---
         public function get_koran(){
             return $this->db->get('list_koran')->result();
         }
@@ -8,7 +15,7 @@
             return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia from list_majalah')->result();
         }
 
-    // Informasi Pemustaka
+//---Informasi Pemustaka---
         public function get_fakultas(){
             return $this->db->get('tbl_fakultas')->result();
         }
@@ -100,12 +107,11 @@
             JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1 
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
-    // Informasi SOP
+//---Informasi Pustakawan---
+//---Informasi Lain---
+//---Informasi SOP---
         public function get_divisi_sop(){
             return $this->db->get('tbl_divisi_sop')->result();
-        }
-        public function input_divisi($data, $tabel){
-            $this->db->insert($tabel, $data);
         }
         public function get_sop_pengolahan(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM sop_pengolahan AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();
@@ -114,19 +120,12 @@
             $where = "WHERE tds.divisi like '%$keyword%' OR sp.nomor like '%$keyword%' OR sp.nama_sop like '%$keyword%' OR sp.deskripsi like '%$keyword%'";
             return $this->db->query("SELECT sp.*, tds.divisi FROM sop_pengolahan AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
         }
-        public function input_sop($data, $tabel){
-            $this->db->insert($tabel, $data);
-        }
         public function edit_sop($where,$table){
             return $this->db->get_where($table, $where);
         }
         public function update_sop($where, $data, $tabel){
             $this->db->where($where);
             $this->db->update($tabel, $data);
-        }
-        public function delete_sop($where, $tabel){
-            $this->db->where($where);
-            $this->db->delete($tabel);
         }
     }
 ?>

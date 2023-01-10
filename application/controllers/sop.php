@@ -11,7 +11,7 @@
                 'id' => $id,
                 'divisi' => $divisi,
             );
-            $this->m_main->input_divisi($data, 'tbl_divisi_sop');
+            $this->m_main->input_data($data, 'tbl_divisi_sop');
             redirect('sop/pengolahan');
         }
         public function tambah_pengolahan(){
@@ -44,7 +44,7 @@
                 'deskripsi' => $deskripsi,
                 'file' => $file,
             );
-            $this->m_main->input_sop($data,'sop_pengolahan');
+            $this->m_main->input_data($data,'sop_pengolahan');
             redirect ('sop/pengolahan');
         }
         public function pengolahan(){
@@ -65,7 +65,7 @@
         }
         public function hapus_sop($id){
             $where = array ('id'=>$id);
-            $this->m_main->delete_sop($where, 'sop_pengolahan');
+            $this->m_main->delete_data($where, 'sop_pengolahan');
             redirect('sop/pengolahan');
         }
         public function edit_sop($id){
