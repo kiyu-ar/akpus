@@ -14,6 +14,12 @@
         public function get_majalah(){
             return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia from list_majalah')->result();
         }
+        public function get_ebook(){
+            return $this->db->query('SELECT * FROM list_ebook order by nama_buku, id')->result();
+        }
+        public function get_ejournal(){
+            return $this->db->get('list_ejournal')->result();
+        }
 
 //---Informasi Pemustaka---
         public function get_fakultas(){

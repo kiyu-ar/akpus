@@ -8,7 +8,7 @@
     </nav>
     <a href="#buku"><button class="btn">Buku</button></a>
     <a href="#referensi"><button class="btn">Referensi</button></a>
-    <a href="#ta"><button class="btn">Tugas Akhir, Skripsi, Tesis, Disertasi</button></a>
+    <a href="#ta"><button class="btn">Laporan penelitian, Skrisi, Tesis, Disertasi</button></a>
     <a href="#prosiding"><button class="btn">Prosiding</button></a>
     <a href="#jurnal"><button class="btn">Jurnal</button></a>
     <a href="#koran"><button class="btn">Koran dan Majalah</button></a>
@@ -26,8 +26,8 @@
     </p>
 </div>
 <hr>
-<div id="ta" class="anchor">
-    <h4>Laporan Tugas Akhir</h4>
+<div id="ta">
+    <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
     <p>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website UNSLA pada
         <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=TA&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tugas Akhir UNSLA</a>
     </p>
@@ -43,7 +43,7 @@
     
 </div>
 <hr>
-<div id="prosiding" class="anchor">
+<div id="prosiding">
     <?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_prosiding')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Prosiding">Edit Data</button></a></div>
     <?php } ?>
@@ -52,7 +52,7 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ipsum inventore quas, enim pariatur consequatur adipisci laboriosam quo neque eos asperiores harum alias sequi perspiciatis? Totam necessitatibus veniam sunt nisi?</p> 
 </div>
 <hr>
-<div id="jurnal" class="anchor">
+<div id="jurnal">
     <?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_jurnal')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Jurnal">Edit Data</button></a></div>
     <?php } ?>
@@ -61,7 +61,7 @@
     
 </div>
 <hr>
-<div id="koran" class="anchor">
+<div id="koran">
     <h4>Koran dan Majalah : manual</h4>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahkoran" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
