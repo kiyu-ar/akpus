@@ -7,36 +7,59 @@
         </ol>
     </nav>
     <h5>Jumlah pustakawan menurut pendidikan perpustakaan</h5>
-    <?php var_dump($tabel1); ?>
-        <table class="table">
-            <tr>
-                <th>S3</th>
-                <th>S2</th>
-                <th>S1</th>
-                <th>D4</th>
-                <th>D3</th>
-                <th>D2</th>
-                <th>D1</th>
-                <th>Lain</th>
-                <th>Total</th>
+    <?php //var_dump($tabel1); ?>
+        <table class="table table-bordered" style="width:500px">
+            <tr><?php foreach($tabel1 as $key=>$value): ?>
+                <th><?php echo $key ?></th>
+                <?php endforeach; ?>
             </tr>
-            <tr>
-                    <td><?php echo $tabel1['s3'] ?></td>
-                    <td><?php echo $tabel1['s2'] ?></td>
-                    <td><?php echo $tabel1['s1'] ?></td>
-                    <td><?php echo $tabel1['d4'] ?></td>
-                    <td><?php echo $tabel1['d3'] ?></td>
-                    <td><?php echo $tabel1['d2'] ?></td>
-                    <td><?php echo $tabel1['d1'] ?></td>
-                    <td><?php echo $tabel1['lain'] ?></td>
-                    <td><?php echo $tabel1['total'] ?></td>
+            <tr><?php foreach($tabel1 as $value): ?>
+                    <td><?php echo $value ?></td>
+                <?php endforeach; ?>
             </tr>
         </table>
     <hr>
-    <h5>Jumlah pustakawan menurut jabatan fungsional, kepangkatan, dan pendidikan <br>
-        (Termasuk pendidikan non perpustakaan)</h5>
+    <div class="row" style="margin:10px">
+        <h5>Jumlah pustakawan menurut jabatan fungsional, kepangkatan, dan pendidikan <br>
+            (Termasuk pendidikan non perpustakaan)</h5>
+        <div class="col-md-4 div-col">
+            <p>Menurut Jabatan Fungsional</p>
+            <table class="table table-bordered" style="width:500px">
+            <?php foreach($tabel2 as $key=>$value): ?>
+            <tr>
+                <th><?php echo $key ?></th>
+                <td><?php echo $value ?></td>
+            </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
+        <div class="col-md-4 div-col">
+            <p>Menurut Kepangkatan</p>
+            <table class="table table-bordered" style="width:500px">
+            <?php foreach($tabel3 as $key=>$value): ?>
+            <tr>
+                <th><?php echo $key ?></th>
+                <td><?php echo $value ?></td>
+            </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
+        <div class="col-md-4 div-col">
+            <p>Menurut Pendidikan</p>
+            <table class="table table-bordered" style="width:500px">
+            <?php foreach($tabel4 as $key=>$value): ?>
+            <tr>
+                <th><?php echo $key ?></th>
+                <td><?php echo $value ?></td>
+            </tr>
+            <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
     <hr>
-    <h5>Jumlah Staf Perpustakaan</h5>
+    
+        <h5>Jumlah Staf Perpustakaan</h5>
+    
     <hr>
     <h5>Jumlah pengembangan SDM perpustakaan yang diikuti</h5>
 </div>

@@ -6,7 +6,7 @@
         }
         public function daftar_pustakawan(){
             $data['akses'] = $this->session->userdata('akses');
-            $data['pustakawan'] = $this->m_main->get_pustakawan();
+            $data['pustakawan'] = $this->m_main->get_data('tbl_pustakawan')->result();
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -44,16 +44,36 @@
             redirect('pustakawan/daftar_pustakawan');
         }
         public function edit($id){
+            $where = array ('id'=>$id);
+            $data['pustakawan'] = $this->m_main->edit_data($where,'tbl_pustakawan')->result();
+            
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pustakawan/v_edit_pustakawan',$data);
+            $this->load->view('diffdash/footer');
+        }
+        public function update(){
+            $id             = $this->input->post('id');
+            $nama           = $this->input->post('nama');
+            $pendidikan     = $this->input->post('pendidikan');
+            $pendidikan_lain        = $this->input->post('pendidikan_lain');
+            $pendidikan_tertinggi   = $this->input->post('pendidikan_tertinggi');
+            $data = array(
+                'nama'              => $nama,
+                'pendidikan'        => $pendidikan,
+                'pendidikan_lain'   => $pendidikan_lain,
+                'pendidikan_tertinggi' => $pendidikan_tertinggi,
+            );
+            $where = array('id' => $id);
 
+            $this->m_main->update_data($where, $data, 'tbl_pustakawan');
+            redirect('pustakawan/daftar_pustakawan');
         }
         public function pstatistik(){
-            $tabel1 = $this->m_main->get_tabel1();
-            $tabel2 = $this->m_main->get_tabel2();
-            $tabel3 = $this->m_main->get_tabel3();
-            $data['tabel1'] = $tabel1[0];
-            $data['tabel2'] = $tabel2[0];
-            $data['tabel3'] = $tabel3[0];
-
+            $data['tabel1'] = $this->m_main->get_tabel_p()[0];
+            $data['tabel2'] = $this->m_main->get_tabel_f()[0];
+            $data['tabel3'] = $this->m_main->get_tabel_j()[0];
+            $data['tabel4'] = $this->m_main->get_tabel_ptinggi()[0];
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');

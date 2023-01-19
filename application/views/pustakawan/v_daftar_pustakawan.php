@@ -45,7 +45,7 @@
         <form method="post" action="<?php echo base_url().'pustakawan/tambah'; ?>">
         <div class="form-group">
             <label>Nama Lengkap</label>
-            <input type="text" name="nama" class="form-control">
+            <input type="text" name="nama" placeholder="Nama lengkap beserta gelar" class="form-control">
         </div>
         <div class="form-group">
             <label>Pangkat/Gol. Ruang</label>
@@ -74,16 +74,23 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Pendidikan Perpustakaan Terakhir </label> (contoh: D3 Perpustakaan)
-            <input type="text" name="pendidikan" placeholder="D3 Perpustakaan" class="form-control">
+            <label>Pendidikan Perpustakaan </label>
+            <input type="text" name="pendidikan" placeholder="contoh : D3 Perpustakaan" class="form-control">
         </div>
         <div class="form-group">
             <label>Pendidikan Lain Terakhir </label>
-            <input type="text" name="pendidikan_lain" class="form-control">
+            <input type="text" name="pendidikan_lain" placeholder="(isi jika pendidikan tertinggi selain perpustakaan)" class="form-control">
         </div>
         <div class="form-group">
-            <label>Pendidikan Tertinggi </label> (contoh: S1)
-            <input type="text" name="pendidikan_tertinggi" class="form-control">
+            <label>Pendidikan Tertinggi </label>
+            <select name="pendidikan_tertinggi" class="form-control">
+                <option>Pilih Pendidikan Tertinggi</option>
+                <option value="Doktor">Doktor</option>
+                <option value="Master">Master</option>
+                <option value="Sarjana">Sarjana</option>
+                <option value="Diploma">Diploma</option>
+                <option value="SMA/Sederajat">SMA/Sederajat</option>
+            </select>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>

@@ -16,12 +16,13 @@
 <h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
-				<div class="row">
+				<div class="row justify-content-between">
 						<div class="col-md-4">
 							<!-- TRAFFIC SOURCES -->
 							<div class="panel-content">
 								<h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2>
-								<div id="demo-pie-chart" class="ct-chart"></div>
+								<!-- <div id="demo-pie-chart" class="ct-chart"></div> -->
+								<h1>35</h1>
 							</div>
 							<!-- END TRAFFIC SOURCES -->
 						</div>
