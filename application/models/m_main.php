@@ -53,7 +53,7 @@
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
             COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM `loan_history` where is_lent = 1
             and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok1 
-        JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM `loan_history` where is_return = 1
+            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM `loan_history` where is_return = 1
             and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
         public function sirkulasi_total(){
@@ -114,6 +114,32 @@
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
 //---Informasi Pustakawan---
+        public function get_pustakawan(){
+            return $this->db->get('pustakawan')->result();
+        }
+        public function get_tabel1(){
+            return $this->db->query('SELECT 
+            count(CASE WHEN (pendidikan like "%S3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as s3,
+            count(CASE WHEN (pendidikan like "%S2%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as s2,
+            count(CASE WHEN (pendidikan like "%S1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as s1,
+            count(CASE WHEN (pendidikan like "%D4%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as d4,
+            count(CASE WHEN (pendidikan like "%D3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as d3,
+            count(CASE WHEN (pendidikan like "%D2%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as d2,
+            count(CASE WHEN (pendidikan like "%D1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as d1,
+            count(CASE WHEN (pendidikan not like "%perpustakaan%") THEN 1 END ) as lain,
+            count(*) as total
+            FROM `pustakawan`')->result_array();
+        }
+        public function get_tabel2(){
+            return $this->db->query('SELECT 
+            count(CASE WHEN fungsional = "PUSTAKAWAN MADYA" THEN 1 END) as "PUSTAKAWAN MADYA",
+            count(CASE WHEN fungsional = "PUSTAKAWAN MUDA" THEN 1 END) as "PUSTAKAWAN MUDA",
+            count(CASE WHEN fungsional = "PUSTAKAWAN PERTAMA" THEN 1 END) as "PUSTAKAWAN PERTAM",
+            count(CASE WHEN fungsional = "PUSTAKAWAN PENYELIA" THEN 1 END) as "PUSTAKAWAN PENYELIA",
+            count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA LANJUTAN" THEN 1 END) as "PUSTAKAWAN PELAKSANA LANJUTAN",
+            count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA" THEN 1 END) as "PUSTAKAWAN PELAKSANA"
+            FROM `pustakawan` WHERE 1')->result_array();
+        }
 //---Informasi Lain---
 //---Informasi SOP---
         public function get_divisi_sop(){
