@@ -108,3 +108,8 @@ iframe.jframe{
 [id] {
       scroll-margin-top: 60px;
   }
+
+.tittle{
+    font-size: medium;
+    color: #000;
+}

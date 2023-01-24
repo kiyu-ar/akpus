@@ -1128,7 +1128,8 @@ textarea.parsley-error {
 .alert-success {
   color: #fff;
   background-color: #20a241;
-  border-color: #1d953c; }
+  border-color: #1d953c; 
+  margin-top: 5px;}
 
 .alert-warning {
   color: #fff;

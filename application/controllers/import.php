@@ -5,15 +5,19 @@
 
         public function index()
         {
-            $data['title'] = 'Import Excel';
-            $data['pengadaan'] = $this->db->get('pengadaan')->result();
-            $this->load->view('koleksi/v_pengadaan', $data);
+            // $data['title'] = 'Import Excel';
+            // $data['pengadaan'] = $this->db->get('pengadaan')->result();
+            // $this->load->view('koleksi/v_pengadaan', $data);
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('koleksi/v_pengadaan');
+            $this->load->view('diffdash/footer');
         }
 
         public function create()
         {
             $data['title'] = "Upload File Excel";
-            $this->load->view('import/create', $data);
+            $this->load->view('koleksi/v_pengadaan', $data);
         }
 
         public function excel()
@@ -35,14 +39,14 @@
         
                     for($row=4; $row<=$highestRow; $row++){
         
-                        $nama = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-                        $fakultas = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
-                        $program_studi = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
-                        $judul_buku = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
-                        $nama_pengarang = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-                        $penerbit = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+                        $nama            = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                        $fakultas        = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                        $program_studi   = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                        $judul_buku      = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                        $nama_pengarang  = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                        $penerbit        = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
                         $tahun_publikasi = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
-                        $isbn = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+                        $isbn            = $worksheet->getCellByColumnAndRow(7, $row)->getValue();
 
                         $data[] = array(
                             'nama'              => $nama,
@@ -66,7 +70,7 @@
                 );
                 
                 $this->session->set_flashdata($message);
-                redirect('import');
+                redirect('import/index');
             }
             else
             {
@@ -75,7 +79,7 @@
                 );
                 
                 $this->session->set_flashdata($message);
-                redirect('import');
+                redirect('import/index');
             }
         }
 
