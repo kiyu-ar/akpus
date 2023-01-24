@@ -1,3 +1,9 @@
+.div-col{
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    height: 402px;
+}
 nav.crumbs{
     background-color: lightblue;
     color: black;

@@ -1,11 +1,9 @@
 
-
-		
 				<h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
 					<div class="section-heading clearfix">
-						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Website Analytics</h2>
+						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Statistik UPT Perpustakaan</h2>
 						<a href="#" class="right">View Full Analytics Reports</a>
 					</div>
 					<div class="panel-content">
@@ -60,16 +58,16 @@
 						<div class="col-md-4">
 							<!-- REFERRALS -->
 							<div class="panel-content">
-								<h2 class="heading"><i class="fa fa-square"></i> Referrals</h2>
+								<h2 class="heading"><i class="fa fa-square"></i>Prodi dengan peminjaman terbanyak Bulan ini</h2>
 								<ul class="list-unstyled list-referrals">
 									<li>
-										<p><span class="value">3,454</span><span class="text-muted">visits from Facebook</span></p>
+										<p><span class="value">3,454</span><span class="text-muted">Prodi a</span></p>
 										<div class="progress progress-xs progress-transparent custom-color-blue">
 											<div class="progress-bar" data-transitiongoal="87"></div>
 										</div>
 									</li>
 									<li>
-										<p><span class="value">2,102</span><span class="text-muted">visits from Twitter</span></p>
+										<p><span class="value">2,102</span><span class="text-muted">Prodi b</span></p>
 										<div class="progress progress-xs progress-transparent custom-color-purple">
 											<div class="progress-bar" data-transitiongoal="34"></div>
 										</div>

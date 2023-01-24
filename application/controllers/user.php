@@ -78,15 +78,15 @@
         }}
 
         public function update(){
-            $id = $this->input->post('id');
-            $username = $this->input->post('username');
-            $nama = $this->input->post('nama');
-            $akses = $this->input->post('akses');
+            $id         = $this->input->post('id');
+            $username   = $this->input->post('username');
+            $nama       = $this->input->post('nama');
+            $akses      = $this->input->post('akses');
 
             $data = array(
                 'username'  => $username,
-                'nama' => $nama,
-                'akses' => $akses,
+                'nama'      => $nama,
+                'akses'     => $akses,
             );
             $where = array('id' => $id);
 
