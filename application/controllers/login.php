@@ -27,7 +27,10 @@
                     );
                 $this->session->set_userdata($data_session);
                 redirect('home');
-            }}else{
+                }else{
+                $this->session->set_flashdata('message','Password anda salah');
+                redirect('login/index');}
+            }else{
                 $this->session->set_flashdata('message','Password anda salah');
                 redirect('login/index');
             }
