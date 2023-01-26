@@ -10,6 +10,7 @@
         <h4>Request Koleksi dari Web, Formulir, atau Wawancara</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, laboriosam! Ratione, eveniet delectus et corporis obcaecati, ea minima possimus quis quas natus nesciunt sequi nemo optio, adipisci voluptate ipsum qui.</p>
     </div>
+    <a class="btn btn-success" href="<?php echo base_url('importexcel/download_template');?>" target="_blank">Download Format Excel</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Import File
     </button>
