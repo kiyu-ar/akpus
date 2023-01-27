@@ -14,8 +14,14 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Import File
     </button>
+    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel');?>" target="_blank">Export Excel</a>
     <br>
-    <?= $this->session->flashdata('message');?>
+    <?php
+    if($this->session->flashdata('message'))
+    {
+    echo $this->session->flashdata('message');
+    }
+    ?>
     <hr>
     <div>
         <h4>Rekapitulasi permintaan buku melalui surat ke Prodi</h4>
@@ -27,13 +33,13 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Import File Excel</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-      <form method="POST" action="<?= site_url('import/excel') ?>" enctype="multipart/form-data">
+      <form method="POST" action="<?php echo base_url('importexcel/import_excel') ?>" enctype="multipart/form-data">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
