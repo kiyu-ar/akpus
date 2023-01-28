@@ -11,16 +11,18 @@
         public function __construct()
         {
             parent::__construct();
+            $this->load->database();
             $this->load->model('M_excel');
         }
 
         # Pengembalian Setelah melakukan aksi
         public function index()
         {
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('koleksi/v_pengadaan');
-            $this->load->view('diffdash/footer');
+            $data['ab'] = $this->M_excel->tampilan_tabel();
+            $this->load->view('diffdash/header', $data);
+            $this->load->view('diffdash/sidebar', $data);
+            $this->load->view('koleksi/v_pengadaan', $data);
+            $this->load->view('diffdash/footer', $data);
         }
 
         # Fungsi Download Template

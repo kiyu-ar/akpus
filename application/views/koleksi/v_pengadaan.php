@@ -8,13 +8,12 @@
 <div>
     <div>
         <h4>Request Koleksi dari Web, Formulir, atau Wawancara</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, laboriosam! Ratione, eveniet delectus et corporis obcaecati, ea minima possimus quis quas natus nesciunt sequi nemo optio, adipisci voluptate ipsum qui.</p>
+        <p>Pengunjung dapat melakukan request koleksi dengan mengimportkan file dalam bentuk excel, sebelumnya pengunjung diwajibkan untuk mendownload template format excel yang tersedia di bawah, lalu kemudian pengunjung dapat menguploadnya di bagian import file</p>
     </div>
     <a class="btn btn-success" href="<?php echo base_url('importexcel/download_template');?>" target="_blank">Download Format Excel</a>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Import File
     </button>
-    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel');?>" target="_blank">Export Excel</a>
     <br>
     <?php
     if($this->session->flashdata('message'))
@@ -25,8 +24,45 @@
     <hr>
     <div>
         <h4>Rekapitulasi permintaan buku melalui surat ke Prodi</h4>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi, rerum veniam laborum odit autem molestias expedita vitae non nostrum reprehenderit ad sequi, vero, doloribus voluptatem culpa. Soluta amet ratione veritatis.</p>
+        <p>Berikut merupakan data permintaan buku yang ada melalui surat yang telah dikirimkan kepada prodi</p>
     </div>
+    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel');?>" target="_blank">Export Excel</a>
+    <br><br>
+    <table id="themed">  
+      <thead>  
+         <tr style="background:#CCC">
+            <th>No</th>  
+            <th>Nama Pengusul</th>  
+            <th>Fakultas</th>
+            <th>Program Studi</th>
+            <th>Judul Buku</th>
+            <th>Nama Pengarang</th>
+            <th>Penerbit</th>
+            <th>Tahun Publikasi</th>
+            <th>ISBN</th>  
+         </tr>
+      </thead>
+      <tbody>  
+         <?php
+         $i = 1;  
+         foreach ($ab as $row)  
+         {  
+            ?><tr>
+            <td><?php echo $i?></td>  
+            <td><?php echo $row->nama;?></td>  
+            <td><?php echo $row->fakultas;?></td> 
+            <td><?php echo $row->program_studi;?></td>
+            <td><?php echo $row->judul_buku;?></td>
+            <td><?php echo $row->nama_pengarang;?></td>
+            <td><?php echo $row->penerbit;?></td>
+            <td><?php echo $row->tahun_publikasi;?></td>
+            <td><?php echo $row->isbn;?></td>
+            <?php $i++?>
+            </tr>  
+         <?php }  
+         ?>  
+      </tbody>  
+   </table>  
 </div>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

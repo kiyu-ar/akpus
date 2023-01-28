@@ -2,13 +2,20 @@
     Class Koleksi extends CI_Controller{
         public function __construct(){
             parent::__construct();
+            $this->load->database();
+            $this->load->model('M_excel');
             $this->load->model('m_main');
         }
         public function pengadaan(){
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('koleksi/v_pengadaan');
-            $this->load->view('diffdash/footer');
+            $data['ab'] = $this->M_excel->tampilan_tabel();
+            $this->load->view('diffdash/header', $data);
+            $this->load->view('diffdash/sidebar', $data);
+            $this->load->view('koleksi/v_pengadaan', $data);
+            $this->load->view('diffdash/footer', $data);
+            // $this->load->view('diffdash/header');
+            // $this->load->view('diffdash/sidebar');
+            // $this->load->view('koleksi/v_pengadaan');
+            // $this->load->view('diffdash/footer');
         }
         public function jeniscetak(){
             $this->load->view('diffdash/header');

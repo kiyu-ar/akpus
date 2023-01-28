@@ -26,4 +26,10 @@ class M_Excel extends CI_Model{
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function tampilan_tabel()
+    {
+        $query = $this->db->get('pengadaan');
+        return $query->result();
+    }
 }
