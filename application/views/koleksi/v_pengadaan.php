@@ -28,6 +28,7 @@
     </div>
     <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel');?>" target="_blank">Export Excel</a>
     <br><br>
+    <div style="overflow-x: auto;">
     <table id="themed">  
       <thead>  
          <tr style="background:#CCC">
@@ -48,21 +49,22 @@
          foreach ($ab as $row)  
          {  
             ?><tr>
-            <td><?php echo $i?></td>  
-            <td><?php echo $row->nama;?></td>  
-            <td><?php echo $row->fakultas;?></td> 
-            <td><?php echo $row->program_studi;?></td>
-            <td><?php echo $row->judul_buku;?></td>
-            <td><?php echo $row->nama_pengarang;?></td>
-            <td><?php echo $row->penerbit;?></td>
-            <td><?php echo $row->tahun_publikasi;?></td>
-            <td><?php echo $row->isbn;?></td>
-            <?php $i++?>
+              <td><?php echo $i?></td>  
+              <td><?php echo $row->nama;?></td>  
+              <td><?php echo $row->fakultas;?></td> 
+              <td><?php echo $row->program_studi;?></td>
+              <td><?php echo $row->judul_buku;?></td>
+              <td><?php echo $row->nama_pengarang;?></td>
+              <td><?php echo $row->penerbit;?></td>
+              <td><?php echo $row->tahun_publikasi;?></td>
+              <td><?php echo $row->isbn;?></td>
+              <?php $i++?>
             </tr>  
          <?php }  
          ?>  
       </tbody>  
-   </table>  
+    </table> 
+    </div> 
 </div>
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
