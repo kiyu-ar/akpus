@@ -13,6 +13,7 @@
             parent::__construct();
             $this->load->database();
             $this->load->model('M_excel');
+            $this->load->model('M_main');
         }
 
         # Pengembalian Setelah melakukan aksi
@@ -49,14 +50,14 @@
             $sheet->getColumnDimension('F')->setAutoSize(false);
             $sheet->getColumnDimension('G')->setAutoSize(false);
             $sheet->getColumnDimension('H')->setAutoSize(false);
-            $sheet->getColumnDimension('A')->setWidth(33);
-            $sheet->getColumnDimension('B')->setWidth(33);
-            $sheet->getColumnDimension('C')->setWidth(33);
-            $sheet->getColumnDimension('D')->setWidth(33);
-            $sheet->getColumnDimension('E')->setWidth(33);
-            $sheet->getColumnDimension('F')->setWidth(33);
-            $sheet->getColumnDimension('G')->setWidth(33);
-            $sheet->getColumnDimension('H')->setWidth(33);
+            $sheet->getColumnDimension('A')->setWidth(21);
+            $sheet->getColumnDimension('B')->setWidth(21);
+            $sheet->getColumnDimension('C')->setWidth(21);
+            $sheet->getColumnDimension('D')->setWidth(21);
+            $sheet->getColumnDimension('E')->setWidth(21);
+            $sheet->getColumnDimension('F')->setWidth(21);
+            $sheet->getColumnDimension('G')->setWidth(21);
+            $sheet->getColumnDimension('H')->setWidth(21);
 
             # Isi Value
             $sheet->setCellValue('A1', 'Data Laporan Inputan Permintaan / Pengadaan Buku');
@@ -153,14 +154,14 @@
             $sheet->getColumnDimension('F')->setAutoSize(false);
             $sheet->getColumnDimension('G')->setAutoSize(false);
             $sheet->getColumnDimension('H')->setAutoSize(false);
-            $sheet->getColumnDimension('A')->setWidth(33);
-            $sheet->getColumnDimension('B')->setWidth(33);
-            $sheet->getColumnDimension('C')->setWidth(33);
-            $sheet->getColumnDimension('D')->setWidth(33);
-            $sheet->getColumnDimension('E')->setWidth(33);
-            $sheet->getColumnDimension('F')->setWidth(33);
-            $sheet->getColumnDimension('G')->setWidth(33);
-            $sheet->getColumnDimension('H')->setWidth(33);
+            $sheet->getColumnDimension('A')->setWidth(21);
+            $sheet->getColumnDimension('B')->setWidth(21);
+            $sheet->getColumnDimension('C')->setWidth(21);
+            $sheet->getColumnDimension('D')->setWidth(21);
+            $sheet->getColumnDimension('E')->setWidth(21);
+            $sheet->getColumnDimension('F')->setWidth(21);
+            $sheet->getColumnDimension('G')->setWidth(21);
+            $sheet->getColumnDimension('H')->setWidth(21);
 
             # Isi Value
             $sheet->setCellValue('A1', 'Data Laporan Inputan Permintaan / Pengadaan Buku');
@@ -184,6 +185,96 @@
                 $sheet->setCellValue('F'.$isi, $list->penerbit);
                 $sheet->setCellValue('G'.$isi, $list->tahun_publikasi);
                 $sheet->setCellValue('H'.$isi, $list->isbn);
+                $isi++;
+            }
+
+            # Output Value
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("php://output");
+        }
+
+        public function export_excel_sirkulasi()
+        {
+             # Mengambil Data
+            $data['sirkulasi_total'] = $this->M_excel->list_sirkulasi_total()->result();
+            $sirkulasi = $data;
+
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="Total_Peminjaman_PerBulan.xlsx"');
+
+            # Style Value
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->mergeCells('A1:N2');
+            $sheet->getStyle('A:N')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $sheet->getStyle('A:N')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+            $sheet->getStyle('A1:N3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+            $sheet->getStyle('A1:N3')->getFont()->setBold(True)->setSize(13);
+            $sheet->getStyle('A1:N2')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('ec5c0e');
+            $sheet->getStyle('A3:N3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('ece80e');
+            $sheet->getColumnDimension('A')->setAutoSize(false);
+            $sheet->getColumnDimension('B')->setAutoSize(false);
+            $sheet->getColumnDimension('C')->setAutoSize(false);
+            $sheet->getColumnDimension('D')->setAutoSize(false);
+            $sheet->getColumnDimension('E')->setAutoSize(false);
+            $sheet->getColumnDimension('F')->setAutoSize(false);
+            $sheet->getColumnDimension('G')->setAutoSize(false);
+            $sheet->getColumnDimension('H')->setAutoSize(false);
+            $sheet->getColumnDimension('I')->setAutoSize(false);
+            $sheet->getColumnDimension('J')->setAutoSize(false);
+            $sheet->getColumnDimension('K')->setAutoSize(false);
+            $sheet->getColumnDimension('L')->setAutoSize(false);
+            $sheet->getColumnDimension('M')->setAutoSize(false);
+            $sheet->getColumnDimension('N')->setAutoSize(false);
+            $sheet->getColumnDimension('A')->setWidth(21);
+            $sheet->getColumnDimension('B')->setWidth(21);
+            $sheet->getColumnDimension('C')->setWidth(21);
+            $sheet->getColumnDimension('D')->setWidth(21);
+            $sheet->getColumnDimension('E')->setWidth(21);
+            $sheet->getColumnDimension('F')->setWidth(21);
+            $sheet->getColumnDimension('G')->setWidth(21);
+            $sheet->getColumnDimension('H')->setWidth(21);
+            $sheet->getColumnDimension('I')->setWidth(21);
+            $sheet->getColumnDimension('J')->setWidth(21);
+            $sheet->getColumnDimension('K')->setWidth(21);
+            $sheet->getColumnDimension('L')->setWidth(21);
+            $sheet->getColumnDimension('M')->setWidth(21);
+            $sheet->getColumnDimension('N')->setWidth(21);
+
+            # Isi Value
+            $sheet->setCellValue('A1', 'Data Total Peminjaman Per Bulan');
+            $sheet->setCellValue('A3', 'Tahun');
+            $sheet->setCellValue('B3', 'Januari');
+            $sheet->setCellValue('C3', 'Februari');
+            $sheet->setCellValue('D3', 'Maret');
+            $sheet->setCellValue('E3', 'April');
+            $sheet->setCellValue('F3', 'Mei');
+            $sheet->setCellValue('G3', 'Juni');
+            $sheet->setCellValue('H3', 'Juli');
+            $sheet->setCellValue('I3', 'Agustus');
+            $sheet->setCellValue('J3', 'September');
+            $sheet->setCellValue('K3', 'Oktober');
+            $sheet->setCellValue('L3', 'November');
+            $sheet->setCellValue('M3', 'Desember');
+            $sheet->setCellValue('N3', 'Total');
+            
+            $isi = 4;
+            foreach ($sirkulasi['sirkulasi_total'] as $list)
+            {
+                $sheet->setCellValue('A'.$isi, $list->tahun);
+                $sheet->setCellValue('B'.$isi, $list->januari);
+                $sheet->setCellValue('C'.$isi, $list->februari);
+                $sheet->setCellValue('D'.$isi, $list->maret);
+                $sheet->setCellValue('E'.$isi, $list->april);
+                $sheet->setCellValue('F'.$isi, $list->mei);
+                $sheet->setCellValue('G'.$isi, $list->juni);
+                $sheet->setCellValue('H'.$isi, $list->juli);
+                $sheet->setCellValue('I'.$isi, $list->agustus);
+                $sheet->setCellValue('J'.$isi, $list->september);
+                $sheet->setCellValue('K'.$isi, $list->oktober);
+                $sheet->setCellValue('L'.$isi, $list->november);
+                $sheet->setCellValue('M'.$isi, $list->desember);
+                $sheet->setCellValue('N'.$isi, $list->total);
                 $isi++;
             }
 
