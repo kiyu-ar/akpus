@@ -50,14 +50,14 @@
             $sheet->getColumnDimension('F')->setAutoSize(false);
             $sheet->getColumnDimension('G')->setAutoSize(false);
             $sheet->getColumnDimension('H')->setAutoSize(false);
-            $sheet->getColumnDimension('A')->setWidth(21);
-            $sheet->getColumnDimension('B')->setWidth(21);
-            $sheet->getColumnDimension('C')->setWidth(21);
-            $sheet->getColumnDimension('D')->setWidth(21);
-            $sheet->getColumnDimension('E')->setWidth(21);
-            $sheet->getColumnDimension('F')->setWidth(21);
-            $sheet->getColumnDimension('G')->setWidth(21);
-            $sheet->getColumnDimension('H')->setWidth(21);
+            $sheet->getColumnDimension('A')->setWidth(33);
+            $sheet->getColumnDimension('B')->setWidth(33);
+            $sheet->getColumnDimension('C')->setWidth(33);
+            $sheet->getColumnDimension('D')->setWidth(33);
+            $sheet->getColumnDimension('E')->setWidth(33);
+            $sheet->getColumnDimension('F')->setWidth(33);
+            $sheet->getColumnDimension('G')->setWidth(33);
+            $sheet->getColumnDimension('H')->setWidth(33);
 
             # Isi Value
             $sheet->setCellValue('A1', 'Data Laporan Inputan Permintaan / Pengadaan Buku');
@@ -154,14 +154,15 @@
             $sheet->getColumnDimension('F')->setAutoSize(false);
             $sheet->getColumnDimension('G')->setAutoSize(false);
             $sheet->getColumnDimension('H')->setAutoSize(false);
-            $sheet->getColumnDimension('A')->setWidth(21);
-            $sheet->getColumnDimension('B')->setWidth(21);
-            $sheet->getColumnDimension('C')->setWidth(21);
-            $sheet->getColumnDimension('D')->setWidth(21);
-            $sheet->getColumnDimension('E')->setWidth(21);
-            $sheet->getColumnDimension('F')->setWidth(21);
-            $sheet->getColumnDimension('G')->setWidth(21);
-            $sheet->getColumnDimension('H')->setWidth(21);
+            $sheet->getColumnDimension('A')->setWidth(33);
+            $sheet->getColumnDimension('B')->setWidth(33);
+            $sheet->getColumnDimension('C')->setWidth(33);
+            $sheet->getColumnDimension('D')->setWidth(33);
+            $sheet->getColumnDimension('E')->setWidth(33);
+            $sheet->getColumnDimension('F')->setWidth(33);
+            $sheet->getColumnDimension('G')->setWidth(33);
+            $sheet->getColumnDimension('H')->setWidth(33);
+            $sheet->setAutoFilter('A3:H3');
 
             # Isi Value
             $sheet->setCellValue('A1', 'Data Laporan Inputan Permintaan / Pengadaan Buku');
