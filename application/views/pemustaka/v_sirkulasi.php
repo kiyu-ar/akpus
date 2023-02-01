@@ -28,6 +28,8 @@
     <div>
         <h4>Total Peminjaman per Bulan</h4>
         <p>Jumlah Total Peminjaman Buku per Bulan</p>
+        <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel_sirkulasi');?>" target="_blank">Export Excel</a>
+        <br><br>
         <iframe class="jframe" src="<?php echo base_url() ?>pemustaka/sirkulasi_total" frameborder="0"></iframe>
     </div>
 </div>

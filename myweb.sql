@@ -1,19 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Jan 19, 2023 at 11:04 AM
+-- Generation Time: Jan 30, 2023 at 05:50 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
-=======
--- Waktu pembuatan: 19 Jan 2023 pada 05.12
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.2
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -30,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `anggota`
+-- Table structure for table `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -43,7 +38,7 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `anggota`
+-- Dumping data for table `anggota`
 --
 
 INSERT INTO `anggota` (`id`, `nim`, `nama`, `tanggal_lahir`, `alamat`, `topik`) VALUES
@@ -55,7 +50,116 @@ INSERT INTO `anggota` (`id`, `nim`, `nama`, `tanggal_lahir`, `alamat`, `topik`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `log`
+-- Table structure for table `list_ebook`
+--
+
+CREATE TABLE `list_ebook` (
+  `id` int(5) NOT NULL,
+  `nama_buku` varchar(50) DEFAULT NULL,
+  `tahun` varchar(20) NOT NULL,
+  `link_buku` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_ebook`
+--
+
+INSERT INTO `list_ebook` (`id`, `nama_buku`, `tahun`, `link_buku`) VALUES
+(1, 'ScienceDirect', '2015', 'https://library.uns.ac.id/sciencedirect-e-book/'),
+(2, 'SpringerLink', '2005', 'https://library.uns.ac.id/wp-content/uploads/2016/02/SPRINGERLINK-Ebook-2005x.xlsx'),
+(3, 'SpringerLink', '2013-2016', 'https://library.uns.ac.id/wp-content/uploads/2017/06/eBook-list-2013-2016.xlsx'),
+(4, 'SpringerLink', '2016', 'https://library.uns.ac.id/wp-content/uploads/2016/02/b.-SPRINGERLINK-Ebook_2017_website.xlsx'),
+(5, 'SpringerLink', '2017', 'https://library.uns.ac.id/wp-content/uploads/2018/12/pengadaan-2018.xlsx'),
+(6, 'SpringerLink', '2019', 'https://library.uns.ac.id/wp-content/uploads/2020/01/SpringerLink-e_book-2019.xlsx'),
+(7, 'EBSCO', '2013 - 2014', 'https://library.uns.ac.id/ebsco-e-book/'),
+(8, 'ProQuest', '2014 - 2015', 'https://library.uns.ac.id/ebrary-e-book/');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_ejournal`
+--
+
+CREATE TABLE `list_ejournal` (
+  `id` int(5) NOT NULL,
+  `nama_jurnal` varchar(50) DEFAULT NULL,
+  `link_jurnal` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_ejournal`
+--
+
+INSERT INTO `list_ejournal` (`id`, `nama_jurnal`, `link_jurnal`) VALUES
+(1, 'ScienceDirect', 'https://www.elsevier.com/solutions/sciencedirect/content/journal-title-lists');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_koran`
+--
+
+CREATE TABLE `list_koran` (
+  `id` int(5) NOT NULL,
+  `nama_koran` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_koran`
+--
+
+INSERT INTO `list_koran` (`id`, `nama_koran`) VALUES
+(1, 'Bisnis Indonesia'),
+(2, 'Jakarta Post'),
+(3, 'Jawa Pos'),
+(4, 'Kedaulatan Rakyat'),
+(5, 'Kompas'),
+(6, 'Media Indonesia'),
+(7, 'Republika'),
+(8, 'Solo Pos'),
+(9, 'Suara Merdeka'),
+(12, 'coba');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_majalah`
+--
+
+CREATE TABLE `list_majalah` (
+  `id` int(5) NOT NULL,
+  `nama_majalah` varchar(50) DEFAULT NULL,
+  `tahun_dari` varchar(10) DEFAULT NULL,
+  `tahun_hingga` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_majalah`
+--
+
+INSERT INTO `list_majalah` (`id`, `nama_majalah`, `tahun_dari`, `tahun_hingga`) VALUES
+(1, 'National Geographic', '1993', 'present'),
+(2, 'Bola (Bulletin)', '2014', '2017'),
+(3, 'Horizon', '2000', '2016'),
+(4, 'Info Komputer', '1993', 'present'),
+(5, 'Intisari', '1978', 'present'),
+(6, 'Peluang Usaha (Bulletin)', '2014', '2016'),
+(7, 'Penjebar Semangat', '1989', 'present'),
+(8, 'Properti', '2010', 'present'),
+(9, 'SWA', '1993', 'present'),
+(10, 'Tempo', '1977', 'present'),
+(11, 'National Geographic', '1976', '1980'),
+(12, NULL, '2011', 'present'),
+(13, 'National Geographic Traveler', '2009', 'present'),
+(14, 'National Geographic Kids', '2011', 'present'),
+(15, 'Laras', '2010', '2015'),
+(16, 'Nirmala', '2000', '2013'),
+(17, 'Warta Ekonomi', '1993', '2016');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `log`
 --
 
 CREATE TABLE `log` (
@@ -69,7 +173,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -81,23 +185,19 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`) VALUES
 (0, 'admin', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin superuser', 0),
 (1, 'admin2', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin', 1),
-(2, 'Operator', '$2y$10$NbX5PWGv8iguPWrAWeLKJu72BD.UNmHbukT6DB9mj5poND74kg2am', 'Operator', 2),
+(2, 'Operator', '$2y$10$UDcvYFLgAa5ShBpB6WUl1uMuyKJSjOW/6E0hLBf7Hba1oAdtG1Yie', 'Operator', 2),
 (5, 'Qr', '$2y$10$CaW0f0z0ZiO7e2/LxB7Mr.QS9gMuDYkxvXvBXFoR31XjU27eVK4Ve', 'Annisa Qr', 1);
 
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Table structure for table `pengadaan`
-=======
--- Struktur dari tabel `pengadaan`
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 --
 
 CREATE TABLE `pengadaan` (
@@ -110,20 +210,12 @@ CREATE TABLE `pengadaan` (
   `penerbit` varchar(500) NOT NULL,
   `tahun_publikasi` year(4) NOT NULL,
   `isbn` varchar(30) NOT NULL
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-=======
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
 -- Table structure for table `sop_pengolahan`
-=======
--- Struktur dari tabel `sop_pengolahan`
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 --
 
 CREATE TABLE `sop_pengolahan` (
@@ -136,7 +228,7 @@ CREATE TABLE `sop_pengolahan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `sop_pengolahan`
+-- Dumping data for table `sop_pengolahan`
 --
 
 INSERT INTO `sop_pengolahan` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `file`) VALUES
@@ -148,7 +240,7 @@ INSERT INTO `sop_pengolahan` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_divisi_sop`
+-- Table structure for table `tbl_divisi_sop`
 --
 
 CREATE TABLE `tbl_divisi_sop` (
@@ -157,24 +249,18 @@ CREATE TABLE `tbl_divisi_sop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_divisi_sop`
+-- Dumping data for table `tbl_divisi_sop`
 --
 
 INSERT INTO `tbl_divisi_sop` (`id`, `divisi`) VALUES
 (1, 'IT'),
-<<<<<<< HEAD
 (2, 'Pengolahan'),
 (3, 'Sirkulasi');
-=======
-(2, 'idk'),
-(3, 'nantoka'),
-(4, 'bocchi');
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_fakultas`
+-- Table structure for table `tbl_fakultas`
 --
 
 CREATE TABLE `tbl_fakultas` (
@@ -183,7 +269,7 @@ CREATE TABLE `tbl_fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_fakultas`
+-- Dumping data for table `tbl_fakultas`
 --
 
 INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
@@ -206,7 +292,7 @@ INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_prodi`
+-- Table structure for table `tbl_prodi`
 --
 
 CREATE TABLE `tbl_prodi` (
@@ -217,7 +303,7 @@ CREATE TABLE `tbl_prodi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_prodi`
+-- Dumping data for table `tbl_prodi`
 --
 
 INSERT INTO `tbl_prodi` (`id_prodi`, `prodi`, `kode`, `id_fakultas`) VALUES
@@ -304,58 +390,75 @@ INSERT INTO `tbl_pustakawan` (`id`, `nama`, `pangkat`, `fungsional`, `pendidikan
 --
 
 --
--- Indeks untuk tabel `anggota`
+-- Indexes for table `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `log`
+-- Indexes for table `list_ebook`
+--
+ALTER TABLE `list_ebook`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_ejournal`
+--
+ALTER TABLE `list_ejournal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_koran`
+--
+ALTER TABLE `list_koran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_majalah`
+--
+ALTER TABLE `list_majalah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indeks untuk tabel `pengadaan`
---
-ALTER TABLE `pengadaan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `sop_pengolahan`
+-- Indexes for table `sop_pengolahan`
 --
 ALTER TABLE `sop_pengolahan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_divisi` (`id_divisi`);
 
 --
--- Indeks untuk tabel `tbl_divisi_sop`
+-- Indexes for table `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_divisi_sop`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_fakultas`
+-- Indexes for table `tbl_fakultas`
 --
 ALTER TABLE `tbl_fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
 
 --
--- Indeks untuk tabel `tbl_prodi`
+-- Indexes for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   ADD PRIMARY KEY (`id_prodi`),
   ADD KEY `id_fakultas` (`id_fakultas`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `tbl_pustakawan`
 --
 ALTER TABLE `tbl_pustakawan`
@@ -363,61 +466,75 @@ ALTER TABLE `tbl_pustakawan`
 
 --
 -- AUTO_INCREMENT for dumped tables
-=======
--- AUTO_INCREMENT untuk tabel yang dibuang
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 --
 
 --
--- AUTO_INCREMENT untuk tabel `anggota`
+-- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `log`
+-- AUTO_INCREMENT for table `list_ebook`
+--
+ALTER TABLE `list_ebook`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `list_ejournal`
+--
+ALTER TABLE `list_ejournal`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `list_koran`
+--
+ALTER TABLE `list_koran`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `list_majalah`
+--
+ALTER TABLE `list_majalah`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `pengadaan`
---
-ALTER TABLE `pengadaan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `sop_pengolahan`
+-- AUTO_INCREMENT for table `sop_pengolahan`
 --
 ALTER TABLE `sop_pengolahan`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_divisi_sop`
+-- AUTO_INCREMENT for table `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_divisi_sop`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_fakultas`
+-- AUTO_INCREMENT for table `tbl_fakultas`
 --
 ALTER TABLE `tbl_fakultas`
   MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_prodi`
+-- AUTO_INCREMENT for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   MODIFY `id_prodi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
-<<<<<<< HEAD
 -- AUTO_INCREMENT for table `tbl_pustakawan`
 --
 ALTER TABLE `tbl_pustakawan`
@@ -425,19 +542,16 @@ ALTER TABLE `tbl_pustakawan`
 
 --
 -- Constraints for dumped tables
-=======
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
->>>>>>> a168470459aa34602639d0c10493cf247d0231eb
 --
 
 --
--- Ketidakleluasaan untuk tabel `sop_pengolahan`
+-- Constraints for table `sop_pengolahan`
 --
 ALTER TABLE `sop_pengolahan`
   ADD CONSTRAINT `sop_pengolahan_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi_sop` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `tbl_prodi`
+-- Constraints for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   ADD CONSTRAINT `tbl_prodi_ibfk_1` FOREIGN KEY (`id_fakultas`) REFERENCES `tbl_fakultas` (`id_fakultas`);
