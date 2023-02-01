@@ -6,6 +6,7 @@
             <li class="crumb">Jenis Koleksi Cetak</li>
         </ol>
     </nav>
+    <form action="<?php echo base_url().'pustakawan/daftar_staf'; ?>"><button type="submit" class="btn btn-primary"  style="margin-top:30px">Daftar Staf</button></form>
     <h5>Jumlah pustakawan menurut pendidikan perpustakaan</h5>
     <?php //var_dump($tabel1); ?>
         <table class="table table-bordered" style="width:500px">

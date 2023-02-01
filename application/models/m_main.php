@@ -124,6 +124,10 @@
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
 //---Informasi Pustakawan---
+        public function get_pegawai(){
+            return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM `tbl_pegawai` as t 
+            order by sort, substring(pangkat,1,1) DESC, substring(pangkat, 2,1) DESC');
+        }
         public function get_tabel_p(){
             return $this->db->query('SELECT 
             count(CASE WHEN (pendidikan like "%S3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as S3,
@@ -135,7 +139,7 @@
             count(CASE WHEN (pendidikan like "%D1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D1,
             count(CASE WHEN (pendidikan not like "%perpustakaan%") THEN 1 END ) as Lain,
             count(*) as Total
-            FROM `tbl_pustakawan`')->result_array();
+            FROM `tbl_pegawai`')->result_array();
         }
         public function get_tabel_f(){
             return $this->db->query('SELECT 
@@ -146,27 +150,27 @@
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA LANJUTAN" THEN 1 END) as "PUSTAKAWAN PELAKSANA LANJUTAN",
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA" THEN 1 END) as "PUSTAKAWAN PELAKSANA",
             count(*) as Total
-            FROM `tbl_pustakawan` WHERE 1')->result_array();
+            FROM `tbl_pegawai` WHERE 1')->result_array();
         }
         public function get_tabel_j(){
             return $this->db->query('SELECT
-            count(CASE WHEN pangkat = "IV/c" THEN 1 END) as "IV/c",
-            count(CASE WHEN pangkat = "IV/b" THEN 1 END) as "IV/b",
-            count(CASE WHEN pangkat = "IV/a" THEN 1 END) as "IV/a", 
-            count(CASE WHEN pangkat = "III/d" THEN 1 END) as "III/d",
-            count(CASE WHEN pangkat = "III/c" THEN 1 END) as "III/c",
-            count(CASE WHEN pangkat = "III/b" THEN 1 END) as "III/b",
-            count(CASE WHEN pangkat = "III/a" THEN 1 END) as "III/a",
-            count(CASE WHEN pangkat = "II/d" THEN 1 END) as "II/d",
+            count(CASE WHEN pangkat = "4c" THEN 1 END) as "IV/c",
+            count(CASE WHEN pangkat = "4b" THEN 1 END) as "IV/b",
+            count(CASE WHEN pangkat = "4a" THEN 1 END) as "IV/a", 
+            count(CASE WHEN pangkat = "3d" THEN 1 END) as "III/d",
+            count(CASE WHEN pangkat = "3c" THEN 1 END) as "III/c",
+            count(CASE WHEN pangkat = "3b" THEN 1 END) as "III/b",
+            count(CASE WHEN pangkat = "3a" THEN 1 END) as "III/a",
+            count(CASE WHEN pangkat = "2d" THEN 1 END) as "II/d",
             count(*) as Total
-            FROM tbl_pustakawan')->result_array();
+            FROM tbl_pegawai')->result_array();
         }
         public function get_tabel_ptinggi(){
             return $this->db->query('SELECT count(CASE WHEN pendidikan_tertinggi = "Master" THEN 1 END) as "Master",
             count(CASE WHEN pendidikan_tertinggi = "Sarjana" THEN 1 END) as "Sarjana",
             count(CASE WHEN pendidikan_tertinggi = "Diploma" THEN 1 END) as "Diploma",
             count(CASE WHEN pendidikan_tertinggi = "SMA/Sederajat" THEN 1 END) as "SMA/Sederajat",
-            count(*) as Total FROM tbl_pustakawan')->result_array();
+            count(*) as Total FROM tbl_pegawai')->result_array();
         }
 //---Informasi Lain---
 //---Informasi SOP---

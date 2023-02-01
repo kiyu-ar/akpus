@@ -3,22 +3,23 @@
         <ol>
             <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
             <li class="crumb"><a href="#">Pustakawan</a></li>
-            <li class="crumb">Edit Pustakawan</li>
+            <li class="crumb">Edit Staf</li>
         </ol>
     </nav>
 
 <div>
-    <?php foreach($pustakawan as $row): ?>
+    <?php foreach($nonpustakawan as $row): ?>
     <form action="<?php echo base_url().'pustakawan/update'; ?>" method="post">
         <div class="form-group">
             <label>Nama Lengkap</label>
             <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
-            <input type="hidden" name="jabatan" class="form-control" value="pustakawan">
+            <input type="hidden" name="fungsional" class="form-control" value="-">
             <input type="text" name="nama" class="form-control" value="<?php echo $row->nama ?>">
         </div>
         <div class="form-group">
             <label>Pangkat/Gol. Ruang</label>
             <select name="pangkat" class="form-control">
+                <option value="-" <?php echo ($row->pangkat == "-" ? "selected" : ""); ?>>-</option>
                 <option value="4c" <?php echo ($row->pangkat == "4c" ? "selected" : ""); ?>>IV/c</option>
                 <option value="4b" <?php echo ($row->pangkat == "4b" ? "selected" : ""); ?>>IV/b</option>
                 <option value="4a" <?php echo ($row->pangkat == "4a" ? "selected" : ""); ?>>IV/a</option>
@@ -30,16 +31,8 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Jabatan Fungsional</label>
-            <select name="fungsional" class="form-control">
-                <option value="Pustakawan Utama" <?php echo ($row->fungsional == "Pustakawan Utama" ? "selected" : ""); ?>>Pustakawan Utama</option>
-                <option value="Pustakawan Madya" <?php echo ($row->fungsional == "Pustakawan Madya" ? "selected" : ""); ?>>Pustakawan Madya</option>
-                <option value="Pustakawan Muda" <?php echo ($row->fungsional == "Pustakawan Muda" ? "selected" : ""); ?>>Pustakawan Muda</option>
-                <option value="Pustakawan Pertama" <?php echo ($row->fungsional == "Pustakawan Pertama" ? "selected" : ""); ?>>Pustakawan Pertama</option>
-                <option value="Pustakawan Penyelia" <?php echo ($row->fungsional == "Pustakawan Penyelia" ? "selected" : ""); ?>>Pustakawan Penyelia</option>
-                <option value="Pustakawan Pelaksana Lanjutan" <?php echo ($row->fungsional == "Pustakawan Pelaksana Lanjutan" ? "selected" : ""); ?>>Pustakawan Pelaksana Lanjutan</option>
-                <option value="Pustakawan Pelaksana" <?php echo ($row->fungsional == "Pustakawan Pelaksana" ? "selected" : ""); ?>>Pustakawan Pelaksana</option>
-            </select>
+            <label>Jabatan</label>
+            <input type="text" name="jabatan" class="form-control" value="<?php echo $row->jabatan ?>">
         </div>
         <div class="form-group">
             <label>Pendidikan Perpustakaan</label>

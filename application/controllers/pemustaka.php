@@ -37,6 +37,24 @@
             $data['sirkulasi_t'] = $this->m_main->sirkulasi_total()->result();
             $this->load->view('pemustaka/iframe_sirkulasi_total',$data);
         }
+        public function export_csv($type,$id){
+            $filename = 'sirkulasi_'.date('Ymd').'.csv';
+            header("Content-Description: File Transfer"); 
+            header("Content-Disposition: attachment; filename=$filename"); 
+            header("Content-Type: application/csv; ");
+            //data type
+            if($type == 1){
+                
+            }else if($type == 2){
+                $data = $this->m_main->sirkulasi_total();
+            }else if(type == 3){
+
+            }else{
+
+            }
+            $file = fopen('php://output', 'w');
+
+        }
         public function literasi(){
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');

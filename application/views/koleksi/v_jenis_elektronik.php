@@ -32,13 +32,25 @@
 <hr>
 <div id="prosiding">
     <h4>Prosiding : digilib</h4>
-    <p>Buku</p>
-    
+    <p>Data Prosiding dapat diakses melalui website Digilib pada
+    <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10283" target="_blank">Prosiding Digilib</a>
+    </p>
 </div>
 <hr>
 <div id="ta">
     <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
-    <p>Buku</p>
+    <p>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website Digilib pada
+        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=1.1254" target="_blank">Tugas Akhir Digilib</a>
+    </p>
+    <p>Data Skripsi dapat diakses melalui website Digilib pada
+        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=261" target="_blank">Skripsi Digilib</a>
+    </p>
+    <p>Data Tesis dapat diakses melalui website Digilib pada
+        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=494" target="_blank">Tesis Digilib</a>
+    </p>
+    <p>Data Disertasi dapat diakses melalui website Digilib pada
+        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10189" target="_blank">Disertasi Digilib</a>
+    </p>
     
 </div>
 
