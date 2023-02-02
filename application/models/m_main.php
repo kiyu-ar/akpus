@@ -139,7 +139,7 @@
             count(CASE WHEN (pendidikan like "%D1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D1,
             count(CASE WHEN (pendidikan not like "%perpustakaan%") THEN 1 END ) as Lain,
             count(*) as Total
-            FROM `tbl_pegawai`')->result_array();
+            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_f(){
             return $this->db->query('SELECT 
@@ -150,7 +150,7 @@
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA LANJUTAN" THEN 1 END) as "PUSTAKAWAN PELAKSANA LANJUTAN",
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA" THEN 1 END) as "PUSTAKAWAN PELAKSANA",
             count(*) as Total
-            FROM `tbl_pegawai` WHERE 1')->result_array();
+            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_j(){
             return $this->db->query('SELECT
@@ -163,7 +163,7 @@
             count(CASE WHEN pangkat = "3a" THEN 1 END) as "III/a",
             count(CASE WHEN pangkat = "2d" THEN 1 END) as "II/d",
             count(*) as Total
-            FROM tbl_pegawai')->result_array();
+            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_ptinggi(){
             return $this->db->query('SELECT count(CASE WHEN pendidikan_tertinggi = "Master" THEN 1 END) as "Master",

@@ -21,7 +21,15 @@
             <tr>
                 <td><?php echo $no++ ?></td>
                 <td><?php echo $row->nama ?></td>
-                <td><?php echo $row->pangkat ?></td>
+                <td><?php if ($row->pangkat == "4c") {echo "IV/c";}
+                          else if ($row->pangkat == "4b") {echo "IV/b";}
+                          else if ($row->pangkat == "4a") {echo "IV/a";}
+                          else if ($row->pangkat == "3d") {echo "III/d";}
+                          else if ($row->pangkat == "3c") {echo "III/c";}
+                          else if ($row->pangkat == "3b") {echo "III/b";}
+                          else if ($row->pangkat == "3a") {echo "III/a";}
+                          else if ($row->pangkat == "2d") {echo "II/d";}
+                          else echo $row->pangkat ?></td>
                 <td><?php echo $row->jabatan ?></td>
                 <td><?php echo $row->fungsional ?></td>              
                 <td><?php echo $row->pendidikan_tertinggi ?></td>
@@ -123,15 +131,16 @@
         <div class="form-group">
             <label>Pangkat/Gol. Ruang</label>
             <select name="pangkat" class="form-control">
-                <option value="-" <?php echo ($row->pangkat == "-" ? "selected" : ""); ?>>-</option>
-                <option value="4c" <?php echo ($row->pangkat == "4c" ? "selected" : ""); ?>>IV/c</option>
-                <option value="4b" <?php echo ($row->pangkat == "4b" ? "selected" : ""); ?>>IV/b</option>
-                <option value="4a" <?php echo ($row->pangkat == "4a" ? "selected" : ""); ?>>IV/a</option>
-                <option value="3d" <?php echo ($row->pangkat == "3d" ? "selected" : ""); ?>>III/d</option>
-                <option value="3c" <?php echo ($row->pangkat == "3c" ? "selected" : ""); ?>>III/c</option>
-                <option value="3b" <?php echo ($row->pangkat == "3b" ? "selected" : ""); ?>>III/b</option>
-                <option value="3a" <?php echo ($row->pangkat == "3a" ? "selected" : ""); ?>>III/a</option>
-                <option value="2d" <?php echo ($row->pangkat == "2d" ? "selected" : ""); ?>>II/d</option>
+                <option>Pilih Pangkat</option>
+                <option value="-">-</option>
+                <option value="4c">IV/c</option>
+                <option value="4b">IV/b</option>
+                <option value="4a">IV/a</option>
+                <option value="3d">III/d</option>
+                <option value="3c">III/c</option>
+                <option value="3b">III/b</option>
+                <option value="3a">III/a</option>
+                <option value="2d">II/d</option>
             </select>
         </div>
         <div class="form-group">
@@ -155,6 +164,8 @@
                 <option value="Sarjana">Sarjana</option>
                 <option value="Diploma">Diploma</option>
                 <option value="SMA/Sederajat">SMA/Sederajat</option>
+                <option value="SMP/Sederajat">SMP/Sederajat</option>
+                <option value="SD/Sederajat">SD/Sederajat</option>
             </select>
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

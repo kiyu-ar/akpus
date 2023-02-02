@@ -50,6 +50,8 @@
                 <option value="Sarjana" <?php echo ($row->pendidikan_tertinggi == "Sarjana" ? "selected" : ""); ?>>Sarjana</option>
                 <option value="Diploma" <?php echo ($row->pendidikan_tertinggi == "Diploma" ? "selected" : ""); ?>>Diploma</option>
                 <option value="SMA/Sederajat" <?php echo ($row->pendidikan_tertinggi == "SMA/Sederajat" ? "selected" : ""); ?>>SMA/Sederajat</option>
+                <option value="SMP/Sederajat" <?php echo ($row->pendidikan_tertinggi == "SMP/Sederajat" ? "selected" : ""); ?>>SMP/Sederajat</option>
+                <option value="SD/Sederajat" <?php echo ($row->pendidikan_tertinggi == "SD/Sederajat" ? "selected" : ""); ?>>SD/Sederajat</option>
             </select>
         </div>
         <div class="form-group">
