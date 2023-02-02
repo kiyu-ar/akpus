@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2023 at 05:50 AM
+-- Generation Time: Feb 02, 2023 at 05:15 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -191,8 +191,7 @@ CREATE TABLE `login` (
 INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`) VALUES
 (0, 'admin', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin superuser', 0),
 (1, 'admin2', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin', 1),
-(2, 'Operator', '$2y$10$UDcvYFLgAa5ShBpB6WUl1uMuyKJSjOW/6E0hLBf7Hba1oAdtG1Yie', 'Operator', 2),
-(5, 'Qr', '$2y$10$CaW0f0z0ZiO7e2/LxB7Mr.QS9gMuDYkxvXvBXFoR31XjU27eVK4Ve', 'Annisa Qr', 1);
+(2, 'Operator', '$2y$10$UDcvYFLgAa5ShBpB6WUl1uMuyKJSjOW/6E0hLBf7Hba1oAdtG1Yie', 'Operator', 2);
 
 -- --------------------------------------------------------
 
@@ -292,6 +291,74 @@ INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_pegawai`
+--
+
+CREATE TABLE `tbl_pegawai` (
+  `id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `pangkat` varchar(5) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `fungsional` varchar(50) NOT NULL,
+  `pendidikan` varchar(50) NOT NULL,
+  `pendidikan_lain` varchar(50) NOT NULL,
+  `pendidikan_tertinggi` varchar(20) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pegawai`
+--
+
+INSERT INTO `tbl_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`, `status`) VALUES
+(1, 'Dra. Tri Hardiningtyas, M.Si.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(2, 'Daryono, S.Sos.,  MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(3, 'Bambang Hermanto, S.Pd. MIP.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(4, 'Dinar Puspitadewi, MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(5, 'Masriyatun, MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(6, 'Haryanto, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(7, 'Dian Hapsari, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(8, 'Suroto, S.Sos., MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(9, 'Sri Anawati, S.Sos.,MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(10, 'Sri Utari, SE., M.A.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(11, 'Henny Perwitosari, S.I.Pust.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(12, 'Aris Suprihadi, SIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(13, 'Muhammad Sholihin, S.Ag., SIP.', '3b', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(14, 'Riah Wiratningsih, M.Si.', '4b', 'pustakawan', 'Pustakawan Madya', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S2 Komunikasi', 'Master', 'aktif'),
+(15, 'Hermy Yuliati. S.Sos.', '3b', 'pustakawan', 'Pustakawan Pertama', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(16, 'Aji Hartono, SE.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(17, 'Novi Tri Astuti, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(18, 'Dewi Tri Pujiastuti, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(19, 'Agus Sriyono, A.Md.', '2d', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(20, 'Wiji Lestari, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(21, 'Nurul Hidayah, A.Md.', '3c', 'pustakawan', 'Pustakawan Penyelia', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(22, 'Sri Maryati Ratnaningsih, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(23, 'Utami Wisnu Wardhani, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(24, 'Achmad Nur Chamdi, S.Pt., M.Si.', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S2 Ekonomi Pertanian', 'Master', 'aktif'),
+(25, 'Sugeng Widaryatno, S.IP..', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(26, 'Lilis Sulistyaningsih, SH.', '3d', 'pustakawan', 'Pustakawan Madya', 'Diklat Alih Jalur', 'S1 Ilmu Hukum', 'Sarjana', 'aktif'),
+(27, 'Suyanto, SE.', '3b', 'pustakawan', 'Pustakawan Muda', 'Diklat Alih Jalur', 'S1 Ekonomi	', 'Sarjana', 'aktif'),
+(28, 'Nurindrastuti, SS.', '3b', 'pustakawan', 'Pustakawan Pertama', 'Diklat Alih Jalur', 'S1 Sastra', 'Sarjana', 'aktif'),
+(29, 'Retno Indarwati', '3d', 'pustakawan', 'Pustakawan Penyelia', 'Inpassing', 'SMEA', 'SMA/Sederajat', 'aktif'),
+(30, 'Burhanudin Harahap, S.H., M.H., M.Si., Ph.D.', '4a', 'Kepala Perpustakaan', '-', '', 'S3 Ilmu Hukum', 'Doktor', 'aktif'),
+(31, 'Emi Indrawati, S.E., MM', '3b', 'KTU/Non Pustakawan', '-', '', 'S2 Manajemen', 'Master', 'aktif'),
+(32, 'Tri Hardian Satiawardana, ST., M.A.', '3d', 'Staf IT', '-', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(33, 'Surip', '2d', 'Non Pustakawan', '-', '', 'STM', 'SMA/Sederajat', 'aktif'),
+(34, 'Akbar Kurniawan. SE., Ak., MT.', '-', 'Non PNS', '-', '', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(35, 'Rina Yuliati, A.Md.', '-', 'Non PNS', '-', '', 'D3 Manajemen Informatika', 'Diploma', 'aktif'),
+(36, 'Sri Sumarni Handayani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(37, 'Bahar  Dani Arias, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(38, 'Setiaji Adhi Purwoko, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(39, 'Isnaini Suryani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(40, 'Arif  Prasetyo Utomo, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(41, 'Dwi Cahyo Yanuargo, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(42, 'Ahmad Nur Rais, S.IP.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(43, 'Sigit Budianto', '-', 'Non PNS', '-', '', 'SMA', 'SMA/Sederajat', 'aktif'),
+(44, 'Sudadi', '-', 'Non PNS', '-', '', 'SD', 'SD/Sederajat', 'aktif');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_prodi`
 --
 
@@ -333,57 +400,6 @@ INSERT INTO `tbl_prodi` (`id_prodi`, `prodi`, `kode`, `id_fakultas`) VALUES
 (24, 'Biosains', 'S90', 14),
 (25, 'Ilmu Gizi', 'S53', 14),
 (26, 'Teknik Informatika', 'M31', 15);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_pustakawan`
---
-
-CREATE TABLE `tbl_pustakawan` (
-  `id` int(5) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `pangkat` varchar(5) NOT NULL,
-  `fungsional` varchar(50) NOT NULL,
-  `pendidikan` varchar(50) NOT NULL,
-  `pendidikan_lain` varchar(50) NOT NULL,
-  `pendidikan_tertinggi` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_pustakawan`
---
-
-INSERT INTO `tbl_pustakawan` (`id`, `nama`, `pangkat`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`) VALUES
-(1, 'Dra. Tri Hardiningtyas, M.Si.', 'IV/c	', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(2, 'Daryono, S.Sos.,  MIP.', 'IV/b', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(3, 'Bambang Hermanto, S.Pd. MIP.', 'IV/c', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(4, 'Dinar Puspitadewi, MIP.', 'III/d', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(5, 'Masriyatun, MIP.', 'IV/b', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(6, 'Haryanto, MIP.', 'III/c', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(7, 'Dian Hapsari, MIP.', 'III/c', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(8, 'Suroto, S.Sos., MIP.', 'III/c', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(9, 'Sri Anawati, S.Sos.,MIP.', 'III/d', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(10, 'Sri Utari, SE., M.A.', 'III/d', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master'),
-(11, 'Henny Perwitosari, S.I.Pust.', 'III/d', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana'),
-(12, 'Aris Suprihadi, SIP.', 'III/d', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana'),
-(13, 'Muhammad Sholihin, S.Ag., SIP.', 'III/b', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana'),
-(14, 'Riah Wiratningsih, M.Si.', 'IV/b', 'Pustakawan Madya', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S2 Komunikasi', 'Master'),
-(15, 'Hermy Yuliati. S.Sos.', 'III/b', 'Pustakawan Pertama', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S1 Administrasi Negara', 'Sarjana'),
-(16, 'Aji Hartono, SE.', 'III/a', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', 'S1 Ekonomi', 'Sarjana'),
-(17, 'Novi Tri Astuti, A.Md.', 'III/a', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(18, 'Dewi Tri Pujiastuti, A.Md.', 'III/b', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(19, 'Agus Sriyono, A.Md.', 'II/d', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(20, 'Wiji Lestari, A.Md.', 'III/a', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(21, 'Nurul Hidayah, A.Md.', 'III/c', 'Pustakawan Penyelia', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(22, 'Sri Maryati Ratnaningsih, A.Md.', 'III/b', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(23, 'Utami Wisnu Wardhani, A.Md.', 'III/a', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma'),
-(24, 'Achmad Nur Chamdi, S.Pt., M.Si.', 'III/d', 'Pustakawan Muda', 'Inpassing', 'S2 Ekonomi Pertanian', 'Master'),
-(25, 'Sugeng Widaryatno, S.IP..', 'III/d', 'Pustakawan Muda', 'Inpassing', 'S1 Administrasi Negara', 'Sarjana'),
-(26, 'Lilis Sulistyaningsih, SH.', 'III/d', 'Pustakawan Madya', 'Diklat Alih Jalur', 'S1 Ilmu Hukum', 'Sarjana'),
-(27, 'Suyanto, SE.', 'III/b', 'Pustakawan Muda', 'Diklat Alih Jalur', 'S1 Ekonomi	', 'Sarjana'),
-(28, 'Nurindrastuti, SS.', 'III/b', 'Pustakawan Pertama', 'Diklat Alih Jalur', 'S1 Sastra', 'Sarjana'),
-(29, 'Retno Indarwati', 'III/d', 'Pustakawan Penyelia', 'Inpassing', 'SMEA', 'SMA/Sederajat');
 
 --
 -- Indexes for dumped tables
@@ -452,17 +468,17 @@ ALTER TABLE `tbl_fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
 
 --
+-- Indexes for table `tbl_pegawai`
+--
+ALTER TABLE `tbl_pegawai`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   ADD PRIMARY KEY (`id_prodi`),
   ADD KEY `id_fakultas` (`id_fakultas`);
-
---
--- Indexes for table `tbl_pustakawan`
---
-ALTER TABLE `tbl_pustakawan`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -529,16 +545,16 @@ ALTER TABLE `tbl_fakultas`
   MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `tbl_pegawai`
+--
+ALTER TABLE `tbl_pegawai`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
 -- AUTO_INCREMENT for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   MODIFY `id_prodi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
---
--- AUTO_INCREMENT for table `tbl_pustakawan`
---
-ALTER TABLE `tbl_pustakawan`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
