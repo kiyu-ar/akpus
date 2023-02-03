@@ -29,7 +29,7 @@
                 $status = "aktif";
 
                 $data = array(
-                    'id' => $id,
+                    'id'    => $id,
                     'nama'  => $nama,
                     'pangkat' => $pangkat,
                     'jabatan' => $jabatan,
@@ -40,7 +40,7 @@
                     'status'    => $status,
                 );
 
-                $this->m_main->input_data($data, 'tbl_pegawai');
+                $this->m_main->input_data($data, 'list_pegawai');
                 redirect('pustakawan/daftar_staf');
             }
         }
@@ -59,7 +59,7 @@
                 $status     = "aktif";
 
                 $data = array(
-                    'id' => $id,
+                    'id'    => $id,
                     'nama'  => $nama,
                     'pangkat' => $pangkat,
                     'jabatan' => $jabatan,
@@ -70,18 +70,18 @@
                     'status'    => $status,
                 );
 
-                $this->m_main->input_data($data, 'tbl_pegawai');
+                $this->m_main->input_data($data, 'list_pegawai');
                 redirect('pustakawan/daftar_staf');
             }
         }
         public function hapus($id){
             $where = array ('id'=>$id);
-            $this->m_main->delete_data($where, 'tbl_pegawai');
+            $this->m_main->delete_data($where, 'list_pegawai');
             redirect('pustakawan/daftar_staf');
         }
         public function edit($id){
             $where = array ('id'=>$id);
-            $data['pustakawan'] = $this->m_main->edit_data($where,'tbl_pegawai')->result();
+            $data['pustakawan'] = $this->m_main->edit_data($where,'list_pegawai')->result();
             
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -90,7 +90,7 @@
         }
         public function edit_non($id){
             $where = array ('id'=>$id);
-            $data['nonpustakawan'] = $this->m_main->edit_data($where,'tbl_pegawai')->result();
+            $data['nonpustakawan'] = $this->m_main->edit_data($where,'list_pegawai')->result();
             
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -98,7 +98,6 @@
             $this->load->view('diffdash/footer');
         }
         public function update(){
-            $id             = $this->input->post('id');
             $nama           = $this->input->post('nama');
             $pangkat        = $this->input->post('pangkat');
             $jabatan        = $this->input->post('jabatan');
@@ -119,7 +118,7 @@
             );
             $where = array('id' => $id);
 
-            $this->m_main->update_data($where, $data, 'tbl_pegawai');
+            $this->m_main->update_data($where, $data, 'list_pegawai');
             redirect('pustakawan/daftar_staf');
         }
         public function pstatistik(){
@@ -133,11 +132,54 @@
             $this->load->view('pustakawan/v_pstatistik', $data);
             $this->load->view('diffdash/footer');
         }
+        public function tambah_psdm(){
+            $id         = $this->input->post('id');
+            $jenis      = $this->input->post('jenis');
+            $nama       = $this->input->post('nama');
+            $peserta    = $this->input->post('peserta');
+            $tanggal_dari    = $this->input->post('tanggal_dari');
+            $tanggal_hingga    = $this->input->post('tanggal_hingga');
+            $file       = $_FILES['filePdf'];
+
+            if ($file == ''){
+                $file = '';
+            }else{
+                $config['upload_path'] = './assets/files';
+                $config['allowed_types'] = 'jpg|pdf';
+                
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('filePdf')){
+                    echo "upload gagal"; die();
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'id' => $id,
+                'jenis' => $jenis,
+                'nama' => $nama,
+                'peserta' => $peserta,
+                'tanggal_dari' => $tanggal_dari,
+                'tanggal_hingga' => $tanggal_hingga,
+                'file' => $file,
+            );
+            $this->m_main->input_data($data,'list_psdm');
+            redirect ('pustakawan/sdm');
+        }
 
         public function sdm(){
+            $data['keyword'] = $this->input->get('keyword');
+            if(!empty($this->input->get('keyword'))){
+                $data['psdm'] = $this->m_main->search_psdm($data['keyword']);
+            }
+            else{
+                $data['psdm'] = $this->m_main->get_psdm();
+            }
+
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
-            $this->load->view('pustakawan/v_sdm');
+            $this->load->view('pustakawan/v_sdm', $data);
             $this->load->view('diffdash/footer');
         }
     }    

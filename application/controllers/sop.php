@@ -44,20 +44,21 @@
                 'deskripsi' => $deskripsi,
                 'file' => $file,
             );
-            $this->m_main->input_data($data,'sop_pengolahan');
+            $this->m_main->input_data($data,'list_sop');
             redirect ('sop/pengolahan');
         }
         public function pengolahan(){
             $data['divisi'] = $this->m_main->get_divisi_sop();
-            $data['sop']= $this->m_main->get_sop_pengolahan();
             $data['keyword'] = $this->input->get('keyword');
             if(!empty($this->input->get('keyword'))){
                 $data['sop'] = $this->m_main->search_sop($data['keyword']);
+            }else{
+                $data['sop']= $this->m_main->get_sop();
             }
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
-            $this->load->view('sop/v_pengolahan',$data);
+            $this->load->view('sop/v_sop',$data);
             $this->load->view('diffdash/footer');
         }
         public function view_file($id){
@@ -65,13 +66,13 @@
         }
         public function hapus_sop($id){
             $where = array ('id'=>$id);
-            $this->m_main->delete_data($where, 'sop_pengolahan');
+            $this->m_main->delete_data($where, 'list_sop');
             redirect('sop/pengolahan');
         }
         public function edit_sop($id){
             $where = array ('id'=>$id);
             $data['divisi'] = $this->m_main->get_divisi_sop();
-            $data['sop'] = $this->m_main->edit_sop($where,'sop_pengolahan')->result();
+            $data['sop'] = $this->m_main->edit_sop($where,'list_sop')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('sop/v_edit_sop',$data);
@@ -94,7 +95,7 @@
                 'file'      => $file,
             );
             $where = array('id' => $id);
-            $this->m_main->update_sop($where, $data, 'sop_pengolahan');
+            $this->m_main->update_sop($where, $data, 'list_sop');
             redirect(sop/pengolahan);
         }
         public function lain(){

@@ -22,7 +22,7 @@
             return $this->db->get('list_koran')->result();
         }
         public function get_majalah(){
-            return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia from list_majalah')->result();
+            return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia FROM list_majalah')->result();
         }
         public function get_ebook(){
             return $this->db->query('SELECT * FROM list_ebook order by nama_buku, id')->result();
@@ -61,9 +61,9 @@
             COUNT(CASE WHEN MONTH(loan_date)=9 THEN 1 END) AS september, 
             COUNT(CASE WHEN MONTH(loan_date)=10 THEN 1 END) AS oktober, 
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
-            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM `loan_history` where is_lent = 1
+            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = 1
             and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok1 
-            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM `loan_history` where is_return = 1
+            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = 1
             and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
         public function sirkulasi_total(){
@@ -80,9 +80,9 @@
             COUNT(CASE WHEN MONTH(loan_date)=9 THEN 1 END) AS september, 
             COUNT(CASE WHEN MONTH(loan_date)=10 THEN 1 END) AS oktober, 
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
-            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM `loan_history` where is_lent = 1 
+            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = 1 
             GROUP BY YEAR(loan_date)) AS dok1 
-        JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM `loan_history` where is_return = 1
+        JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = 1
             GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
         public function mandiri_prodi($kode_prodi){
@@ -99,9 +99,9 @@
                 COUNT(CASE WHEN MONTH(tgl_upload)=9 THEN 1 END) AS september, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=10 THEN 1 END) AS oktober, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=11 THEN 1 END) AS november, 
-                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1
+                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1
                 and SUBSTRING(nim,1,3) = '$kode_prodi' GROUP BY YEAR(tgl_upload)) AS dok1 
-            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1 
+            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
                 and SUBSTRING(nim,1,3) = '$kode_prodi' GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
         public function mandiri_total(){
@@ -118,14 +118,14 @@
                 COUNT(CASE WHEN MONTH(tgl_upload)=9 THEN 1 END) AS september, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=10 THEN 1 END) AS oktober, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=11 THEN 1 END) AS november, 
-                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1 
+                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
                 GROUP BY YEAR(tgl_upload)) AS dok1 
-            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM `dok_detail` where no_klas IS NULL and op_id = 0 and status = 1 
+            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
 //---Informasi Pustakawan---
         public function get_pegawai(){
-            return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM `tbl_pegawai` as t 
+            return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 
             order by sort, substring(pangkat,1,1) DESC, substring(pangkat, 2,1) DESC');
         }
         public function get_tabel_p(){
@@ -139,7 +139,7 @@
             count(CASE WHEN (pendidikan like "%D1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D1,
             count(CASE WHEN (pendidikan not like "%perpustakaan%") THEN 1 END ) as Lain,
             count(*) as Total
-            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
+            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_f(){
             return $this->db->query('SELECT 
@@ -150,7 +150,7 @@
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA LANJUTAN" THEN 1 END) as "PUSTAKAWAN PELAKSANA LANJUTAN",
             count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA" THEN 1 END) as "PUSTAKAWAN PELAKSANA",
             count(*) as Total
-            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
+            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_j(){
             return $this->db->query('SELECT
@@ -163,26 +163,33 @@
             count(CASE WHEN pangkat = "3a" THEN 1 END) as "III/a",
             count(CASE WHEN pangkat = "2d" THEN 1 END) as "II/d",
             count(*) as Total
-            FROM tbl_pegawai WHERE jabatan="pustakawan"')->result_array();
+            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
         }
         public function get_tabel_ptinggi(){
             return $this->db->query('SELECT count(CASE WHEN pendidikan_tertinggi = "Master" THEN 1 END) as "Master",
             count(CASE WHEN pendidikan_tertinggi = "Sarjana" THEN 1 END) as "Sarjana",
             count(CASE WHEN pendidikan_tertinggi = "Diploma" THEN 1 END) as "Diploma",
             count(CASE WHEN pendidikan_tertinggi = "SMA/Sederajat" THEN 1 END) as "SMA/Sederajat",
-            count(*) as Total FROM tbl_pegawai')->result_array();
+            count(*) as Total FROM list_pegawai')->result_array();
+        }
+        public function get_psdm(){
+            return $this->db->query('SELECT * FROM list_psdm ORDER BY jenis')->result();
+        }
+        public function search_psdm($keyword){
+            $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
+            return $this->db->query("SELECT * FROM list_psdm $where order by jenis")->result();
         }
 //---Informasi Lain---
 //---Informasi SOP---
         public function get_divisi_sop(){
             return $this->db->get('tbl_divisi_sop')->result();
         }
-        public function get_sop_pengolahan(){
-            return $this->db->query("SELECT sp.*, tds.divisi FROM sop_pengolahan AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();
+        public function get_sop(){
+            return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();
         }
         public function search_sop($keyword){
             $where = "WHERE tds.divisi like '%$keyword%' OR sp.nomor like '%$keyword%' OR sp.nama_sop like '%$keyword%' OR sp.deskripsi like '%$keyword%'";
-            return $this->db->query("SELECT sp.*, tds.divisi FROM sop_pengolahan AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
+            return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
         }
         public function edit_sop($where,$table){
             return $this->db->get_where($table, $where);
