@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2023 at 05:15 AM
+-- Generation Time: Feb 03, 2023 at 07:29 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -159,6 +159,125 @@ INSERT INTO `list_majalah` (`id`, `nama_majalah`, `tahun_dari`, `tahun_hingga`) 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `list_pegawai`
+--
+
+CREATE TABLE `list_pegawai` (
+  `id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `pangkat` varchar(5) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `fungsional` varchar(50) NOT NULL,
+  `pendidikan` varchar(50) NOT NULL,
+  `pendidikan_lain` varchar(50) NOT NULL,
+  `pendidikan_tertinggi` varchar(20) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_pegawai`
+--
+
+INSERT INTO `list_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`, `status`) VALUES
+(1, 'Dra. Tri Hardiningtyas, M.Si.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(2, 'Daryono, S.Sos.,  MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(3, 'Bambang Hermanto, S.Pd. MIP.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(4, 'Dinar Puspitadewi, MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(5, 'Masriyatun, MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(6, 'Haryanto, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(7, 'Dian Hapsari, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(8, 'Suroto, S.Sos., MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(9, 'Sri Anawati, S.Sos.,MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(10, 'Sri Utari, SE., M.A.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(11, 'Henny Perwitosari, S.I.Pust.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(12, 'Aris Suprihadi, SIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(13, 'Muhammad Sholihin, S.Ag., SIP.', '3b', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(14, 'Riah Wiratningsih, M.Si.', '4b', 'pustakawan', 'Pustakawan Madya', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S2 Komunikasi', 'Master', 'aktif'),
+(15, 'Hermy Yuliati. S.Sos.', '3b', 'pustakawan', 'Pustakawan Pertama', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(16, 'Aji Hartono, SE.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(17, 'Novi Tri Astuti, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(18, 'Dewi Tri Pujiastuti, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(19, 'Agus Sriyono, A.Md.', '2d', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(20, 'Wiji Lestari, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(21, 'Nurul Hidayah, A.Md.', '3c', 'pustakawan', 'Pustakawan Penyelia', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(22, 'Sri Maryati Ratnaningsih, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(23, 'Utami Wisnu Wardhani, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(24, 'Achmad Nur Chamdi, S.Pt., M.Si.', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S2 Ekonomi Pertanian', 'Master', 'aktif'),
+(25, 'Sugeng Widaryatno, S.IP..', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(26, 'Lilis Sulistyaningsih, SH.', '3d', 'pustakawan', 'Pustakawan Madya', 'Diklat Alih Jalur', 'S1 Ilmu Hukum', 'Sarjana', 'aktif'),
+(27, 'Suyanto, SE.', '3b', 'pustakawan', 'Pustakawan Muda', 'Diklat Alih Jalur', 'S1 Ekonomi	', 'Sarjana', 'aktif'),
+(28, 'Nurindrastuti, SS.', '3b', 'pustakawan', 'Pustakawan Pertama', 'Diklat Alih Jalur', 'S1 Sastra', 'Sarjana', 'aktif'),
+(29, 'Retno Indarwati', '3d', 'pustakawan', 'Pustakawan Penyelia', 'Inpassing', 'SMEA', 'SMA/Sederajat', 'aktif'),
+(30, 'Burhanudin Harahap, S.H., M.H., M.Si., Ph.D.', '4a', 'Kepala Perpustakaan', '-', '', 'S3 Ilmu Hukum', 'Doktor', 'aktif'),
+(31, 'Emi Indrawati, S.E., MM', '3b', 'KTU/Non Pustakawan', '-', '', 'S2 Manajemen', 'Master', 'aktif'),
+(32, 'Tri Hardian Satiawardana, ST., M.A.', '3d', 'Staf IT', '-', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(33, 'Surip', '2d', 'Non Pustakawan', '-', '', 'STM', 'SMA/Sederajat', 'aktif'),
+(34, 'Akbar Kurniawan. SE., Ak., MT.', '-', 'Non PNS', '-', '', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(35, 'Rina Yuliati, A.Md.', '-', 'Non PNS', '-', '', 'D3 Manajemen Informatika', 'Diploma', 'aktif'),
+(36, 'Sri Sumarni Handayani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(37, 'Bahar  Dani Arias, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(38, 'Setiaji Adhi Purwoko, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(39, 'Isnaini Suryani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(40, 'Arif  Prasetyo Utomo, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(41, 'Dwi Cahyo Yanuargo, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(42, 'Ahmad Nur Rais, S.IP.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(43, 'Sigit Budianto', '-', 'Non PNS', '-', '', 'SMA', 'SMA/Sederajat', 'aktif'),
+(44, 'Sudadi', '-', 'Non PNS', '-', '', 'SD', 'SD/Sederajat', 'aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_psdm`
+--
+
+CREATE TABLE `list_psdm` (
+  `id` int(3) NOT NULL,
+  `jenis` varchar(25) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `peserta` varchar(500) NOT NULL,
+  `tanggal_dari` date NOT NULL,
+  `tanggal_hingga` date NOT NULL,
+  `file` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_psdm`
+--
+
+INSERT INTO `list_psdm` (`id`, `jenis`, `nama`, `peserta`, `tanggal_dari`, `tanggal_hingga`, `file`) VALUES
+(1, 'Diklat', 'diklat perpustakaan', 'annisa qr\r\nmeu', '0000-00-00', '0000-00-00', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs.pdf'),
+(2, 'Seminar', 'seminar buku', 'nohara shintaro', '0000-00-00', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg'),
+(3, 'Seminar', 'Seminar bahasa', 'Miyu', '2023-02-01', '0000-00-00', 'a'),
+(4, 'Sertifikasi', 'Sertifikasi PHP', 'nisa', '2023-02-01', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_sop`
+--
+
+CREATE TABLE `list_sop` (
+  `id` int(10) NOT NULL,
+  `id_divisi` int(5) NOT NULL,
+  `nomor` varchar(40) NOT NULL,
+  `nama_sop` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
+  `file` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_sop`
+--
+
+INSERT INTO `list_sop` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `file`) VALUES
+(1, 1, '01.TIK/UN27.34/OT.01.00/2023', 'SOP IT', 'sop it', 'a'),
+(2, 2, '01.Pengolahan/UN27.34/OT.01.00/2023', 'Pengolahan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation', 'c'),
+(3, 1, '02.TIK/UN27.34/OT.01.00/2023', 'IT SOP2', 'it sop 2', 'fotoqr.jpg'),
+(5, 3, '01.Sirkulasi/UN27.34/OT.01.00/2023', 'Sirkulasi', 'coba upload', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs2.pdf');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `log`
 --
 
@@ -214,31 +333,6 @@ CREATE TABLE `pengadaan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sop_pengolahan`
---
-
-CREATE TABLE `sop_pengolahan` (
-  `id` int(10) NOT NULL,
-  `id_divisi` int(5) NOT NULL,
-  `nomor` varchar(40) NOT NULL,
-  `nama_sop` varchar(255) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL,
-  `file` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sop_pengolahan`
---
-
-INSERT INTO `sop_pengolahan` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `file`) VALUES
-(1, 1, '01.TIK/UN27.34/OT.01.00/2023', 'SOP IT', 'sop it', 'a'),
-(2, 2, '01.Pengolahan/UN27.34/OT.01.00/2023', 'Pengolahan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation', 'c'),
-(3, 1, '02.TIK/UN27.34/OT.01.00/2023', 'IT SOP2', 'it sop 2', 'fotoqr.jpg'),
-(5, 3, '01.Sirkulasi/UN27.34/OT.01.00/2023', 'Sirkulasi', 'coba upload', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs2.pdf');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_divisi_sop`
 --
 
@@ -287,74 +381,6 @@ INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
 (13, 'Psikologi'),
 (14, 'Pascasarjana'),
 (15, 'Sekolah Vokasi');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_pegawai`
---
-
-CREATE TABLE `tbl_pegawai` (
-  `id` int(5) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `pangkat` varchar(5) NOT NULL,
-  `jabatan` varchar(50) NOT NULL,
-  `fungsional` varchar(50) NOT NULL,
-  `pendidikan` varchar(50) NOT NULL,
-  `pendidikan_lain` varchar(50) NOT NULL,
-  `pendidikan_tertinggi` varchar(20) NOT NULL,
-  `status` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_pegawai`
---
-
-INSERT INTO `tbl_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`, `status`) VALUES
-(1, 'Dra. Tri Hardiningtyas, M.Si.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(2, 'Daryono, S.Sos.,  MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(3, 'Bambang Hermanto, S.Pd. MIP.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(4, 'Dinar Puspitadewi, MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(5, 'Masriyatun, MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(6, 'Haryanto, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(7, 'Dian Hapsari, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(8, 'Suroto, S.Sos., MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(9, 'Sri Anawati, S.Sos.,MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(10, 'Sri Utari, SE., M.A.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(11, 'Henny Perwitosari, S.I.Pust.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(12, 'Aris Suprihadi, SIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(13, 'Muhammad Sholihin, S.Ag., SIP.', '3b', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(14, 'Riah Wiratningsih, M.Si.', '4b', 'pustakawan', 'Pustakawan Madya', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S2 Komunikasi', 'Master', 'aktif'),
-(15, 'Hermy Yuliati. S.Sos.', '3b', 'pustakawan', 'Pustakawan Pertama', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
-(16, 'Aji Hartono, SE.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', 'S1 Ekonomi', 'Sarjana', 'aktif'),
-(17, 'Novi Tri Astuti, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(18, 'Dewi Tri Pujiastuti, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(19, 'Agus Sriyono, A.Md.', '2d', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(20, 'Wiji Lestari, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(21, 'Nurul Hidayah, A.Md.', '3c', 'pustakawan', 'Pustakawan Penyelia', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(22, 'Sri Maryati Ratnaningsih, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(23, 'Utami Wisnu Wardhani, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(24, 'Achmad Nur Chamdi, S.Pt., M.Si.', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S2 Ekonomi Pertanian', 'Master', 'aktif'),
-(25, 'Sugeng Widaryatno, S.IP..', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
-(26, 'Lilis Sulistyaningsih, SH.', '3d', 'pustakawan', 'Pustakawan Madya', 'Diklat Alih Jalur', 'S1 Ilmu Hukum', 'Sarjana', 'aktif'),
-(27, 'Suyanto, SE.', '3b', 'pustakawan', 'Pustakawan Muda', 'Diklat Alih Jalur', 'S1 Ekonomi	', 'Sarjana', 'aktif'),
-(28, 'Nurindrastuti, SS.', '3b', 'pustakawan', 'Pustakawan Pertama', 'Diklat Alih Jalur', 'S1 Sastra', 'Sarjana', 'aktif'),
-(29, 'Retno Indarwati', '3d', 'pustakawan', 'Pustakawan Penyelia', 'Inpassing', 'SMEA', 'SMA/Sederajat', 'aktif'),
-(30, 'Burhanudin Harahap, S.H., M.H., M.Si., Ph.D.', '4a', 'Kepala Perpustakaan', '-', '', 'S3 Ilmu Hukum', 'Doktor', 'aktif'),
-(31, 'Emi Indrawati, S.E., MM', '3b', 'KTU/Non Pustakawan', '-', '', 'S2 Manajemen', 'Master', 'aktif'),
-(32, 'Tri Hardian Satiawardana, ST., M.A.', '3d', 'Staf IT', '-', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
-(33, 'Surip', '2d', 'Non Pustakawan', '-', '', 'STM', 'SMA/Sederajat', 'aktif'),
-(34, 'Akbar Kurniawan. SE., Ak., MT.', '-', 'Non PNS', '-', '', 'S1 Ekonomi', 'Sarjana', 'aktif'),
-(35, 'Rina Yuliati, A.Md.', '-', 'Non PNS', '-', '', 'D3 Manajemen Informatika', 'Diploma', 'aktif'),
-(36, 'Sri Sumarni Handayani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(37, 'Bahar  Dani Arias, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(38, 'Setiaji Adhi Purwoko, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(39, 'Isnaini Suryani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(40, 'Arif  Prasetyo Utomo, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
-(41, 'Dwi Cahyo Yanuargo, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(42, 'Ahmad Nur Rais, S.IP.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
-(43, 'Sigit Budianto', '-', 'Non PNS', '-', '', 'SMA', 'SMA/Sederajat', 'aktif'),
-(44, 'Sudadi', '-', 'Non PNS', '-', '', 'SD', 'SD/Sederajat', 'aktif');
 
 -- --------------------------------------------------------
 
@@ -436,6 +462,25 @@ ALTER TABLE `list_majalah`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `list_pegawai`
+--
+ALTER TABLE `list_pegawai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_psdm`
+--
+ALTER TABLE `list_psdm`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `list_sop`
+--
+ALTER TABLE `list_sop`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_divisi` (`id_divisi`);
+
+--
 -- Indexes for table `log`
 --
 ALTER TABLE `log`
@@ -449,13 +494,6 @@ ALTER TABLE `login`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `sop_pengolahan`
---
-ALTER TABLE `sop_pengolahan`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_divisi` (`id_divisi`);
-
---
 -- Indexes for table `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_divisi_sop`
@@ -466,12 +504,6 @@ ALTER TABLE `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
-
---
--- Indexes for table `tbl_pegawai`
---
-ALTER TABLE `tbl_pegawai`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_prodi`
@@ -515,6 +547,24 @@ ALTER TABLE `list_majalah`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT for table `list_pegawai`
+--
+ALTER TABLE `list_pegawai`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `list_psdm`
+--
+ALTER TABLE `list_psdm`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `list_sop`
+--
+ALTER TABLE `list_sop`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
@@ -525,12 +575,6 @@ ALTER TABLE `log`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `sop_pengolahan`
---
-ALTER TABLE `sop_pengolahan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_divisi_sop`
@@ -545,12 +589,6 @@ ALTER TABLE `tbl_fakultas`
   MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `tbl_pegawai`
---
-ALTER TABLE `tbl_pegawai`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
 -- AUTO_INCREMENT for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
@@ -561,10 +599,10 @@ ALTER TABLE `tbl_prodi`
 --
 
 --
--- Constraints for table `sop_pengolahan`
+-- Constraints for table `list_sop`
 --
-ALTER TABLE `sop_pengolahan`
-  ADD CONSTRAINT `sop_pengolahan_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi_sop` (`id`);
+ALTER TABLE `list_sop`
+  ADD CONSTRAINT `list_sop_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi_sop` (`id`);
 
 --
 -- Constraints for table `tbl_prodi`
