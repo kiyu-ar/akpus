@@ -14,11 +14,10 @@ class Home extends CI_Controller {
         }
 
         public function dashboard(){
-                $data['top'] = $this->m_user->get_top_monthly()->result();
+                //$data['top'] = $this->m_user->get_top_monthly()->result();
                 $top= $this->m_user->get_top_monthly()->result_array();
                 $data['prodi_top'] = array_column($top,'prodi');
                 $data['jumlah_top'] = array_column($top, 'jumlah');
-
 
                 $this->load->view('dashboard',$data);
                 $this->load->view('diffdash/footer_dashboard');

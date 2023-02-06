@@ -48,7 +48,7 @@
             redirect ('sop/pengolahan');
         }
         public function pengolahan(){
-            $data['divisi'] = $this->m_main->get_divisi_sop();
+            $data['divisi'] = $this->m_main->get_data('tbl_divisi_sop')->result();
             $data['keyword'] = $this->input->get('keyword');
             if(!empty($this->input->get('keyword'))){
                 $data['sop'] = $this->m_main->search_sop($data['keyword']);
