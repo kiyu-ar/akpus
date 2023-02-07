@@ -14,6 +14,7 @@
 	<script src="<?php echo base_url() ?>assets/vendor/metisMenu/metisMenu.js"></script>
 	<script src="<?php echo base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 	<script src="<?php echo base_url() ?>assets/vendor/select2-4.0.13/js/select2.min.js"></script>
+	<script src="<?php echo base_url() ?>assets/vendor/sweetalert2-11.7.1/js/sweetalert2.min.js"></script>
 	<script src="<?php echo base_url() ?>assets/vendor/toastr/toastr.js"></script>
 	<script src="<?php echo base_url() ?>assets/scripts/common.js"></script>
 	<script>
