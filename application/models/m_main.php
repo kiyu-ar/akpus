@@ -185,10 +185,10 @@
             return $this->db->query("SELECT * FROM list_psdm $where order by jenis")->result();
         }
 //---Informasi Lain---
-//---Informasi SOP---
-        public function get_divisi_sop(){
-            return $this->db->get('tbl_divisi_sop')->result();
+        public function get_sarpras(){
+            return $this->db->query('SELECT * FROM list_sarpras ORDER BY jenis, subjenis, id');
         }
+//---Informasi SOP---
         public function get_sop(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();
         }

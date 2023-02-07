@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/toastr/toastr.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/select2-4.0.13/css/select2.min.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/sweetalert2-11.7.1/css/sweetalert2.min.css">
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/main.css">
