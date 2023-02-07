@@ -123,6 +123,11 @@
             JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
+
+        public function get_kunjungan(){
+            return $this->db->get('list_kunjungan')->result();
+        }
+
 //---Informasi Pustakawan---
         public function get_pegawai(){
             return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 

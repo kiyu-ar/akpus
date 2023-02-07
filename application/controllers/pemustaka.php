@@ -12,9 +12,11 @@
             $this->load->view('diffdash/footer');
         }
         public function kunjungan(){
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('diffdash/footer');
+            $data['kunjungan'] = $this->m_main->get_kunjungan();
+            $this->load->view('diffdash/header', $data);
+            $this->load->view('diffdash/sidebar', $data);
+            $this->load->view('pemustaka/v_kunjungan', $data);
+            $this->load->view('diffdash/footer', $data);
         }
         public function eresource(){
             $this->load->view('diffdash/header');
@@ -88,6 +90,54 @@
             echo json_encode($getkode);
         }
         
-        
+        // Kunjungan
+        public function tambah_kunjungan(){
+            $tanggal           = $this->input->post('tanggal_kunjungan');
+            $instansi          = $this->input->post('nama_instansi');
+            $tujuan            = $this->input->post('tujuan_kunjungan');
+            $jumlah_tamu       = $this->input->post('tamu_kunjungan');
+            $dokumentasi      = $_FILES['dokumentasi_kunjungan'];
+
+            if ($dokumentasi == ''){
+                $dokumentasi = '';
+            }else{
+                $config['upload_path']   = './assets/files';
+                $config['allowed_types'] = 'jpg|pdf|png|jpeg';
+                $config['max_size']      = 51200;
+                
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('dokumentasi_kunjungan')){
+                    echo "upload gagal"; die();
+                }else{
+                    $dokumentasi = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'id' => $id,
+                'tanggal' => $tanggal,
+                'instansi' => $instansi,
+                'tujuan' => $tujuan,
+                'jumlah_tamu' => $jumlah_tamu,
+                'dokumentasi' => $dokumentasi,
+            );
+
+            $masukandata = $this->m_main->input_data($data,'list_kunjungan');
+            if($masukandata)
+            {
+                $this->session->set_flashdata('pesan','<div class ="alert alert-danger"> Data Tidak Berhasil Ditambahkan.</div>');
+                redirect('pemustaka/kunjungan');
+            }else
+            {
+                $this->session->set_flashdata('pesan','<div class ="alert alert-success"> Data Berhasil Ditambahkan.</div>');
+                redirect('pemustaka/kunjungan');
+            }
+        }
+
+        public function hapus_kunjungan($id){
+            $where = array ('id' => $id);
+            $this->m_main->delete_data($where, 'list_kunjungan');
+            redirect('pemustaka/kunjungan');
+        }
     }  
 ?>
