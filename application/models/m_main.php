@@ -128,6 +128,27 @@
             return $this->db->get('list_kunjungan')->result();
         }
 
+        public function get_id_kunjungan(){
+            return $this->db->get_where('list_kunjungan', ['id' => $id])->row_array();
+        }
+
+        public function edit_data_kunjungan(){
+            $data = [
+                "tanggal"           => $this->input->post('tanggal_kunjungan'),
+                "instansi"          => $this->input->post('nama_instansi'),
+                "tujuan"            => $this->input->post('tujuan_kunjungan'),
+                "jumlah_tamu"       => $this->input->post('tamu_kunjungan'),
+                "dokumentasi"       => $_FILES['dokumentasi_kunjungan'],
+            ];
+            
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('list_kunjungan', $data);
+        }
+
+        public function update_kunjungan($where, $data, $tabel){
+            $this->db->where($where);
+            $this->db->update($tabel, $data);
+        }
 //---Informasi Pustakawan---
         public function get_pegawai(){
             return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 

@@ -5,6 +5,14 @@
         <li class="crumb">Data Kunjungan Fisik</li>
     </ol>
 </nav>
+<div class="container">
+    <div class="flash-data" data-flashdata="<?php $this->session->flashdata('pesan') ?>">
+
+    </div>
+    <?php if ($this->session->flashdata('pesan')) :?>
+        <?= $this->session->flashdata('flash'); ?>
+    <?php endif; ?>
+</div>
 <div>
     <button class="btn btn-primary" data-toggle="modal" data-target="#tambahkunjungan"><i class="fa fa-plus"></i>Tambah Kunjungan</button>
     <div>
@@ -43,9 +51,9 @@
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
-                                <button class="btn btn-danger" data-toggle="modal" data-target="#hapus_kunjungan" title="Hapus Kunjungan" id="<?php $row->id?>"><i class="fa fa-trash"></i></button>
-                                <!-- <button class="btn btn-info" data-toggle="modal" data-target="#hapus" title="Edit Kunjungan"><i class="fa fa-edit"></i></button>
-                                <button class="btn btn-warning" data-toggle="modal" data-target="#tambahkunjungan" title="Lihat Kunjungan"><i class="fa fa-eye"></i></button> -->
+                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
+                                <!-- <button class="btn btn-warning" data-toggle="modal" data-target="#tambahkunjungan" title="Lihat Kunjungan"><i class="fa fa-eye"></i></button> -->
                             </td>
                             <?php $i++ ?>
                         </tr>
@@ -100,26 +108,49 @@
 </div>
 </div>
 
-<!-- Modal Hapus Kunjungan -->
-<div class="modal fade" id="hapus_kunjungan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<?php
+$i = 1;
+foreach ($kunjungan as $row) : $i++ ?>
+<div class="modal fade" id="hapus<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Kunjungan</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Kunjungan <?php echo $row->id?> </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="<?php echo site_url('pemustaka/hapus_kunjungan');?>">
             <div class="modal-body">
-                <h4>Apakah anda yakin ingin menghapus data kunjungan ? <?php echo $row->id; ?></h4>
+                <form method="post" action="<?php echo base_url().'pemustaka/edit_kunjungan' ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="datetime-local" name="tanggal_kunjungan" class="form-control" value="<?php echo $row->tanggal?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Instansi</label>
+                        <input type="text" name="nama_instansi" class="form-control" value="<?php echo $row->instansi?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Tujuan</label>
+                        <input type="text" name="tujuan_kunjungan" class="form-control" value="<?php echo $row->tujuan?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Tamu</label>
+                        <input type="number" name="tamu_kunjungan" class="form-control" value="<?php echo $row->jumlah_tamu?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Dokumentasi</label>
+                        <input type="file" name="dokumentasi_kunjungan" class="form-control" value="<?php echo $row->dokumentasi?>">
+                    </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batalkan</button>
-                <button type="submit" class="btn btn-danger">Hapus</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
             </div>
             </form>
         </div>
     </div>
 </div>
 </div>
+<?php endforeach; ?>

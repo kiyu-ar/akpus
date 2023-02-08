@@ -177,6 +177,7 @@
   overflow-x: hidden;
   transition: background-color 0.1s;
   -webkit-overflow-scrolling: touch;
+  zoom: 1.5 !important;
 }
 .swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
   background: rgba(0, 0, 0, 0.4);
@@ -264,7 +265,7 @@
   background: #fff;
   color: #545454;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.6rem !important;
 }
 .swal2-popup:focus {
   outline: none;
