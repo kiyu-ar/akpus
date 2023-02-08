@@ -1,0 +1,650 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 08 Feb 2023 pada 04.23
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 8.1.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `myweb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `anggota`
+--
+
+CREATE TABLE `anggota` (
+  `id` int(3) NOT NULL,
+  `nim` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `alamat` varchar(255) NOT NULL,
+  `topik` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`id`, `nim`, `nama`, `tanggal_lahir`, `alamat`, `topik`) VALUES
+(1, 'M0518006', 'Annisa qr', '2000-11-16', 'solo', 'a'),
+(2, 'M0518028', 'Khoirunnisa', '2000-09-20', 'Fajar Indah', 'b'),
+(4, 'cd', 'ab', '2000-11-15', 'efgh', 'Sistem Data'),
+(6, 'I01121128', 'ab', '0000-00-00', 'cd', 'Pengolahan Citra');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_ebook`
+--
+
+CREATE TABLE `list_ebook` (
+  `id` int(5) NOT NULL,
+  `nama_buku` varchar(50) DEFAULT NULL,
+  `tahun` varchar(20) NOT NULL,
+  `link_buku` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_ebook`
+--
+
+INSERT INTO `list_ebook` (`id`, `nama_buku`, `tahun`, `link_buku`) VALUES
+(1, 'ScienceDirect', '2015', 'https://library.uns.ac.id/sciencedirect-e-book/'),
+(2, 'SpringerLink', '2005', 'https://library.uns.ac.id/wp-content/uploads/2016/02/SPRINGERLINK-Ebook-2005x.xlsx'),
+(3, 'SpringerLink', '2013-2016', 'https://library.uns.ac.id/wp-content/uploads/2017/06/eBook-list-2013-2016.xlsx'),
+(4, 'SpringerLink', '2016', 'https://library.uns.ac.id/wp-content/uploads/2016/02/b.-SPRINGERLINK-Ebook_2017_website.xlsx'),
+(5, 'SpringerLink', '2017', 'https://library.uns.ac.id/wp-content/uploads/2018/12/pengadaan-2018.xlsx'),
+(6, 'SpringerLink', '2019', 'https://library.uns.ac.id/wp-content/uploads/2020/01/SpringerLink-e_book-2019.xlsx'),
+(7, 'EBSCO', '2013 - 2014', 'https://library.uns.ac.id/ebsco-e-book/'),
+(8, 'ProQuest', '2014 - 2015', 'https://library.uns.ac.id/ebrary-e-book/');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_ejournal`
+--
+
+CREATE TABLE `list_ejournal` (
+  `id` int(5) NOT NULL,
+  `nama_jurnal` varchar(50) DEFAULT NULL,
+  `link_jurnal` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_ejournal`
+--
+
+INSERT INTO `list_ejournal` (`id`, `nama_jurnal`, `link_jurnal`) VALUES
+(1, 'ScienceDirect', 'https://www.elsevier.com/solutions/sciencedirect/content/journal-title-lists');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_koran`
+--
+
+CREATE TABLE `list_koran` (
+  `id` int(5) NOT NULL,
+  `nama_koran` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_koran`
+--
+
+INSERT INTO `list_koran` (`id`, `nama_koran`) VALUES
+(1, 'Bisnis Indonesia'),
+(2, 'Jakarta Post'),
+(3, 'Jawa Pos'),
+(4, 'Kedaulatan Rakyat'),
+(5, 'Kompas'),
+(6, 'Media Indonesia'),
+(7, 'Republika'),
+(8, 'Solo Pos'),
+(9, 'Suara Merdeka'),
+(12, 'coba');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_kunjungan`
+--
+
+CREATE TABLE `list_kunjungan` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `instansi` text NOT NULL,
+  `tujuan` varchar(500) NOT NULL,
+  `jumlah_tamu` int(11) NOT NULL,
+  `dokumentasi` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `list_kunjungan`
+--
+
+INSERT INTO `list_kunjungan` (`id`, `tanggal`, `instansi`, `tujuan`, `jumlah_tamu`, `dokumentasi`) VALUES
+(12, '2023-02-07 11:40:00', 'Instansi Uji Coba 1', 'Uji Coba 1', 50, 'JADWAL_KULIAH_SEMESTER_GENAP_2022-2023.pdf'),
+(13, '2023-02-07 11:41:00', 'Instansi Uji Coba 2', 'Uji Coba 2', 30, 'Pembagian_ruang_tempat_magang.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_majalah`
+--
+
+CREATE TABLE `list_majalah` (
+  `id` int(5) NOT NULL,
+  `nama_majalah` varchar(50) DEFAULT NULL,
+  `tahun_dari` varchar(10) DEFAULT NULL,
+  `tahun_hingga` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_majalah`
+--
+
+INSERT INTO `list_majalah` (`id`, `nama_majalah`, `tahun_dari`, `tahun_hingga`) VALUES
+(1, 'National Geographic', '1993', 'present'),
+(2, 'Bola (Bulletin)', '2014', '2017'),
+(3, 'Horizon', '2000', '2016'),
+(4, 'Info Komputer', '1993', 'present'),
+(5, 'Intisari', '1978', 'present'),
+(6, 'Peluang Usaha (Bulletin)', '2014', '2016'),
+(7, 'Penjebar Semangat', '1989', 'present'),
+(8, 'Properti', '2010', 'present'),
+(9, 'SWA', '1993', 'present'),
+(10, 'Tempo', '1977', 'present'),
+(11, 'National Geographic', '1976', '1980'),
+(12, NULL, '2011', 'present'),
+(13, 'National Geographic Traveler', '2009', 'present'),
+(14, 'National Geographic Kids', '2011', 'present'),
+(15, 'Laras', '2010', '2015'),
+(16, 'Nirmala', '2000', '2013'),
+(17, 'Warta Ekonomi', '1993', '2016');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_pegawai`
+--
+
+CREATE TABLE `list_pegawai` (
+  `id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `pangkat` varchar(5) NOT NULL,
+  `jabatan` varchar(50) NOT NULL,
+  `fungsional` varchar(50) NOT NULL,
+  `pendidikan` varchar(50) NOT NULL,
+  `pendidikan_lain` varchar(50) NOT NULL,
+  `pendidikan_tertinggi` varchar(20) NOT NULL,
+  `status` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_pegawai`
+--
+
+INSERT INTO `list_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`, `status`) VALUES
+(1, 'Dra. Tri Hardiningtyas, M.Si.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(2, 'Daryono, S.Sos.,  MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(3, 'Bambang Hermanto, S.Pd. MIP.', '4c', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(4, 'Dinar Puspitadewi, MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(5, 'Masriyatun, MIP.', '4b', 'pustakawan', 'Pustakawan Madya', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(6, 'Haryanto, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(7, 'Dian Hapsari, MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(8, 'Suroto, S.Sos., MIP.', '3c', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(9, 'Sri Anawati, S.Sos.,MIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(10, 'Sri Utari, SE., M.A.', '3d', 'pustakawan', 'Pustakawan Muda', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(11, 'Henny Perwitosari, S.I.Pust.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(12, 'Aris Suprihadi, SIP.', '3d', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(13, 'Muhammad Sholihin, S.Ag., SIP.', '3b', 'pustakawan', 'Pustakawan Muda', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(14, 'Riah Wiratningsih, M.Si.', '4b', 'pustakawan', 'Pustakawan Madya', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S2 Komunikasi', 'Master', 'aktif'),
+(15, 'Hermy Yuliati. S.Sos.', '3b', 'pustakawan', 'Pustakawan Pertama', 'D3 Ilmu Perpustakaan + Diklat Alih Jalur', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(16, 'Aji Hartono, SE.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(17, 'Novi Tri Astuti, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(18, 'Dewi Tri Pujiastuti, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(19, 'Agus Sriyono, A.Md.', '2d', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(20, 'Wiji Lestari, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(21, 'Nurul Hidayah, A.Md.', '3c', 'pustakawan', 'Pustakawan Penyelia', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(22, 'Sri Maryati Ratnaningsih, A.Md.', '3b', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(23, 'Utami Wisnu Wardhani, A.Md.', '3a', 'pustakawan', 'Pustakawan Pelaksana Lanjutan', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(24, 'Achmad Nur Chamdi, S.Pt., M.Si.', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S2 Ekonomi Pertanian', 'Master', 'aktif'),
+(25, 'Sugeng Widaryatno, S.IP..', '3d', 'pustakawan', 'Pustakawan Muda', 'Inpassing', 'S1 Administrasi Negara', 'Sarjana', 'aktif'),
+(26, 'Lilis Sulistyaningsih, SH.', '3d', 'pustakawan', 'Pustakawan Madya', 'Diklat Alih Jalur', 'S1 Ilmu Hukum', 'Sarjana', 'aktif'),
+(27, 'Suyanto, SE.', '3b', 'pustakawan', 'Pustakawan Muda', 'Diklat Alih Jalur', 'S1 Ekonomi	', 'Sarjana', 'aktif'),
+(28, 'Nurindrastuti, SS.', '3b', 'pustakawan', 'Pustakawan Pertama', 'Diklat Alih Jalur', 'S1 Sastra', 'Sarjana', 'aktif'),
+(29, 'Retno Indarwati', '3d', 'pustakawan', 'Pustakawan Penyelia', 'Inpassing', 'SMEA', 'SMA/Sederajat', 'aktif'),
+(30, 'Burhanudin Harahap, S.H., M.H., M.Si., Ph.D.', '4a', 'Kepala Perpustakaan', '-', '', 'S3 Ilmu Hukum', 'Doktor', 'aktif'),
+(31, 'Emi Indrawati, S.E., MM', '3b', 'KTU/Non Pustakawan', '-', '', 'S2 Manajemen', 'Master', 'aktif'),
+(32, 'Tri Hardian Satiawardana, ST., M.A.', '3d', 'Staf IT', '-', 'S2 Ilmu Perpustakaan', '', 'Master', 'aktif'),
+(33, 'Surip', '2d', 'Non Pustakawan', '-', '', 'STM', 'SMA/Sederajat', 'aktif'),
+(34, 'Akbar Kurniawan. SE., Ak., MT.', '-', 'Non PNS', '-', '', 'S1 Ekonomi', 'Sarjana', 'aktif'),
+(35, 'Rina Yuliati, A.Md.', '-', 'Non PNS', '-', '', 'D3 Manajemen Informatika', 'Diploma', 'aktif'),
+(36, 'Sri Sumarni Handayani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(37, 'Bahar  Dani Arias, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(38, 'Setiaji Adhi Purwoko, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(39, 'Isnaini Suryani, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(40, 'Arif  Prasetyo Utomo, A.Md.', '-', 'Non PNS', '-', 'D3 Ilmu Perpustakaan', '', 'Diploma', 'aktif'),
+(41, 'Dwi Cahyo Yanuargo, S.Hum.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(42, 'Ahmad Nur Rais, S.IP.', '-', 'Non PNS', '-', 'S1 Ilmu Perpustakaan', '', 'Sarjana', 'aktif'),
+(43, 'Sigit Budianto', '-', 'Non PNS', '-', '', 'SMA', 'SMA/Sederajat', 'aktif'),
+(44, 'Sudadi', '-', 'Non PNS', '-', '', 'SD', 'SD/Sederajat', 'aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_psdm`
+--
+
+CREATE TABLE `list_psdm` (
+  `id` int(3) NOT NULL,
+  `jenis` varchar(25) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `peserta` varchar(500) NOT NULL,
+  `tanggal_dari` date NOT NULL,
+  `tanggal_hingga` date NOT NULL,
+  `file` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_psdm`
+--
+
+INSERT INTO `list_psdm` (`id`, `jenis`, `nama`, `peserta`, `tanggal_dari`, `tanggal_hingga`, `file`) VALUES
+(1, 'Diklat', 'diklat perpustakaan', 'annisa qr\r\nmeu', '0000-00-00', '0000-00-00', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs.pdf'),
+(2, 'Seminar', 'seminar buku', 'nohara shintaro', '0000-00-00', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg'),
+(3, 'Seminar', 'Seminar bahasa', 'Miyu', '2023-02-01', '0000-00-00', 'a'),
+(4, 'Sertifikasi', 'Sertifikasi PHP', 'nisa', '2023-02-01', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_sop`
+--
+
+CREATE TABLE `list_sop` (
+  `id` int(10) NOT NULL,
+  `id_divisi` int(5) NOT NULL,
+  `nomor` varchar(40) NOT NULL,
+  `nama_sop` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
+  `file` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `list_sop`
+--
+
+INSERT INTO `list_sop` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `file`) VALUES
+(1, 1, '01.TIK/UN27.34/OT.01.00/2023', 'SOP IT', 'sop it', 'a'),
+(2, 2, '01.Pengolahan/UN27.34/OT.01.00/2023', 'Pengolahan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation', 'c'),
+(3, 1, '02.TIK/UN27.34/OT.01.00/2023', 'IT SOP2', 'it sop 2', 'fotoqr.jpg'),
+(5, 3, '01.Sirkulasi/UN27.34/OT.01.00/2023', 'Sirkulasi', 'coba upload', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs2.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `log`
+--
+
+CREATE TABLE `log` (
+  `id` int(30) NOT NULL,
+  `id_user` int(30) NOT NULL,
+  `user` varchar(50) NOT NULL,
+  `action` varchar(255) NOT NULL,
+  `file` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `login`
+--
+
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `akses` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `login`
+--
+
+INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`) VALUES
+(0, 'admin', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin superuser', 0),
+(1, 'admin2', '$2y$10$GNc87hB30mupRFgyHevfiu/WbzdQemKqai7ht.wtBmxP8V/bpDaoO', 'admin', 1),
+(2, 'Operator', '$2y$10$UDcvYFLgAa5ShBpB6WUl1uMuyKJSjOW/6E0hLBf7Hba1oAdtG1Yie', 'Operator', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengadaan`
+--
+
+CREATE TABLE `pengadaan` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `fakultas` varchar(100) NOT NULL,
+  `program_studi` varchar(100) NOT NULL,
+  `judul_buku` varchar(500) NOT NULL,
+  `nama_pengarang` varchar(500) NOT NULL,
+  `penerbit` varchar(500) NOT NULL,
+  `tahun_publikasi` year(4) NOT NULL,
+  `isbn` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_divisi_sop`
+--
+
+CREATE TABLE `tbl_divisi_sop` (
+  `id` int(5) NOT NULL,
+  `divisi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_divisi_sop`
+--
+
+INSERT INTO `tbl_divisi_sop` (`id`, `divisi`) VALUES
+(1, 'IT'),
+(2, 'Pengolahan'),
+(3, 'Sirkulasi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_fakultas`
+--
+
+CREATE TABLE `tbl_fakultas` (
+  `id_fakultas` int(5) NOT NULL,
+  `fakultas` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_fakultas`
+--
+
+INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
+(1, 'Ilmu Budaya'),
+(2, 'Hukum'),
+(3, 'Ekonomi dan Bisnis'),
+(4, 'Ilmu Sosial dan Politik'),
+(5, 'Kedokteran'),
+(6, 'Pertanian'),
+(7, 'Teknik'),
+(8, 'Keguruan dan Ilmu Pendidikan'),
+(9, 'Matematika dan Ilmu Pengetahuan Alam'),
+(10, 'Seni Rupa dan Desain'),
+(11, 'Keolahragaan'),
+(12, 'Teknologi Informasi dan Sains Data'),
+(13, 'Psikologi'),
+(14, 'Pascasarjana'),
+(15, 'Sekolah Vokasi');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tbl_prodi`
+--
+
+CREATE TABLE `tbl_prodi` (
+  `id_prodi` int(5) NOT NULL,
+  `prodi` varchar(50) DEFAULT NULL,
+  `kode` varchar(4) NOT NULL,
+  `id_fakultas` int(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tbl_prodi`
+--
+
+INSERT INTO `tbl_prodi` (`id_prodi`, `prodi`, `kode`, `id_fakultas`) VALUES
+(1, 'Ilmu Sejarah', 'C05', 1),
+(2, 'Sastra Arab', 'C10', 1),
+(3, 'Hukum Keperdataan', '', 2),
+(4, 'Hukum Tata Negara', '', 2),
+(5, 'Akuntansi', 'F03', 3),
+(6, 'Ekonomi Pembangunan', 'F01', 3),
+(7, 'Hubungan Internasional', 'D04', 4),
+(8, 'Ilmu Komunikasi', 'D02', 4),
+(9, 'Kedokteran', 'G00', 5),
+(10, 'Agribisnis', 'H08', 6),
+(11, 'Ilmu Tanah', 'H02', 6),
+(12, 'Arsitektur', 'I02', 7),
+(13, 'Teknik Elektro', 'I07', 7),
+(14, 'Bimbingan dan Konseling', 'K31', 8),
+(15, 'Pendidikan Akuntansi', 'F23', 8),
+(16, 'Biologi', 'M04', 9),
+(17, 'Fisika', 'M02', 9),
+(18, 'Desain Interior', 'C08', 10),
+(19, 'Desain Komunikasi Visual', 'C07', 10),
+(20, 'Pendidikan Kepelatihan Olahraga', '', 11),
+(21, 'Pendidikan Jasmani Kesehatan dan Rekreasi', '', 11),
+(22, 'Informatika', 'M05', 12),
+(23, 'Psikologi', 'G01', 13),
+(24, 'Biosains', 'S90', 14),
+(25, 'Ilmu Gizi', 'S53', 14),
+(26, 'Teknik Informatika', 'M31', 15);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `anggota`
+--
+ALTER TABLE `anggota`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_ebook`
+--
+ALTER TABLE `list_ebook`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_ejournal`
+--
+ALTER TABLE `list_ejournal`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_koran`
+--
+ALTER TABLE `list_koran`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_kunjungan`
+--
+ALTER TABLE `list_kunjungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_majalah`
+--
+ALTER TABLE `list_majalah`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_pegawai`
+--
+ALTER TABLE `list_pegawai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_psdm`
+--
+ALTER TABLE `list_psdm`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_sop`
+--
+ALTER TABLE `list_sop`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_divisi` (`id_divisi`);
+
+--
+-- Indeks untuk tabel `log`
+--
+ALTER TABLE `log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indeks untuk tabel `tbl_divisi_sop`
+--
+ALTER TABLE `tbl_divisi_sop`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `tbl_fakultas`
+--
+ALTER TABLE `tbl_fakultas`
+  ADD PRIMARY KEY (`id_fakultas`);
+
+--
+-- Indeks untuk tabel `tbl_prodi`
+--
+ALTER TABLE `tbl_prodi`
+  ADD PRIMARY KEY (`id_prodi`),
+  ADD KEY `id_fakultas` (`id_fakultas`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `anggota`
+--
+ALTER TABLE `anggota`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_ebook`
+--
+ALTER TABLE `list_ebook`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_ejournal`
+--
+ALTER TABLE `list_ejournal`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_koran`
+--
+ALTER TABLE `list_koran`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_kunjungan`
+--
+ALTER TABLE `list_kunjungan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_majalah`
+--
+ALTER TABLE `list_majalah`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_pegawai`
+--
+ALTER TABLE `list_pegawai`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_psdm`
+--
+ALTER TABLE `list_psdm`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_sop`
+--
+ALTER TABLE `list_sop`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `log`
+--
+ALTER TABLE `log`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_divisi_sop`
+--
+ALTER TABLE `tbl_divisi_sop`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_fakultas`
+--
+ALTER TABLE `tbl_fakultas`
+  MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT untuk tabel `tbl_prodi`
+--
+ALTER TABLE `tbl_prodi`
+  MODIFY `id_prodi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `list_sop`
+--
+ALTER TABLE `list_sop`
+  ADD CONSTRAINT `list_sop_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi_sop` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `tbl_prodi`
+--
+ALTER TABLE `tbl_prodi`
+  ADD CONSTRAINT `tbl_prodi_ibfk_1` FOREIGN KEY (`id_fakultas`) REFERENCES `tbl_fakultas` (`id_fakultas`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
