@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2023 at 07:29 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.6
+-- Waktu pembuatan: 08 Feb 2023 pada 04.23
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggota`
+-- Struktur dari tabel `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -38,7 +37,7 @@ CREATE TABLE `anggota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `anggota`
+-- Dumping data untuk tabel `anggota`
 --
 
 INSERT INTO `anggota` (`id`, `nim`, `nama`, `tanggal_lahir`, `alamat`, `topik`) VALUES
@@ -50,7 +49,7 @@ INSERT INTO `anggota` (`id`, `nim`, `nama`, `tanggal_lahir`, `alamat`, `topik`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_ebook`
+-- Struktur dari tabel `list_ebook`
 --
 
 CREATE TABLE `list_ebook` (
@@ -61,7 +60,7 @@ CREATE TABLE `list_ebook` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_ebook`
+-- Dumping data untuk tabel `list_ebook`
 --
 
 INSERT INTO `list_ebook` (`id`, `nama_buku`, `tahun`, `link_buku`) VALUES
@@ -77,7 +76,7 @@ INSERT INTO `list_ebook` (`id`, `nama_buku`, `tahun`, `link_buku`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_ejournal`
+-- Struktur dari tabel `list_ejournal`
 --
 
 CREATE TABLE `list_ejournal` (
@@ -87,7 +86,7 @@ CREATE TABLE `list_ejournal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_ejournal`
+-- Dumping data untuk tabel `list_ejournal`
 --
 
 INSERT INTO `list_ejournal` (`id`, `nama_jurnal`, `link_jurnal`) VALUES
@@ -96,7 +95,7 @@ INSERT INTO `list_ejournal` (`id`, `nama_jurnal`, `link_jurnal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_koran`
+-- Struktur dari tabel `list_koran`
 --
 
 CREATE TABLE `list_koran` (
@@ -105,7 +104,7 @@ CREATE TABLE `list_koran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_koran`
+-- Dumping data untuk tabel `list_koran`
 --
 
 INSERT INTO `list_koran` (`id`, `nama_koran`) VALUES
@@ -123,7 +122,30 @@ INSERT INTO `list_koran` (`id`, `nama_koran`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_majalah`
+-- Struktur dari tabel `list_kunjungan`
+--
+
+CREATE TABLE `list_kunjungan` (
+  `id` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `instansi` text NOT NULL,
+  `tujuan` varchar(500) NOT NULL,
+  `jumlah_tamu` int(11) NOT NULL,
+  `dokumentasi` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `list_kunjungan`
+--
+
+INSERT INTO `list_kunjungan` (`id`, `tanggal`, `instansi`, `tujuan`, `jumlah_tamu`, `dokumentasi`) VALUES
+(12, '2023-02-07 11:40:00', 'Instansi Uji Coba 1', 'Uji Coba 1', 50, 'JADWAL_KULIAH_SEMESTER_GENAP_2022-2023.pdf'),
+(13, '2023-02-07 11:41:00', 'Instansi Uji Coba 2', 'Uji Coba 2', 30, 'Pembagian_ruang_tempat_magang.pdf');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `list_majalah`
 --
 
 CREATE TABLE `list_majalah` (
@@ -134,7 +156,7 @@ CREATE TABLE `list_majalah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_majalah`
+-- Dumping data untuk tabel `list_majalah`
 --
 
 INSERT INTO `list_majalah` (`id`, `nama_majalah`, `tahun_dari`, `tahun_hingga`) VALUES
@@ -159,7 +181,7 @@ INSERT INTO `list_majalah` (`id`, `nama_majalah`, `tahun_dari`, `tahun_hingga`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_pegawai`
+-- Struktur dari tabel `list_pegawai`
 --
 
 CREATE TABLE `list_pegawai` (
@@ -175,7 +197,7 @@ CREATE TABLE `list_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_pegawai`
+-- Dumping data untuk tabel `list_pegawai`
 --
 
 INSERT INTO `list_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `pendidikan`, `pendidikan_lain`, `pendidikan_tertinggi`, `status`) VALUES
@@ -227,7 +249,7 @@ INSERT INTO `list_pegawai` (`id`, `nama`, `pangkat`, `jabatan`, `fungsional`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_psdm`
+-- Struktur dari tabel `list_psdm`
 --
 
 CREATE TABLE `list_psdm` (
@@ -241,7 +263,7 @@ CREATE TABLE `list_psdm` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_psdm`
+-- Dumping data untuk tabel `list_psdm`
 --
 
 INSERT INTO `list_psdm` (`id`, `jenis`, `nama`, `peserta`, `tanggal_dari`, `tanggal_hingga`, `file`) VALUES
@@ -253,7 +275,7 @@ INSERT INTO `list_psdm` (`id`, `jenis`, `nama`, `peserta`, `tanggal_dari`, `tang
 -- --------------------------------------------------------
 
 --
--- Table structure for table `list_sop`
+-- Struktur dari tabel `list_sop`
 --
 
 CREATE TABLE `list_sop` (
@@ -266,7 +288,7 @@ CREATE TABLE `list_sop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `list_sop`
+-- Dumping data untuk tabel `list_sop`
 --
 
 INSERT INTO `list_sop` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `file`) VALUES
@@ -278,7 +300,7 @@ INSERT INTO `list_sop` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `fi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Struktur dari tabel `log`
 --
 
 CREATE TABLE `log` (
@@ -292,7 +314,7 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Struktur dari tabel `login`
 --
 
 CREATE TABLE `login` (
@@ -304,7 +326,7 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `login`
+-- Dumping data untuk tabel `login`
 --
 
 INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`) VALUES
@@ -315,7 +337,7 @@ INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengadaan`
+-- Struktur dari tabel `pengadaan`
 --
 
 CREATE TABLE `pengadaan` (
@@ -333,7 +355,7 @@ CREATE TABLE `pengadaan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_divisi_sop`
+-- Struktur dari tabel `tbl_divisi_sop`
 --
 
 CREATE TABLE `tbl_divisi_sop` (
@@ -342,7 +364,7 @@ CREATE TABLE `tbl_divisi_sop` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_divisi_sop`
+-- Dumping data untuk tabel `tbl_divisi_sop`
 --
 
 INSERT INTO `tbl_divisi_sop` (`id`, `divisi`) VALUES
@@ -353,7 +375,7 @@ INSERT INTO `tbl_divisi_sop` (`id`, `divisi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_fakultas`
+-- Struktur dari tabel `tbl_fakultas`
 --
 
 CREATE TABLE `tbl_fakultas` (
@@ -362,7 +384,7 @@ CREATE TABLE `tbl_fakultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_fakultas`
+-- Dumping data untuk tabel `tbl_fakultas`
 --
 
 INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
@@ -385,7 +407,7 @@ INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_prodi`
+-- Struktur dari tabel `tbl_prodi`
 --
 
 CREATE TABLE `tbl_prodi` (
@@ -396,7 +418,7 @@ CREATE TABLE `tbl_prodi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbl_prodi`
+-- Dumping data untuk tabel `tbl_prodi`
 --
 
 INSERT INTO `tbl_prodi` (`id_prodi`, `prodi`, `kode`, `id_fakultas`) VALUES
@@ -432,180 +454,192 @@ INSERT INTO `tbl_prodi` (`id_prodi`, `prodi`, `kode`, `id_fakultas`) VALUES
 --
 
 --
--- Indexes for table `anggota`
+-- Indeks untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_ebook`
+-- Indeks untuk tabel `list_ebook`
 --
 ALTER TABLE `list_ebook`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_ejournal`
+-- Indeks untuk tabel `list_ejournal`
 --
 ALTER TABLE `list_ejournal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_koran`
+-- Indeks untuk tabel `list_koran`
 --
 ALTER TABLE `list_koran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_majalah`
+-- Indeks untuk tabel `list_kunjungan`
+--
+ALTER TABLE `list_kunjungan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `list_majalah`
 --
 ALTER TABLE `list_majalah`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_pegawai`
+-- Indeks untuk tabel `list_pegawai`
 --
 ALTER TABLE `list_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_psdm`
+-- Indeks untuk tabel `list_psdm`
 --
 ALTER TABLE `list_psdm`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `list_sop`
+-- Indeks untuk tabel `list_sop`
 --
 ALTER TABLE `list_sop`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_divisi` (`id_divisi`);
 
 --
--- Indexes for table `log`
+-- Indeks untuk tabel `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `login`
+-- Indeks untuk tabel `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `tbl_divisi_sop`
+-- Indeks untuk tabel `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_divisi_sop`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tbl_fakultas`
+-- Indeks untuk tabel `tbl_fakultas`
 --
 ALTER TABLE `tbl_fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
 
 --
--- Indexes for table `tbl_prodi`
+-- Indeks untuk tabel `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   ADD PRIMARY KEY (`id_prodi`),
   ADD KEY `id_fakultas` (`id_fakultas`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `anggota`
+-- AUTO_INCREMENT untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `list_ebook`
+-- AUTO_INCREMENT untuk tabel `list_ebook`
 --
 ALTER TABLE `list_ebook`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `list_ejournal`
+-- AUTO_INCREMENT untuk tabel `list_ejournal`
 --
 ALTER TABLE `list_ejournal`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `list_koran`
+-- AUTO_INCREMENT untuk tabel `list_koran`
 --
 ALTER TABLE `list_koran`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `list_majalah`
+-- AUTO_INCREMENT untuk tabel `list_kunjungan`
+--
+ALTER TABLE `list_kunjungan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT untuk tabel `list_majalah`
 --
 ALTER TABLE `list_majalah`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `list_pegawai`
+-- AUTO_INCREMENT untuk tabel `list_pegawai`
 --
 ALTER TABLE `list_pegawai`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT for table `list_psdm`
+-- AUTO_INCREMENT untuk tabel `list_psdm`
 --
 ALTER TABLE `list_psdm`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `list_sop`
+-- AUTO_INCREMENT untuk tabel `list_sop`
 --
 ALTER TABLE `list_sop`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT untuk tabel `log`
 --
 ALTER TABLE `log`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `login`
+-- AUTO_INCREMENT untuk tabel `login`
 --
 ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tbl_divisi_sop`
+-- AUTO_INCREMENT untuk tabel `tbl_divisi_sop`
 --
 ALTER TABLE `tbl_divisi_sop`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `tbl_fakultas`
+-- AUTO_INCREMENT untuk tabel `tbl_fakultas`
 --
 ALTER TABLE `tbl_fakultas`
   MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `tbl_prodi`
+-- AUTO_INCREMENT untuk tabel `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   MODIFY `id_prodi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `list_sop`
+-- Ketidakleluasaan untuk tabel `list_sop`
 --
 ALTER TABLE `list_sop`
   ADD CONSTRAINT `list_sop_ibfk_1` FOREIGN KEY (`id_divisi`) REFERENCES `tbl_divisi_sop` (`id`);
 
 --
--- Constraints for table `tbl_prodi`
+-- Ketidakleluasaan untuk tabel `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
   ADD CONSTRAINT `tbl_prodi_ibfk_1` FOREIGN KEY (`id_fakultas`) REFERENCES `tbl_fakultas` (`id_fakultas`);
