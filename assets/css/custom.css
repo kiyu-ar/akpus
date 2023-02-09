@@ -152,3 +152,12 @@ iframe.jframe{
     float:right;
     text-align:right;
 }
+.swal2-container {
+    zoom: 1.5;
+}
+textarea{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+}

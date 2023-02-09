@@ -51,8 +51,8 @@
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
-                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
+                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-xm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-info btn-sm btn-xm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
                                 <!-- <button class="btn btn-warning" data-toggle="modal" data-target="#tambahkunjungan" title="Lihat Kunjungan"><i class="fa fa-eye"></i></button> -->
                             </td>
                             <?php $i++ ?>
