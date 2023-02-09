@@ -18,6 +18,28 @@
 	<script src="<?php echo base_url() ?>assets/vendor/toastr/toastr.js"></script>
 	<script src="<?php echo base_url() ?>assets/scripts/common.js"></script>
 	<script>
+		$('.del_msg').click(function(){
+		var id = $(this).attr("id");
+		console.log(id);
+		Swal.fire({
+			title: 'Anda yakin akan menghapus?',
+			showCancelButton: true,
+			confirmButtonText: 'Hapus',
+			}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				
+				$.ajax({
+				url: "<?= base_url(); ?>/sop/hapus_sop/"+id,
+				type: 'POST',
+				data : {id: id},
+				success: function(data) {
+					Swal.fire('Berhasil Menghapus Data','','success').then(function(){location.reload();});
+				}
+			});
+			}
+			});
+	});
 	try{
 		var iframe = document.getElementsByClassName("jframe");
 		iframe[0].onload = function(){
@@ -106,6 +128,7 @@
 			$("ul#"+action).parents("li").addClass("active");
 			//$("ul#"+action).children("#"+classis).addClass("active");
 			$("ul#"+action).children("#"+classis).attr("style","background:#F1F2F1");
+			document.querySelector('#'+action).scrollIntoView();
 		}else{
 			$("li#home").addClass("active");
 		}
