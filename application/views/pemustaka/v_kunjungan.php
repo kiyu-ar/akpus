@@ -53,7 +53,7 @@
                             <td> 
                                 <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
                                 <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
-                                <!-- <button class="btn btn-warning" data-toggle="modal" data-target="#tambahkunjungan" title="Lihat Kunjungan"><i class="fa fa-eye"></i></button> -->
+                                <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
                             </td>
                             <?php $i++ ?>
                         </tr>
@@ -79,23 +79,23 @@
                 <form method="post" action="<?php echo base_url('pemustaka/tambah_kunjungan') ?>" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>Tanggal</label>
-                        <input type="datetime-local" name="tanggal_kunjungan" class="form-control">
+                        <input type="datetime-local" name="tanggal_kunjungan" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label>Nama Instansi</label>
-                        <input type="text" name="nama_instansi" class="form-control">
+                        <input type="text" name="nama_instansi" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label>Tujuan</label>
-                        <input type="text" name="tujuan_kunjungan" class="form-control">
+                        <input type="text" name="tujuan_kunjungan" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label>Jumlah Tamu</label>
-                        <input type="number" name="tamu_kunjungan" class="form-control">
+                        <input type="number" name="tamu_kunjungan" class="form-control" required="">
                     </div>
                     <div class="form-group">
                         <label>Dokumentasi</label>
-                        <input type="file" name="dokumentasi_kunjungan" class="form-control">
+                        <input type="file" name="dokumentasi_kunjungan" class="form-control" required="">
                     </div>
             </div>
             <div class="modal-footer">
@@ -141,7 +141,7 @@ foreach ($kunjungan as $row) : $i++ ?>
                     </div>
                     <div class="form-group">
                         <label>Dokumentasi</label>
-                        <input type="file" name="dokumentasi_kunjungan" class="form-control" value="<?php echo $row->dokumentasi?>">
+                        <input type="file" name="dokumentasi_kunjungan" class="form-control">
                     </div>
             </div>
             <div class="modal-footer">
@@ -152,5 +152,20 @@ foreach ($kunjungan as $row) : $i++ ?>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="dokumentasi<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Dokumentasi Kunjungan <?php echo $row->id?> </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="<?php echo base_url('/assets/files/' . $row->dokumentasi)?>" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </div>
 </div>
 <?php endforeach; ?>
