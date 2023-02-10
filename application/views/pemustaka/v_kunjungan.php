@@ -51,15 +51,9 @@
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
-<<<<<<< HEAD
                                 <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
                                 <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
-=======
-                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-xm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-info btn-sm btn-xm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
-                                <!-- <button class="btn btn-warning" data-toggle="modal" data-target="#tambahkunjungan" title="Lihat Kunjungan"><i class="fa fa-eye"></i></button> -->
->>>>>>> 944bd79a3a77a5b39027bf1bc67330a51af06e08
                             </td>
                             <?php $i++ ?>
                         </tr>
@@ -76,7 +70,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Kunjungan</h5>
+                <h3 class="modal-title" id="exampleModalLabel"><b>Kunjungan</b></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -114,6 +108,7 @@
 </div>
 </div>
 
+<!-- Modal Edit Kunjungan -->
 <?php
 $i = 1;
 foreach ($kunjungan as $row) : $i++ ?>
@@ -121,7 +116,7 @@ foreach ($kunjungan as $row) : $i++ ?>
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Kunjungan <?php echo $row->id?> </h5>
+                <h3 class="modal-title" id="exampleModalLabel"><b>Edit Kunjungan</b> </h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -152,18 +147,19 @@ foreach ($kunjungan as $row) : $i++ ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Upload</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
             </form>
         </div>
     </div>
 </div>
 
+<!-- Modal Lihat Detail File Kunjungan -->
 <div class="modal fade" id="dokumentasi<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Dokumentasi Kunjungan <?php echo $row->id?> </h5>
+                <h3 class="modal-title" id="exampleModalLabel"><b>Dokumentasi Kunjungan</b></h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

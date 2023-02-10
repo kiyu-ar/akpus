@@ -158,6 +158,7 @@
 
 	});
 
+	// Fungsi SWAL hapus kunjungan
 	$('.tombol-hapus').on('click', function (e){
 		e.preventDefault();
 		const href = $(this).attr('href')
@@ -172,12 +173,13 @@
 			confirmButtonText: 'Hapus'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				document.location.href = href;
 				Swal.fire(
 				'Data Kunjungan!',
 				'Berhasil Dihapus',
 				'success'
-				)
+				).then(location.reload());
+				document.location.href = href;
+				
 			}
 		})		
 	});
