@@ -18,9 +18,11 @@
 	<script src="<?php echo base_url() ?>assets/vendor/toastr/toastr.js"></script>
 	<script src="<?php echo base_url() ?>assets/scripts/common.js"></script>
 	<script>
-		$('.del_msg').click(function(){
+		$('.swal_delete').click(function(){
+		var href = $(this).attr("href");
 		var id = $(this).attr("id");
 		console.log(id);
+		console.log(href);
 		Swal.fire({
 			title: 'Anda yakin akan menghapus?',
 			showCancelButton: true,
@@ -28,9 +30,8 @@
 			}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
-				
 				$.ajax({
-				url: "<?= base_url(); ?>/sop/hapus_sop/"+id,
+				url: href+id,
 				type: 'POST',
 				data : {id: id},
 				success: function(data) {
