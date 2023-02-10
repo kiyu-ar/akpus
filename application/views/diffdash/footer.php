@@ -160,11 +160,9 @@
 		toastr.options.positionClass = 'toast-bottom-right';
 		toastr.options.showDuration = 1000;
 		//toastr['info']('Hello, welcome to DiffDash, a unique admin dashboard.');
-
-	
-
 	});
 
+	// Fungsi SWAL hapus data
 	$('.tombol-hapus').on('click', function (e){
 		e.preventDefault();
 		const href = $(this).attr('href')

@@ -9,7 +9,7 @@ class M_Excel extends CI_Model{
     }
 
     public function insert_batch($data){
-        $this->db->insert_batch('pengadaan',$data);
+        $this->db->insert_batch('list_pengadaan',$data);
         if($this->db->affected_rows()>0)
         {
             return 1;
@@ -22,7 +22,7 @@ class M_Excel extends CI_Model{
     public function list_pengadaan()
     {
         $this->db->select('*');
-        $this->db->from('pengadaan');
+        $this->db->from('list_pengadaan');
         $query = $this->db->get();
         return $query->result();
     }
@@ -50,7 +50,7 @@ class M_Excel extends CI_Model{
 
     public function tampilan_tabel()
     {
-        $query = $this->db->get('pengadaan');
+        $query = $this->db->get('list_pengadaan');
         return $query->result();
     }
 }

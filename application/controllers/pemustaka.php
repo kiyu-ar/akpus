@@ -107,7 +107,11 @@
                 
                 $this->load->library('upload',$config);
                 if(!$this->upload->do_upload('dokumentasi_kunjungan')){
-                    $this->session->set_flashdata('pesan','<div class ="alert alert-danger"> Format dokumentasi tidak sesuai</div>');
+                    $this->session->set_flashdata('pesan','<div class ="alert alert-danger alert-dismissible fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    Format file upload tidak sesuai
+                    </div>');
+                    redirect('pemustaka/kunjungan');
                     redirect('pemustaka/kunjungan');
                 }else{
                     $dokumentasi = $this->upload->data('file_name');
@@ -123,30 +127,18 @@
                 'dokumentasi' => $dokumentasi,
             );
 
-            $masukandata = $this->m_main->input_data($data,'list_kunjungan');
-            if($masukandata)
-            {
-                $this->session->set_flashdata('pesan','<div class ="alert alert-danger"> Data Tidak Berhasil Ditambahkan.</div>');
-                redirect('pemustaka/kunjungan');
-            }else
-            {
-                $this->session->set_flashdata('pesan','<div class ="alert alert-success alert-dismissible" data-dismiss="alert" class="close"> Data Berhasil Ditambahkan.</div>');
-                redirect('pemustaka/kunjungan');
-            }
+            $this->m_main->input_data($data,'list_kunjungan');
+            $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+            Data Berhasil Ditambahkan
+            </div>');
+            redirect('pemustaka/kunjungan');
         }
 
         public function hapus_kunjungan($id){
             $where = array ('id'=>$id);
-            $datahapus = $this->m_main->delete_data($where, 'list_kunjungan');
-            if($datahapus)
-            {
-                $this->session->set_flashdata('pesan','<div class ="alert alert-danger"> Data Tidak Berhasil Dihapus.</div>');
-                redirect('pemustaka/kunjungan');
-            }else
-            {
-                $this->session->set_flashdata('pesan','<div class ="alert alert-success"> Data Berhasil Dihapus.</div>');
-                redirect('pemustaka/kunjungan');
-            }
+            $this->m_main->delete_data($where, 'list_kunjungan');
+            redirect('pemustaka/kunjungan');
         }
 
         public function edit_kunjungan(){
@@ -180,7 +172,10 @@
 
                 $where = array('id' => $id);
                 $this->m_main->update_kunjungan($where, $data, 'list_kunjungan');
-                $this->session->set_flashdata('pesan', '<div class ="alert alert-success"> Data Berhasil Diedit.</div>');
+                $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                Data Berhasil Diedit
+                </div>');
                 redirect('pemustaka/kunjungan');
             } else {
                 $dokumentasi       = $this->upload->data('file_name');
@@ -198,7 +193,10 @@
 
         $where = array('id' => $id);
         $this->m_main->update_kunjungan($where, $data, 'list_kunjungan');
-        $this->session->set_flashdata('pesan', '<div class ="alert alert-success"> Data Berhasil Diedit.</div>');
+        $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+        Data Berhasil Diedit
+        </div>');
         redirect('pemustaka/kunjungan');
         }
         }
