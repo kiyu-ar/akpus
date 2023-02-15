@@ -23,13 +23,13 @@
                                 echo "<h4>Eksternal</h4>";
                             }   ?>
                     
-        <table class="table">
+        <table class="table" style="width:60%">
             <tr>
-                <th>No</th>
+                <th width="5%">No</th>
                 <th>Asal</th>
-                <th>Jumlah</th>
+                <th width="35%">Jumlah</th>
                 <?php if($akses == '0' || $akses == '1'){ ?>
-                <th colspan=2>Aksi</th>
+                <th colspan=2 width="10%">Aksi</th>
                 <?php } ?>
             </tr>
             <?php $jenis = $row->jenis; $no = 1;} ?>

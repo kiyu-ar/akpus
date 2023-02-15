@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-
+<?php if($this->session->userdata('status') == 'login'){ ?>
 <!-- Modal Tambah Kunjungan -->
 <div class="modal fade" id="tambahkunjungan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -176,4 +176,4 @@ foreach ($kunjungan as $row) : $i++ ?>
         </div>
     </div>
 </div>
-<?php endforeach; ?>
+<?php endforeach; }?>
