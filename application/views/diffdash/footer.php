@@ -115,21 +115,27 @@
 		var segments = pathname.split( '/' );
 		var action = segments[2];
 		var classis = segments[3];
-		console.log(pathname);
-		console.log(action);
-		console.log(classis);
+		var extend = segments[4];
 		// var akses = $this->session->userdata('akses');
 		// console.log(akses);
 
 	// ---script untuk navbar---
 		if(action!="" & classis!=""){
 			//$("li").removeClass("active");
-			$("ul#"+action).attr("aria-expanded","true");
-			$("ul#"+action).addClass("collapse in");
-			$("ul#"+action).parents("li").addClass("active");
-			//$("ul#"+action).children("#"+classis).addClass("active");
-			$("ul#"+action).children("#"+classis).attr("style","background:#F1F2F1");
-			document.querySelector('#'+action).scrollIntoView();
+			if(action != "index.php"){
+				$("ul#"+action).attr("aria-expanded","true");
+				$("ul#"+action).addClass("collapse in");
+				$("ul#"+action).parents("li").addClass("active");
+				//$("ul#"+action).children("#"+classis).addClass("active");
+				$("ul#"+action).children("#"+classis).attr("style","background:#F1F2F1");
+				document.querySelector('#'+action).scrollIntoView();
+			}else{
+				$("ul#"+classis).attr("aria-expanded","true");
+				$("ul#"+classis).addClass("collapse in");
+				$("ul#"+classis).parents("li").addClass("active");
+				$("ul#"+classis).children("#"+extend).attr("style","background:#F1F2F1");
+				document.querySelector('#'+classis).scrollIntoView();
+			}
 		}else{
 			$("li#home").addClass("active");
 		}
@@ -154,19 +160,20 @@
 		toastr.options.positionClass = 'toast-bottom-right';
 		toastr.options.showDuration = 1000;
 		//toastr['info']('Hello, welcome to DiffDash, a unique admin dashboard.');
-
-	
-
 	});
 
+<<<<<<< HEAD
 	// Fungsi SWAL hapus
+=======
+	// Fungsi SWAL hapus data
+>>>>>>> 28dc8dbb895e45c796719310d467b425cb93951f
 	$('.tombol-hapus').on('click', function (e){
 		e.preventDefault();
 		const href = $(this).attr('href')
 
 		Swal.fire({
-			title: 'Apakah anda yakin',
-			text: "data kunjungan akan dihapus",
+			title: 'Apakah anda yakin?',
+			text: "Data akan dihapus",
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -174,13 +181,12 @@
 			confirmButtonText: 'Hapus'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				Swal.fire(
-				'Data Kunjungan!',
-				'Berhasil Dihapus',
-				'success'
-				).then(location.reload());
-				document.location.href = href;
-				
+				Swal.fire({
+				title: 'Data Berhasil Dihapus',
+				icon:'success',
+				timer :2000,
+				showConfirmButton: false,
+				}).then(function(){document.location.href = href;})
 			}
 		})		
 	});

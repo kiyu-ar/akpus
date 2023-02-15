@@ -39,7 +39,7 @@
           <td><?php echo $row->nama_sop?></td>
           <td><?php echo $row->deskripsi?></td>
           <!-- <td class="btnsq del_msg"><?php //echo anchor('sop/hapus_sop/'.$row->id,'<div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div>') ?></td> -->
-          <td class="btnsq del_msg" id="<?php echo $row->id; ?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div></td>
+          <td class="btnsq tombol-hapus" href="<?php echo base_url('sop/hapus_sop/'.$row->id); ?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div></td>
           <td class="btnsq"><?php echo anchor('sop/edit_sop/'.$row->id,'<div class="btn btn-primary btn-xm" data-toggle="tooltip" data-placement="top" title="Edit User"><i class="fa fa-edit"></i></div>') ?></td>
           <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
           <!-- <div data-demo-html="true" data-demo-css="true" data-demo-js="#map-script">
