@@ -135,11 +135,6 @@
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('list_kunjungan', $data);
         }
-
-        public function update_kunjungan($where, $data, $tabel){
-            $this->db->where($where);
-            $this->db->update($tabel, $data);
-        }
 //---Informasi Pustakawan---
         public function get_pegawai(){
             return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 

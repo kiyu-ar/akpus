@@ -113,7 +113,6 @@
                     Format file upload tidak sesuai
                     </div>');
                     redirect('pemustaka/kunjungan');
-                    redirect('pemustaka/kunjungan');
                 }else{
                     $dokumentasi = $this->upload->data('file_name');
                 }
@@ -193,7 +192,7 @@
         );
 
         $where = array('id' => $id);
-        $this->m_main->update_kunjungan($where, $data, 'list_kunjungan');
+        $this->m_main->update_data($where, $data, 'list_kunjungan');
         $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
         Data Berhasil Diedit

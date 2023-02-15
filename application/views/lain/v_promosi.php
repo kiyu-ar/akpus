@@ -9,6 +9,12 @@
 
     <div>
         Media Promosi
+        <table>
+            <tr>
+                <th>No</th>
+                <th></th>
+            </tr>
+        </table>
     </div>
     <hr>
     <div>

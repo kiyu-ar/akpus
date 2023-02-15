@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2023 at 06:44 AM
+-- Generation Time: Feb 15, 2023 at 07:56 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.6
 
@@ -43,7 +43,11 @@ CREATE TABLE `changelog` (
 --
 
 INSERT INTO `changelog` (`id`, `id_user`, `nama_tabel`, `item_id`, `action`, `tanggal`, `file`) VALUES
-(0, 0, '', 0, 'input awal', '2023-02-08 16:39:00', '');
+(0, 0, '', 0, 'input awal', '2023-02-08 16:39:00', ''),
+(1, 0, 'list_kerjasama', 5, 'create data', '2023-02-14 05:20:51', NULL),
+(2, 0, 'list_kerjasama', 6, 'create data', '2023-02-14 05:23:14', NULL),
+(3, 0, 'list_kerjasama', 6, 'create data', '2023-02-14 06:11:10', NULL),
+(4, 0, 'list_kerjasama', 6, 'delete data', '2023-02-14 07:12:55', NULL);
 
 -- --------------------------------------------------------
 
@@ -65,7 +69,6 @@ CREATE TABLE `list_anggaran` (
 
 INSERT INTO `list_anggaran` (`id`, `asal`, `nominal`, `jenis`, `update_id`) VALUES
 (1, 'UNS Pusat', 2000000, 0, 0),
-(2, 'UPT Perpustakaan', 500000, 0, 0),
 (3, 'Pemkot Surakarta', 35000000, 1, 0);
 
 -- --------------------------------------------------------
@@ -125,8 +128,10 @@ INSERT INTO `list_ejournal` (`id`, `nama_jurnal`, `link_jurnal`, `update_id`) VA
 CREATE TABLE `list_kerjasama` (
   `id` int(10) NOT NULL,
   `instansi` varchar(100) NOT NULL,
+  `jenis` int(2) NOT NULL COMMENT '(0:internal, 1:externall)',
   `tanggal_dari` date NOT NULL,
   `tanggal_hingga` date NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
   `update_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -134,8 +139,12 @@ CREATE TABLE `list_kerjasama` (
 -- Dumping data for table `list_kerjasama`
 --
 
-INSERT INTO `list_kerjasama` (`id`, `instansi`, `tanggal_dari`, `tanggal_hingga`, `update_id`) VALUES
-(1, 'Prodi Informatika', '2023-02-01', '2023-02-03', 0);
+INSERT INTO `list_kerjasama` (`id`, `instansi`, `jenis`, `tanggal_dari`, `tanggal_hingga`, `deskripsi`, `update_id`) VALUES
+(1, 'Prodi Informatika', 0, '2023-02-01', '2023-02-03', '', 0),
+(2, 'kominfo', 1, '2023-02-10', '2023-02-11', '', 0),
+(3, 'Prodi Pendidikan Matematika2', 0, '2023-02-13', '2023-02-14', '', 0),
+(4, 'pemkot karanganyar', 1, '2023-02-14', '0001-01-01', '', 0),
+(5, 'Prodi Pendidikan Fisika', 0, '2023-02-13', '2023-02-14', '', 1);
 
 -- --------------------------------------------------------
 
@@ -168,6 +177,27 @@ INSERT INTO `list_koran` (`id`, `nama_koran`, `update_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `list_kuesioner`
+--
+
+CREATE TABLE `list_kuesioner` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `file` varchar(500) NOT NULL,
+  `update_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_kuesioner`
+--
+
+INSERT INTO `list_kuesioner` (`id`, `nama`, `deskripsi`, `file`, `update_id`) VALUES
+(1, 'Kuesioner Kepuasan Mahasiswa 15/02/2023', 'Berisi tentang kuesioner kepuasan mahasiswa terhadap fasilitas dan pelayanan di UPT Perpustakaan', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `list_kunjungan`
 --
 
@@ -187,7 +217,9 @@ CREATE TABLE `list_kunjungan` (
 
 INSERT INTO `list_kunjungan` (`id`, `tanggal`, `instansi`, `tujuan`, `jumlah_tamu`, `dokumentasi`, `update_id`) VALUES
 (1, '2023-02-07 11:40:00', 'Instansi Uji Coba 1', 'Uji Coba 1', 50, 'JADWAL_KULIAH_SEMESTER_GENAP_2022-2023.pdf', 0),
-(2, '2023-02-07 11:41:00', 'Instansi Uji Coba 2', 'Uji Coba 2', 30, 'Pembagian_ruang_tempat_magang.pdf', 0);
+(2, '2023-02-15 00:00:00', 'a', 'a', 2, 'a', 0),
+(3, '2023-02-22 00:00:00', 'b', 'b', 3, 'b', 0),
+(4, '2023-02-15 00:00:00', 'a', 'a', 2, 'a', 0);
 
 -- --------------------------------------------------------
 
@@ -329,6 +361,54 @@ INSERT INTO `list_pengadaan` (`id`, `nama`, `fakultas`, `program_studi`, `judul_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `list_penguat`
+--
+
+CREATE TABLE `list_penguat` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `jenis` int(2) NOT NULL,
+  `deskripsi` varchar(500) NOT NULL,
+  `file` varchar(500) NOT NULL,
+  `update_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_penguat`
+--
+
+INSERT INTO `list_penguat` (`id`, `nama`, `jenis`, `deskripsi`, `file`, `update_id`) VALUES
+(1, 'Inovasi a', 1, 'a', '', 0),
+(2, 'Komitmen f', 4, 'f', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_promosi`
+--
+
+CREATE TABLE `list_promosi` (
+  `id` int(20) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `jenis` varchar(30) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL,
+  `tanggal_dari` date NOT NULL,
+  `tanggal_hingga` date NOT NULL,
+  `file` varchar(500) NOT NULL,
+  `update_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_promosi`
+--
+
+INSERT INTO `list_promosi` (`id`, `nama`, `jenis`, `deskripsi`, `tanggal_dari`, `tanggal_hingga`, `file`, `update_id`) VALUES
+(1, 'Studentvaganza', 'expo', 'Expo mahasiswa yang dilaksanakan di Student Center UNS', '0000-00-00', '0000-00-00', '', 0),
+(2, 'Sosialisasi ', 'sosialisasi', 's', '0000-00-00', '0000-00-00', '', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `list_psdm`
 --
 
@@ -352,6 +432,29 @@ INSERT INTO `list_psdm` (`id`, `jenis`, `nama`, `peserta`, `tanggal_dari`, `tang
 (2, 'Seminar', 'seminar buku', 'nohara shintaro', '0000-00-00', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg', 0),
 (3, 'Seminar', 'Seminar bahasa', 'Miyu', '2023-02-01', '0000-00-00', 'a', 0),
 (4, 'Sertifikasi', 'Sertifikasi PHP', 'nisa', '2023-02-01', '0000-00-00', 'chibi_childe_s_whale_by_yohchii_dex25n9-pre.jpg', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `list_restools`
+--
+
+CREATE TABLE `list_restools` (
+  `id` int(5) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `deskripsi` varchar(500) NOT NULL,
+  `tautan` varchar(255) NOT NULL,
+  `update_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `list_restools`
+--
+
+INSERT INTO `list_restools` (`id`, `nama`, `deskripsi`, `tautan`, `update_id`) VALUES
+(1, 'Turnitin', 'Turnitin adalah sistem perangkat lunak berbasis web yang dapat mengidentifikasi unsur plagiasi dalam karya tulis atau karya ilmiah.', '', 0),
+(2, 'Grammarly', 'Grammarly adalah pengecek tata bahasa Online dan pemeriksa ejaan dalam struktur bahasa inggris dan mengoreksi kekeliruan dalam menulis.', '', 0),
+(3, 'EZProxy', 'Adalah sebuah laman web berisi daftar akses jurnal yang dilanggan oleh UNS agar bisa dibuka tanpa perlu terhubung dengan jaringan lokal UNS', 'https://ezproxy.uns.ac.id/', 0);
 
 -- --------------------------------------------------------
 
@@ -438,10 +541,11 @@ INSERT INTO `list_sop` (`id`, `id_divisi`, `nomor`, `nama_sop`, `deskripsi`, `fi
 (1, 1, '01.TIK/UN27.34/OT.01.00/2023', 'TIK-', '2023', '', 0),
 (2, 2, '01.Pengolahan/UN27.34/OT.01.00/2023', 'Pengolahan', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation', 'c', 0),
 (3, 1, '02.TIK/UN27.34/OT.01.00/2023', 'IT SOP2', 'it sop 2', 'fotoqr.jpg', 0),
-(4, 1, '04.TIK/UN27.34/OT.01.00/2023', 'TIK-4', '2022', '', 0),
+(4, 1, '04.TIK/UN27.34/OT.01.00/2023', 'a', 'a', '', 0),
 (5, 3, '01.Sirkulasi/UN27.34/OT.01.00/2023', 'Sirkulasi', 'coba upload', 'A_Comparative_Study_of_Classifier_Based_Mispronunciation_Detection_System_for_Confusing_Arabic_Phoneme_Pairs2.pdf', 0),
 (6, 1, '03.TIK/UN27.34/OT.01.00/2023', 'IT2', 'ooo', 'dd', 0),
-(7, 1, '06.TIK/UN27.34/OT.01.00/2023', 'TIK-4', 'coba2', '', 0);
+(7, 1, '7', 'a', 'a', '', 0),
+(8, 1, '8', 'b', 'b', '', 0);
 
 -- --------------------------------------------------------
 
@@ -475,17 +579,18 @@ INSERT INTO `login` (`id`, `username`, `password`, `nama`, `akses`, `update_id`)
 
 CREATE TABLE `tbl_divisi_sop` (
   `id` int(5) NOT NULL,
-  `divisi` varchar(50) NOT NULL
+  `divisi` varchar(50) NOT NULL,
+  `update_id` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_divisi_sop`
 --
 
-INSERT INTO `tbl_divisi_sop` (`id`, `divisi`) VALUES
-(1, 'IT'),
-(2, 'Pengolahan'),
-(3, 'Sirkulasi');
+INSERT INTO `tbl_divisi_sop` (`id`, `divisi`, `update_id`) VALUES
+(1, 'IT', 0),
+(2, 'Pengolahan', 0),
+(3, 'Sirkulasi', 0);
 
 -- --------------------------------------------------------
 
@@ -518,6 +623,29 @@ INSERT INTO `tbl_fakultas` (`id_fakultas`, `fakultas`) VALUES
 (13, 'Psikologi'),
 (14, 'Pascasarjana'),
 (15, 'Sekolah Vokasi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_komponen`
+--
+
+CREATE TABLE `tbl_komponen` (
+  `id` int(2) NOT NULL,
+  `nama_komponen` varchar(25) NOT NULL,
+  `update_id` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_komponen`
+--
+
+INSERT INTO `tbl_komponen` (`id`, `nama_komponen`, `update_id`) VALUES
+(1, 'Inovasi dan Kreativitas', 0),
+(2, 'Keunikan', 0),
+(3, 'Prestasi', 0),
+(4, 'Komitmen Pimpinan', 0),
+(5, 'Program civitas', 0);
 
 -- --------------------------------------------------------
 
@@ -610,6 +738,12 @@ ALTER TABLE `list_koran`
   ADD KEY `update_id` (`update_id`);
 
 --
+-- Indexes for table `list_kuesioner`
+--
+ALTER TABLE `list_kuesioner`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `list_kunjungan`
 --
 ALTER TABLE `list_kunjungan`
@@ -638,11 +772,30 @@ ALTER TABLE `list_pengadaan`
   ADD KEY `update_id` (`update_id`);
 
 --
+-- Indexes for table `list_penguat`
+--
+ALTER TABLE `list_penguat`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jenis` (`jenis`);
+
+--
+-- Indexes for table `list_promosi`
+--
+ALTER TABLE `list_promosi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `list_psdm`
 --
 ALTER TABLE `list_psdm`
   ADD PRIMARY KEY (`id`),
   ADD KEY `update_id` (`update_id`);
+
+--
+-- Indexes for table `list_restools`
+--
+ALTER TABLE `list_restools`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `list_sarpras`
@@ -686,6 +839,12 @@ ALTER TABLE `tbl_fakultas`
   ADD PRIMARY KEY (`id_fakultas`);
 
 --
+-- Indexes for table `tbl_komponen`
+--
+ALTER TABLE `tbl_komponen`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
@@ -700,7 +859,7 @@ ALTER TABLE `tbl_prodi`
 -- AUTO_INCREMENT for table `changelog`
 --
 ALTER TABLE `changelog`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `list_anggaran`
@@ -724,13 +883,19 @@ ALTER TABLE `list_ejournal`
 -- AUTO_INCREMENT for table `list_kerjasama`
 --
 ALTER TABLE `list_kerjasama`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `list_koran`
 --
 ALTER TABLE `list_koran`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `list_kuesioner`
+--
+ALTER TABLE `list_kuesioner`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `list_kunjungan`
@@ -757,10 +922,28 @@ ALTER TABLE `list_pengadaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `list_penguat`
+--
+ALTER TABLE `list_penguat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `list_promosi`
+--
+ALTER TABLE `list_promosi`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `list_psdm`
 --
 ALTER TABLE `list_psdm`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `list_restools`
+--
+ALTER TABLE `list_restools`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `list_sarpras`
@@ -778,7 +961,7 @@ ALTER TABLE `list_sarpras2`
 -- AUTO_INCREMENT for table `list_sop`
 --
 ALTER TABLE `list_sop`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -799,6 +982,12 @@ ALTER TABLE `tbl_fakultas`
   MODIFY `id_fakultas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `tbl_komponen`
+--
+ALTER TABLE `tbl_komponen`
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `tbl_prodi`
 --
 ALTER TABLE `tbl_prodi`
@@ -812,7 +1001,8 @@ ALTER TABLE `tbl_prodi`
 -- Constraints for table `list_anggaran`
 --
 ALTER TABLE `list_anggaran`
-  ADD CONSTRAINT `list_anggaran_ibfk_1` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`);
+  ADD CONSTRAINT `list_anggaran_ibfk_1` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`),
+  ADD CONSTRAINT `list_anggaran_ibfk_2` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`);
 
 --
 -- Constraints for table `list_ebook`
@@ -830,7 +1020,8 @@ ALTER TABLE `list_ejournal`
 -- Constraints for table `list_kerjasama`
 --
 ALTER TABLE `list_kerjasama`
-  ADD CONSTRAINT `list_kerjasama_ibfk_1` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`);
+  ADD CONSTRAINT `list_kerjasama_ibfk_1` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`),
+  ADD CONSTRAINT `list_kerjasama_ibfk_2` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`);
 
 --
 -- Constraints for table `list_koran`
@@ -861,6 +1052,12 @@ ALTER TABLE `list_pegawai`
 --
 ALTER TABLE `list_pengadaan`
   ADD CONSTRAINT `list_pengadaan_ibfk_1` FOREIGN KEY (`update_id`) REFERENCES `changelog` (`id`);
+
+--
+-- Constraints for table `list_penguat`
+--
+ALTER TABLE `list_penguat`
+  ADD CONSTRAINT `list_penguat_ibfk_1` FOREIGN KEY (`jenis`) REFERENCES `tbl_komponen` (`id`);
 
 --
 -- Constraints for table `list_psdm`
