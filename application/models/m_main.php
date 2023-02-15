@@ -213,6 +213,10 @@
         public function get_sarpras(){
             return $this->db->query('SELECT * FROM list_sarpras ORDER BY jenis, subjenis, id');
         }
+        public function update_anggaran($where, $data, $tabel){
+            $this->db->where($where);
+            $this->db->update($tabel, $data);
+        }
 //---Informasi SOP---
         public function get_sop(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();

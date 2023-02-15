@@ -26,7 +26,7 @@
     <p>Berikut merupakan data permintaan buku yang ada melalui surat yang telah dikirimkan kepada prodi</p>
   </div>
   <?php if($akses == '0' || $akses == '1'){ ?>
-    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel'); ?>" target="_blank">Export Excel</a>
+    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel'); ?>" target="_blank" style="margin-bottom: 5px;">Export Excel</a>
   <?php }?>
   <br>
   <div style="overflow-x: auto;">

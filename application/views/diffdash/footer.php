@@ -162,11 +162,7 @@
 		//toastr['info']('Hello, welcome to DiffDash, a unique admin dashboard.');
 	});
 
-<<<<<<< HEAD
-	// Fungsi SWAL hapus
-=======
 	// Fungsi SWAL hapus data
->>>>>>> 28dc8dbb895e45c796719310d467b425cb93951f
 	$('.tombol-hapus').on('click', function (e){
 		e.preventDefault();
 		const href = $(this).attr('href')

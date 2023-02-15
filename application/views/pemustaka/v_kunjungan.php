@@ -53,7 +53,6 @@
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
-<<<<<<< HEAD
                                 <div style="">
                                 <?php if($akses == '0' || $akses == '1'){ ?>
                                     <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-block tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
@@ -61,11 +60,6 @@
                                 <?php } ?>
                                 <a class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
                                 </div>
-=======
-                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-xm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-info btn-sm btn-xm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-warning btn-sm btn-xm" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
->>>>>>> 28dc8dbb895e45c796719310d467b425cb93951f
                             </td>
                             <?php $i++ ?>
                         </tr>

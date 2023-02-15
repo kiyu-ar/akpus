@@ -39,7 +39,7 @@
                 <td>Rp<?php echo number_format($row->nominal,2,',','.') ?></td>
                 <?php if($akses == '0' || $akses == '1'){ ?>
                 <td class="btnsq"><a href="<?php echo base_url('lain/hapus_anggaran/'.$row->id) ?>" class="btn btn-danger btn-xm tombol-hapus" title="Hapus Anggaran"><i class="fa fa-trash"></i></a></td>
-                <td class="btnsq"><?php echo anchor('koleksi/edit_tabel/'.$row->id,'<div class="btn btn-primary btn-xm" data-toggle="tooltip" data-placement="top" title="Edit User"><i class="fa fa-edit"></i></div>') ?></td>
+                <td class="btnsq"><a class="btn btn-info btn-xm btn-block" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Anggaran"><i class="fa fa-edit"></i></a></td>
                 <?php } ?>
             </tr>
             <?php endforeach;?>
@@ -84,4 +84,45 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal Edit Anggaran -->
+<?php
+$i = 1;
+foreach ($anggaran as $row) : $i++ ?>
+<div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel"><b>Edit Anggaran</b></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="<?php echo base_url('lain/edit_anggaran') ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Asal Anggaran</label>
+                            <input type="text" name="asal" class="form-control" required="" value="<?php echo $row->asal?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah Anggaran</label>
+                            <input type="number" name="nominal" class="form-control" required="numeric" pattern="[0-9]+" value="<?php echo $row->nominal?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Anggaran</label><br>
+                            <input type="radio" id="0" name="jenis_anggaran" required="" value="0" <?php if($row->jenis=='0') echo 'checked'?>>
+                            <label for="0">Internal</label><br>
+                            <input type="radio" id="1" name="jenis_anggaran" required="" value="1" <?php if($row->jenis=='1') echo 'checked'?>>
+                            <label for="1">External</label>  
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+<?php endforeach; ?>
