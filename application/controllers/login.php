@@ -20,6 +20,7 @@
                 if(password_verify($pass, $cek_login->password)){
                     $data_session = array(
                         'status'    => 'login',
+                        'id_user'   => $cek_login->id,
                         'akses'     => $cek_login->akses,
                         'username'  => $cek_login->username,
                         'password'  => $cek_login->password,

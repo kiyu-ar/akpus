@@ -95,10 +95,11 @@
             <input type="file" name="filePdf" class="form-control">
         </div>
         </div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <div style="padding-left:20px; padding-bottom:20px">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
         <?php echo form_close(); ?>
-        <hr style="margin-bottom:0; background-color:white;">
       </div>
     </div>
   </div>
@@ -120,8 +121,10 @@
             <input type="text" name="newdiv" class="form-control">
         </div>
         </div>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
+        <div style="padding-left:20px">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
         <?php echo form_close(); ?>
         <hr style="margin-bottom:0; background-color:white;">
       </div>

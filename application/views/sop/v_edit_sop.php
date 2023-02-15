@@ -1,4 +1,12 @@
 <div>
+    <nav class="crumbs">
+        <ol>
+            <li class="crumb"><a href="#">Home</a></li>
+            <li class="crumb"><a href="#">SOP</a></li>
+            <li class="crumb">Edit SOP</li>
+        </ol>
+    </nav>
+
     <?php foreach ($sop as $row) {?>
     <form action="<?php echo base_url().'sop/update_sop'; ?>" method="post">
         <div class="form-group">

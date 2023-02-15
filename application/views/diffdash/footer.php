@@ -186,6 +186,31 @@
 			}
 		})		
 	});
+
+	// Fungsi SWAL edit data
+	$('.tombol-edit').on('click', function (e){
+		e.preventDefault();
+		const href = $(this).attr('href')
+
+		Swal.fire({
+			title: 'Apakah anda yakin?',
+			text: "Data akan dihapus",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Hapus'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire({
+				title: 'Data Berhasil Dihapus',
+				icon:'success',
+				timer :2000,
+				showConfirmButton: false,
+				}).then(function(){document.location.href = href;})
+			}
+		})		
+	});
 	</script>
 </body>
 

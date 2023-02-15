@@ -17,24 +17,22 @@
             $this->db->where($where);
             $this->db->update($table, $data);
         }
-//---Informasi Koleksi---
-        public function get_koran(){
-            return $this->db->get('list_koran')->result();
+        public function get_last_id($table){
+            return $this->db->query('SELECT MAX(id) as id FROM '.$table)->row()->id;
         }
+        public function get_data_order($table, $column){
+            $this->db->order_by($column);
+            return $this->db->get($table);
+        }
+//---Informasi Koleksi---
         public function get_majalah(){
             return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia FROM list_majalah')->result();
         }
         public function get_ebook(){
             return $this->db->query('SELECT * FROM list_ebook order by nama_buku, id')->result();
         }
-        public function get_ejournal(){
-            return $this->db->get('list_ejournal')->result();
-        }
 
 //---Informasi Pemustaka---
-        public function get_fakultas(){
-            return $this->db->get('tbl_fakultas')->result();
-        }
         public function get_prodi($postData){
             $id_fakultas = array('id_fakultas' => $postData['dfakultas']);
             $q = $this->db->get_where('tbl_prodi', $id_fakultas)->result();
@@ -124,14 +122,6 @@
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
 
-        public function get_kunjungan(){
-            return $this->db->get('list_kunjungan')->result();
-        }
-
-        public function get_id_kunjungan(){
-            return $this->db->get_where('list_kunjungan', ['id' => $id])->row_array();
-        }
-
         public function edit_data_kunjungan(){
             $data = [
                 "tanggal"           => $this->input->post('tanggal_kunjungan'),
@@ -154,6 +144,7 @@
             return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 
             order by sort, substring(pangkat,1,1) DESC, substring(pangkat, 2,1) DESC');
         }
+        
         public function get_tabel_p(){
             return $this->db->query('SELECT 
             count(CASE WHEN (pendidikan like "%S3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as S3,
@@ -207,7 +198,16 @@
         }
 //---Informasi Lain---
         public function get_sarpras(){
-            return $this->db->query('SELECT * FROM list_sarpras ORDER BY jenis, subjenis, id');
+            $this->db->order_by('jenis');
+            $this->db->order_by('subjenis');
+            $this->db->order_by('id');
+            $sql = $this->db->get('list_sarpras');
+            return $sql;
+        }
+        public function get_kerjasama(){
+            $this->db->order_by('jenis');
+            $sql = $this->db->get('list_kerjasama');
+            return $sql;
         }
 //---Informasi SOP---
         public function get_sop(){
@@ -216,13 +216,6 @@
         public function search_sop($keyword){
             $where = "WHERE tds.divisi like '%$keyword%' OR sp.nomor like '%$keyword%' OR sp.nama_sop like '%$keyword%' OR sp.deskripsi like '%$keyword%'";
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
-        }
-        public function edit_sop($where,$table){
-            return $this->db->get_where($table, $where);
-        }
-        public function update_sop($where, $data, $tabel){
-            $this->db->where($where);
-            $this->db->update($tabel, $data);
         }
     }
 ?>

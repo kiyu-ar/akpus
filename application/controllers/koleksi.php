@@ -25,7 +25,7 @@
         }
         public function koran(){
             $data['status'] = $this->session->userdata('status');
-            $data['koran']  = $this->m_main->get_koran();
+            $data['koran']  = $this->m_main->get_data('list_koran');
             $this->load->view('koleksi/iframe_koran',$data);
         }
         public function tambah_koran(){
@@ -89,7 +89,7 @@
                 } else if($id =='2'){
                     //$data['jurnal']
                 } else if($id == '3'){
-                    $data['koran'] = $this->m_main->get_koran();
+                    $data['koran'] = $this->m_main->get_data('list_koran')->result();
                 } else if($id == '4'){
                     $data['majalah'] = $this->m_main->get_majalah();
                 } else{
@@ -129,7 +129,7 @@
         }
         public function ejournal(){
             $data['status']   = $this->session->userdata('status');
-            $data['ejournal'] = $this->m_main->get_ejournal();
+            $data['ejournal'] = $this->m_main->get_data('list_ejournal')->result();
             $this->load->view('koleksi/iframe_ejournal',$data);
         }
         public function tambah_ejournal(){

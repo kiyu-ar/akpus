@@ -71,8 +71,8 @@
         }
         public function edit_sop($id){
             $where = array ('id'=>$id);
-            $data['divisi'] = $this->m_main->get_divisi_sop();
-            $data['sop'] = $this->m_main->edit_sop($where,'list_sop')->result();
+            $data['divisi'] = $this->m_main->get_data('tbl_divisi_sop')->result();
+            $data['sop'] = $this->m_main->edit_data($where,'list_sop')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('sop/v_edit_sop',$data);
@@ -87,7 +87,7 @@
             $file       = $_FILE('file');
 
             $data = array(
-                'id' => $id,
+                'id'        => $id,
                 'id_divisi' => $id_divisi,
                 'nomor'     => $nomor,
                 'nama_sop'  => $nama_sop,
@@ -95,8 +95,8 @@
                 'file'      => $file,
             );
             $where = array('id' => $id);
-            $this->m_main->update_sop($where, $data, 'list_sop');
-            redirect(sop/pengolahan);
+            $this->m_main->update_data($where, $data, 'list_sop');
+            redirect('sop/pengolahan');
         }
         public function lain(){
             

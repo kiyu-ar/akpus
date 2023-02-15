@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 </head>
 <body>
-  <?php #var_dump($top); echo $jumlah_top[1] ?>
+  <?php //var_dump($top); //echo $jumlah_top[1] ?>
 <div>
 <h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->

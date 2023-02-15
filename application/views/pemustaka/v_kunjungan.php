@@ -52,7 +52,7 @@
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
                                 <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-xm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-info btn-sm btn-xm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
+                                <a class="btn btn-info btn-sm btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
                                 <a class="btn btn-warning btn-sm btn-xm" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
                             </td>
                             <?php $i++ ?>
@@ -112,7 +112,7 @@
 <?php
 $i = 1;
 foreach ($kunjungan as $row) : $i++ ?>
-<div class="modal fade" id="hapus<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

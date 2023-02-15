@@ -12,7 +12,7 @@
             $this->load->view('diffdash/footer');
         }
         public function kunjungan(){
-            $data['kunjungan'] = $this->m_main->get_kunjungan();
+            $data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
             $this->load->view('diffdash/header', $data);
             $this->load->view('diffdash/sidebar', $data);
             $this->load->view('pemustaka/v_kunjungan', $data);
@@ -24,7 +24,7 @@
             $this->load->view('diffdash/footer');
         }
         public function sirkulasi(){
-            $data['fakultas'] = $this->m_main->get_fakultas();
+            $data['fakultas'] = $this->m_main->get_data('tbl_fakultas')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pemustaka/v_sirkulasi',$data);
@@ -63,7 +63,7 @@
             $this->load->view('diffdash/footer');
         }
         public function mandiri(){
-            $data['fakultas'] = $this->m_main->get_fakultas();
+            $data['fakultas'] = $this->m_main->get_data('tbl_fakultas')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pemustaka/v_mandiri',$data);
@@ -96,7 +96,7 @@
             $instansi          = $this->input->post('nama_instansi');
             $tujuan            = $this->input->post('tujuan_kunjungan');
             $jumlah_tamu       = $this->input->post('tamu_kunjungan');
-            $dokumentasi      = $_FILES['dokumentasi_kunjungan'];
+            $dokumentasi       = $_FILES['dokumentasi_kunjungan'];
 
             if ($dokumentasi == ''){
                 $dokumentasi = '';
@@ -171,7 +171,7 @@
                 );
 
                 $where = array('id' => $id);
-                $this->m_main->update_kunjungan($where, $data, 'list_kunjungan');
+                $this->m_main->update_data($where, $data, 'list_kunjungan');
                 $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
                 Data Berhasil Diedit
