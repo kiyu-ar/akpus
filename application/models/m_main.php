@@ -135,6 +135,11 @@
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('list_kunjungan', $data);
         }
+
+        public function cek_file($id){
+            $query = $this->db->get_where('list_kunjungan', ['id' => $id]);
+            return $query->row();
+        }
 //---Informasi Pustakawan---
         public function get_pegawai(){
             return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 
@@ -216,6 +221,10 @@
         public function search_sop($keyword){
             $where = "WHERE tds.divisi like '%$keyword%' OR sp.nomor like '%$keyword%' OR sp.nama_sop like '%$keyword%' OR sp.deskripsi like '%$keyword%'";
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
+        }
+        public function cek_file_sop($id){
+            $query = $this->db->get_where('list_sop', ['id' => $id]);
+            return $query->row();
         }
     }
 ?>

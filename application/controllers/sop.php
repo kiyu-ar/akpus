@@ -65,9 +65,16 @@
             
         }
         public function hapus_sop($id){
+            $data_sop = new m_main;
+            if($data_sop->cek_file_sop($id)){
+                $data_s = $data_sop->cek_file_sop($id);
+                if(file_exists("./assets/files/".$data_s->file)){
+                    unlink("./assets/files/".$data_s->file);
+                }
             $where = array ('id'=>$id);
             $this->m_main->delete_data($where, 'list_sop');
             redirect('sop/pengolahan');
+            }
         }
         public function edit_sop($id){
             $where = array ('id'=>$id);

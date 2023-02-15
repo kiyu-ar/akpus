@@ -136,9 +136,16 @@
         }
 
         public function hapus_kunjungan($id){
+            $data_kunjungan = new m_main;
+            if($data_kunjungan->cek_file($id)){
+                $data_k = $data_kunjungan->cek_file($id);
+                if(file_exists("./assets/files/".$data_k->dokumentasi)){
+                    unlink("./assets/files/".$data_k->dokumentasi);
+                }
             $where = array ('id'=>$id);
             $this->m_main->delete_data($where, 'list_kunjungan');
             redirect('pemustaka/kunjungan');
+            }
         }
 
         public function edit_kunjungan(){
