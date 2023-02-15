@@ -19,6 +19,7 @@
         # Pengembalian Setelah melakukan aksi
         public function index()
         {
+            $data['akses'] = $this->session->userdata('akses');
             $data['ab'] = $this->M_excel->tampilan_tabel();
             $this->load->view('diffdash/header', $data);
             $this->load->view('diffdash/sidebar', $data);

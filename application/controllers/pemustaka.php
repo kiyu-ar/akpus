@@ -12,7 +12,8 @@
             $this->load->view('diffdash/footer');
         }
         public function kunjungan(){
-            $data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
+            $data['akses'] = $this->session->userdata('akses');
+            $data['kunjungan'] = $this->m_main->get_kunjungan();
             $this->load->view('diffdash/header', $data);
             $this->load->view('diffdash/sidebar', $data);
             $this->load->view('pemustaka/v_kunjungan', $data);

@@ -20,6 +20,7 @@
         public function get_last_id($table){
             return $this->db->query('SELECT MAX(id) as id FROM '.$table)->row()->id;
         }
+
         public function get_data_order($table, $column){
             $this->db->order_by($column);
             return $this->db->get($table);
@@ -208,6 +209,10 @@
             $this->db->order_by('jenis');
             $sql = $this->db->get('list_kerjasama');
             return $sql;
+        }
+        public function update_anggaran($where, $data, $tabel){
+            $this->db->where($where);
+            $this->db->update($tabel, $data);
         }
 //---Informasi SOP---
         public function get_sop(){
