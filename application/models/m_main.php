@@ -17,6 +17,10 @@
             $this->db->where($where);
             $this->db->update($table, $data);
         }
+        public function get_data_order($table, $column){
+            $this->db->order_by($column);
+            return $this->db->get($table);
+        }
 //---Informasi Koleksi---
         public function get_koran(){
             return $this->db->get('list_koran')->result();

@@ -25,8 +25,10 @@
     <h4>Rekapitulasi permintaan buku melalui surat ke Prodi</h4>
     <p>Berikut merupakan data permintaan buku yang ada melalui surat yang telah dikirimkan kepada prodi</p>
   </div>
-  <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel'); ?>" target="_blank">Export Excel</a>
-  <br><br>
+  <?php if($akses == '0' || $akses == '1'){ ?>
+    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel'); ?>" target="_blank">Export Excel</a>
+  <?php }?>
+  <br>
   <div style="overflow-x: auto;">
     <table id="themed">
       <thead>

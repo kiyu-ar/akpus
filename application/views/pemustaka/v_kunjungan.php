@@ -14,7 +14,9 @@
     <?php endif; ?>
 </div>
 <div>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#tambahkunjungan"><i class="fa fa-plus"></i>Tambah Kunjungan</button>
+    <?php if($akses == '0' || $akses == '1'){ ?>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahkunjungan"><i class="fa fa-plus"></i>Tambah Kunjungan</button>
+    <?php } ?>
     <div>
         <?php
         if ($this->session->flashdata('pesan')) {
@@ -28,7 +30,7 @@
         if($kunjungan == null){
             echo "<h3>Tidak ada data yang ditampilkan<h3>";
         }else{ ?>
-        <div style="overflow-x: auto;">
+        <div style="overflow-x: auto; overflow-y: auto;">
             <table id="themed">
                 <thead>
                     <tr style="background:#CCC">
@@ -51,9 +53,13 @@
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
                             <td> 
-                                <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                <a class="btn btn-info btn-sm" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
-                                <a class="btn btn-warning btn-sm" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
+                                <div style="">
+                                <?php if($akses == '0' || $akses == '1'){ ?>
+                                    <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-block tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
+                                    <a class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#hapus<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
+                                <?php } ?>
+                                <a class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
+                                </div>
                             </td>
                             <?php $i++ ?>
                         </tr>

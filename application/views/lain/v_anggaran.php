@@ -7,6 +7,10 @@
         </ol>
     </nav>
 
+    <?php if($akses == '0' || $akses == '1'){ ?>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahanggaran"><i class="fa fa-plus"></i>Tambah Anggaran</button>
+    <?php } ?>
+
     <div>
         <?php $no = 1; $jenis=3;
                 foreach ($anggaran as $row):
@@ -34,7 +38,7 @@
                 <td><?php echo $row->asal ?></td>
                 <td>Rp<?php echo number_format($row->nominal,2,',','.') ?></td>
                 <?php if($akses == '0' || $akses == '1'){ ?>
-                <td class="btnsq" onclick="javascript: return confirm('Anda yakin?')"><?php echo anchor('koleksi/hapus_tabel/3/'.$row->id, '<div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div>') ?></td>
+                <td class="btnsq"><a href="<?php echo base_url('lain/hapus_anggaran/'.$row->id) ?>" class="btn btn-danger btn-xm tombol-hapus" title="Hapus Anggaran"><i class="fa fa-trash"></i></a></td>
                 <td class="btnsq"><?php echo anchor('koleksi/edit_tabel/'.$row->id,'<div class="btn btn-primary btn-xm" data-toggle="tooltip" data-placement="top" title="Edit User"><i class="fa fa-edit"></i></div>') ?></td>
                 <?php } ?>
             </tr>
@@ -42,4 +46,42 @@
         </table>
     </div>
 
+</div>
+
+<!-- Modal Tambah Anggaran -->
+<div class="modal fade" id="tambahanggaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>Tambah Anggaran</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo base_url('lain/tambah_anggaran') ?>" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>Asal Anggaran</label>
+                        <input type="text" name="asal" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Jumlah Anggaran</label>
+                        <input type="number" name="nominal" class="form-control" required="numeric" pattern="[0-9]+">
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Anggaran</label><br>
+                        <input type="radio" id="0" name="jenis_anggaran" required="" value="0">
+                        <label for="0">Internal</label><br>
+                        <input type="radio" id="1" name="jenis_anggaran" required="" value="1">
+                        <label for="1">External</label>  
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 </div>

@@ -159,7 +159,7 @@
 
 	});
 
-	// Fungsi SWAL hapus kunjungan
+	// Fungsi SWAL hapus
 	$('.tombol-hapus').on('click', function (e){
 		e.preventDefault();
 		const href = $(this).attr('href')
