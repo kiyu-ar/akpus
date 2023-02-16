@@ -26,7 +26,7 @@
         }
         public function koran(){
             $data['status'] = $this->session->userdata('status');
-            $data['koran']  = $this->m_main->get_data('list_koran');
+            $data['koran']  = $this->m_main->get_data('list_koran')->result();
             $this->load->view('koleksi/iframe_koran',$data);
         }
         public function tambah_koran(){
@@ -149,6 +149,12 @@
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('koleksi/v_statistik');
+            $this->load->view('diffdash/footer');
+        }
+        public function tabs(){
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('koleksi/v_tabs');
             $this->load->view('diffdash/footer');
         }
     }    

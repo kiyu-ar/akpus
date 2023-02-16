@@ -1,33 +1,37 @@
-<div>
-    <nav class="crumbs">
+<nav class="crumbs">
         <ol>
             <li class="crumb"><a href="#">Home</a></li>
             <li class="crumb"><a href="#">Informasi Koleksi</a></li>
             <li class="crumb">Jenis Koleksi Cetak</li>
         </ol>
     </nav>
-    <a href="#buku"><button class="btn">Buku</button></a>
-    <a href="#referensi"><button class="btn">Referensi</button></a>
-    <a href="#ta"><button class="btn">Laporan penelitian, Skrisi, Tesis, Disertasi</button></a>
-    <a href="#prosiding"><button class="btn">Prosiding</button></a>
-    <a href="#jurnal"><button class="btn">Jurnal</button></a>
-    <a href="#koran"><button class="btn">Koran dan Majalah</button></a>
-<div id="buku">
-    <h4>Buku : unsla</h4>
-    <p>Data buku dapat diakses melalui website UNSLA pada
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Buku&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Buku UNSLA</a>
+
+<button class="tablink cetak" onclick="openPage('buku', this, 'steelblue')" id="defaultOpen">Buku</button>
+<button class="tablink cetak" onclick="openPage('referensi', this, 'steelblue')" >Referensi</button>
+<button class="tablink cetak" onclick="openPage('ta', this, 'steelblue')">Tugas Akhir</button>
+<button class="tablink cetak" onclick="openPage('prosiding', this, 'steelblue')">Prosiding</button>
+<button class="tablink cetak" onclick="openPage('jurnal', this, 'steelblue')">Jurnal</button>
+<button class="tablink cetak" onclick="openPage('koran', this, 'steelblue')">Koran</button>
+<button class="tablink cetak" onclick="openPage('majalah', this, 'steelblue')">Majalah</button>
+
+<div id="buku" class="tabcontent">
+    <h3>Buku</h3>
+    <p>Data buku cetak UPT Perpustakaan dan jumlah total buku dapat diakses melalui website UNSLA pada
+        <a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Buku&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Buku UNSLA</a>
     </p>
+    <img class="static" src="<?php echo base_url().'assets/files/static/cet_buku.png' ?>"></img>
 </div>
-<hr>
-<div id="referensi">
-    <h4>Referensi : unsla</h4>
+
+<div id="referensi" class="tabcontent">
+    <h3>Referensi</h3>
     <p>Data referensi dapat diakses melalui website UNSLA pada 
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Reference&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Referensi UNSLA</a>
+        <a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Reference&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Referensi UNSLA</a>
     </p>
+    <img class="static" src="<?php echo base_url().'assets/files/static/cet_referensi.png' ?>" alt="">
 </div>
-<hr>
-<div id="ta">
-    <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
+
+<div id="ta" class="tabcontent">
+  <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
     <p>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website UNSLA pada
         <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=TA&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tugas Akhir UNSLA</a>
     </p>
@@ -40,42 +44,41 @@
     <p>Data Disertasi dapat diakses melalui website UNSLA pada
         <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Disertasi&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">TDisertasi UNSLA</a>
     </p>
-    
 </div>
-<hr>
-<div id="prosiding">
-    <?php if(($this->session->userdata('status')=='login')){ ?>
+
+<div id="prosiding" class="tabcontent">
+<?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_prosiding')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Prosiding">Edit Data</button></a></div>
     <?php } ?>
-    <h4>Prosiding : manual</h4>
+    <h4>Prosiding</h4>
     <p>Buku</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ipsum inventore quas, enim pariatur consequatur adipisci laboriosam quo neque eos asperiores harum alias sequi perspiciatis? Totam necessitatibus veniam sunt nisi?</p> 
 </div>
-<hr>
-<div id="jurnal">
+
+<div id="jurnal" class="tabcontent">
     <?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_jurnal')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Jurnal">Edit Data</button></a></div>
     <?php } ?>
-    <h4>Jurnal : manual</h4>
+    <h4>Jurnal</h4>
     <p>Buku</p>
-    
 </div>
-<hr>
-<div id="koran">
-    <h4>Koran dan Majalah : manual</h4>
+
+<div id="koran" class="tabcontent">
+<h4>Koran</h4>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahkoran" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <p>Koran koran Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
     <iframe class="jframe" src="<?php echo base_url() ?>koleksi/koran" frameborder="0"></iframe>
+</div>
+
+<div id="majalah" class="tabcontent">
+<h4>Majalah</h4>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahmajalah" data-toggle="tooltip" data-placement="top" title="Tambah Data Majalah"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <p>Majalah</p>
     <iframe class="jframe" src="<?php echo base_url() ?>koleksi/majalah" frameborder="0"></iframe>
-    
 </div>
-
+<?php if($this->session->userdata('status')== 'login'){ ?>
 <div class="modal fade" id="tambahkoran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -130,3 +133,4 @@
   </div>
 </div>
 </div>
+<?php } ?>

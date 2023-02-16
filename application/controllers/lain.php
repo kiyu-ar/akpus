@@ -21,9 +21,10 @@
             $this->load->view('diffdash/footer');
         }
         public function kuesioner(){
+            $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_kuesioner');
+            $this->load->view('lain/v_kuesioner', $data);
             $this->load->view('diffdash/footer');
         }
         public function promosi(){
@@ -35,8 +36,11 @@
             $this->load->view('diffdash/footer');
         }
         public function restools(){
+            $data['restools'] = $this->m_main->get_data('list_restools')->result();
+
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
+            $this->load->view('lain/v_restools', $data);
             $this->load->view('diffdash/footer');
         }
         public function anggaran(){
