@@ -1,59 +1,55 @@
-<div>
-    <nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="#">Home</a></li>
-            <li class="crumb"><a href="#">Informasi Koleksi</a></li>
-            <li class="crumb">Jenis Koleksi Elektronik</li>
-        </ol>
-    </nav>
-    <a href="#buku"><button class="btn">Buku</button></a>
-    <a href="#jurnal"><button class="btn">Jurnal</button></a>
-    <a href="#prosiding"><button class="btn">Prosiding</button></a>
-    <a href="#ta"><button class="btn">Laporan penelitian, Skrisi, Tesis, Disertasi</button></a>
-    
- 
-<div id="buku">
-    <h4>Buku : link langganan</h4>
+
+<button class="tablink elektronik" onclick="openPage('buku', this, 'steelblue')" id="defaultOpen">Buku</button>
+<button class="tablink elektronik" onclick="openPage('jurnal', this, 'steelblue')" >Jurnal</button>
+<button class="tablink elektronik" onclick="openPage('prosiding', this, 'steelblue')">Prosiding</button>
+<button class="tablink elektronik" onclick="openPage('ta', this, 'steelblue')">Tugas Akhir</button>
+
+<div id="buku" class="tabcontent">
+    <h3>Buku</h3>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahebook" data-toggle="tooltip" data-placement="top" title="Tambah Data E-book"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
-    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/ebook" frameborder="0"></iframe>
+    <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ebook" frameborder="0"></iframe>
 </div>
-<hr>
-<div id="jurnal">
-    <h4>Jurnal : online</h4>
+
+<div id="jurnal" class="tabcontent">
+    <h3>Jurnal</h3>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahejournal" data-toggle="tooltip" data-placement="top" title="Tambah Data E-jurnal"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
-    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/ejournal" frameborder="0"></iframe>
-</div>
-<hr>
-<div id="prosiding">
-    <h4>Prosiding : digilib</h4>
-    <p>Data Prosiding dapat diakses melalui website Digilib pada
-    <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10283" target="_blank">Prosiding Digilib</a>
-    </p>
-</div>
-<hr>
-<div id="ta">
-    <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
-    <p>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website Digilib pada
-        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=1.1254" target="_blank">Tugas Akhir Digilib</a>
-    </p>
-    <p>Data Skripsi dapat diakses melalui website Digilib pada
-        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=261" target="_blank">Skripsi Digilib</a>
-    </p>
-    <p>Data Tesis dapat diakses melalui website Digilib pada
-        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=494" target="_blank">Tesis Digilib</a>
-    </p>
-    <p>Data Disertasi dapat diakses melalui website Digilib pada
-        <a href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10189" target="_blank">Disertasi Digilib</a>
-    </p>
-    
+    <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ejournal" frameborder="0"></iframe>
 </div>
 
+<div id="prosiding" class="tabcontent">
+    <h3>Prosiding</h3>
+    <p>Data Prosiding dapat diakses melalui website Digilib pada
+    <a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10283" target="_blank">Prosiding Digilib</a>
+    </p>
+    <img class="static" src="<?php echo base_url().'assets/files/static/ele_prosiding.png'?>">
+</div>
+
+<div id="ta" class="tabcontent">
+<h3>Laporan penelitian, Skrisi, Tesis, Disertasi</h3>
+  <table class="table" style="width: 80%">
+    <tr><td>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website Digilib pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=1.1254" target="_blank">Tugas Akhir Digilib</a></td>
+    </tr>
+    <tr><td>Data Skripsi dapat diakses melalui website Digilib pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=261" target="_blank">Skripsi Digilib</a></td>
+    </tr>
+    <tr><td>Data Tesis dapat diakses melalui website Digilib pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=494" target="_blank">Tesis Digilib</a></td>
+    </tr>
+    <tr><td>Data Disertasi dapat diakses melalui website Digilib pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10189" target="_blank">Disertasi Digilib</a></td>
+    </tr>
+  <table>
+</div>
+
+
+<!-- modal -->
 <div class="modal fade" id="tambahebook" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -110,6 +106,4 @@
       </div>
     </div>
   </div>
-</div>
-
 </div>

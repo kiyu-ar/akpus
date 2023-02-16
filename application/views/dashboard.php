@@ -16,9 +16,8 @@
 <h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
-				<div class="section-heading clearfix">
+				<div class="section-heading clearfix" style="margin-top: 30px">
 						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Statistik UPT Perpustakaan</h2>
-						<a href="#" class="right">View Full Analytics Reports</a>
 					</div>
 					<div class="panel-cont">
 						<div class="row">
@@ -52,7 +51,7 @@
 							<div class="col-md-3 col-sm-6">
 								<div class="number-chart">
 									<div class="mini-stat">
-										<div id="number-chart4" class="inlinesparkline">28,44,70,21,86,54,90,25,83,42</div>
+										<div id="number-chart4" class="inlinesparkline">1000,44,70,21,86,54,90,25,83,42</div>
 										<p class="text-muted"><i class="fa fa-caret-down text-danger"></i> 6% compared to last week</p>
 									</div>
 									<div class="number"><span>372,500</span> <span>LIKES</span></div>
@@ -62,16 +61,55 @@
 					</div>
 					<div class="panel-cont">
 				<div class="row justify-content-between">
+						<!-- <div class="col-md-3"> -->
+							<!-- TRAFFIC SOURCES -->
+							<!-- <div class="panel-content"> -->
+								<!-- <h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2> -->
+								<!-- <div id="demo-pie-chart" class="ct-chart"></div> -->
+								<!-- <h1>35</h1> -->
+							<!-- </div> -->
+							<!-- END TRAFFIC SOURCES -->
+						<!-- </div> -->
 						<div class="col-md-3">
 							<!-- TRAFFIC SOURCES -->
 							<div class="panel-content">
-								<h2 class="heading"><i class="fa fa-square"></i> Traffic Sources</h2>
-								<!-- <div id="demo-pie-chart" class="ct-chart"></div> -->
-								<h1>35</h1>
+								<h2 class="heading"><i class="fa fa-square"></i>Peminjam terbanyak bulan ini</h2>
+								<ul class="list-unstyled list-referrals">
+									<li>
+										<p><span class="value"><?php echo $jumlah_top[0]?></span><span class="text-muted"><?php echo $prodi_top[0]?></span></p>
+										<div class="progress progress-xs progress-transparent custom-color-blue">
+											<div class="progress-bar" data-transitiongoal="<?php echo $jumlah_top[0]?>"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value"><?php echo $jumlah_top[1]?></span><span class="text-muted"><?php echo $prodi_top[1]?></span></p>
+										<div class="progress progress-xs progress-transparent custom-color-purple">
+											<div class="progress-bar" data-transitiongoal="<?php echo $jumlah_top[1]?>"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value"><?php echo $jumlah_top[2]?></span><span class="text-muted"><?php echo $prodi_top[2]?></span></p>
+										<div class="progress progress-xs progress-transparent custom-color-green">
+											<div class="progress-bar" data-transitiongoal="<?php echo $jumlah_top[2]?>"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value"><?php echo $jumlah_top[3]?></span><span class="text-muted"><?php echo $prodi_top[3]?></span></p>
+										<div class="progress progress-xs progress-transparent custom-color-yellow">
+											<div class="progress-bar" data-transitiongoal="<?php echo $jumlah_top[3]?>"></div>
+										</div>
+									</li>
+									<li>
+										<p><span class="value"><?php echo $jumlah_top[4]?></span><span class="text-muted"><?php echo $prodi_top[4]?></span></p>
+										<div class="progress progress-xs progress-transparent custom-color-red">
+											<div class="progress-bar" data-transitiongoal="<?php echo $jumlah_top[4]?>"></div>
+										</div>
+									</li>
+								</ul>
 							</div>
 							<!-- END TRAFFIC SOURCES -->
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
 							<!-- REFERRALS -->
 							<div class="panel-content">
 								<h2 class="heading"><i class="fa fa-square"></i>Prodi dengan peminjaman terbanyak Bulan ini</h2>
@@ -110,10 +148,19 @@
 							</div>
 							<!-- END REFERRALS -->
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-3">
+							<!-- TRAFFIC SOURCES -->
+							<div class="panel-content">
+								<h2 class="heading"><i class="fa fa-square"></i>Pengunjung terbanyak Bulan ini</h2>
+								<!-- <div id="demo-pie-chart" class="ct-chart"></div> -->
+								<h1>35</h1>
+							</div>
+							<!-- END TRAFFIC SOURCES -->
+						</div>
+						<div class="col-md-3">
 							<div class="panel-content">
 								<!-- BROWSERS -->
-								<h2 class="heading"><i class="fa fa-square"></i> Browsers</h2>
+								<h2 class="heading"><i class="fa fa-square"></i>Prodi dengan kunjungan terbanyak Bulan ini</h2>
 								<div class="table-responsive">
 									<table class="table no-margin">
 										<thead>

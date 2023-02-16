@@ -43,7 +43,7 @@
                 <td><?php echo $row->tanggal_dari ?></td>
                 <td><?php echo $row->tanggal_hingga ?></td>
                 <?php if($akses == '0' || $akses == '1'){ ?>
-                <td class="btnsq tombol-hapus" href="<?php echo base_url('lain/hapus_kerjasama/'.$row->id).'/'.$row->update_id; ?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-trash"></i></div></td>
+                <td class="btnsq tombol-hapus" href="<?php echo base_url('lain/hapus_kerjasama/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-trash"></i></div></td>
                 <td class="btnsq"><a class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Kerja Sama"><i class="fa fa-edit"></i></a></td>
                 <?php } ?>
             </tr>

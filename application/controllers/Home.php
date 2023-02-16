@@ -28,7 +28,11 @@ class Home extends CI_Controller {
                 $id_user = $this->session->userdata('id_user');
                 if($action == 1) $action = 'create data';
                 else if($action == 2) $action = 'update data';
-                else $action = 'delete data';
+                else {
+                        $action = 'delete data';
+                        $changelog = array('id' => $update_id);
+                        $this->m_main->input_data($changelog, 'changelog');
+                }
                 
                 $changelog = array(
                     'id'        => $update_id,

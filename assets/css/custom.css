@@ -99,8 +99,11 @@ select.custom-select{
 }
 
 iframe.jframe{
-    width:  80%;
-    height: 500px !important;
+    width:  100%;
+}
+iframe.hframe{
+    width: 80%;
+    height: 450px !important;
 }
 img.static{
     width: 80%;
@@ -139,25 +142,6 @@ img.static{
 .title{
     font-size: medium;
     color: #000;
-}
-.line{
-    margin: 15px 10px;
-    background-color: white;
-    clear: both;
-}
-.row.tab{
-    margin: 15px 30px;
-    background-color: white;
-    clear: both;
-}
-.line label{
-    font-family: 'Times New Roman', serif;
-    font-weight: normal;
-    float:left;
-}
-.line input{
-    float:right;
-    text-align:right;
 }
 .swal2-container {
     zoom: 1.5;
