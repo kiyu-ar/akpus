@@ -33,19 +33,19 @@
 <div id="ta" class="tabcontent">
 <h3>Laporan penelitian, Skrisi, Tesis, Disertasi</h3>
   <table class="table" style="width: 80%">
-    <tr><td>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website Digilib pada</td>
-        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=1.1254" target="_blank">Tugas Akhir Digilib</a></td>
-    </tr>
-    <tr><td>Data Skripsi dapat diakses melalui website Digilib pada</td>
-        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=261" target="_blank">Skripsi Digilib</a></td>
-    </tr>
-    <tr><td>Data Tesis dapat diakses melalui website Digilib pada</td>
-        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=494" target="_blank">Tesis Digilib</a></td>
-    </tr>
-    <tr><td>Data Disertasi dapat diakses melalui website Digilib pada</td>
-        <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10189" target="_blank">Disertasi Digilib</a></td>
-    </tr>
-  <table>
+      <tr><td>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website Digilib pada</td>
+          <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=1.1254" target="_blank">Tugas Akhir Digilib</a></td>
+      </tr>
+      <tr><td>Data Skripsi dapat diakses melalui website Digilib pada</td>
+          <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=261" target="_blank">Skripsi Digilib</a></td>
+      </tr>
+      <tr><td>Data Tesis dapat diakses melalui website Digilib pada</td>
+          <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=494" target="_blank">Tesis Digilib</a></td>
+      </tr>
+      <tr><td>Data Disertasi dapat diakses melalui website Digilib pada</td>
+          <td style="text-align: center;"><a class="btn btn-custom" href="https://digilib.uns.ac.id/dokumen/search?q=&jd=10189" target="_blank">Disertasi Digilib</a></td>
+      </tr>
+    </table>
 </div>
 
 
