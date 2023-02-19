@@ -6,9 +6,9 @@
 
 <div id="buku" class="tabcontent">
     <h3>Buku</h3>
-    <?php if(($this->session->userdata('status')=='login')){ ?>
-        <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahebook" data-toggle="tooltip" data-placement="top" title="Tambah Data E-book"><i class="fa fa-plus"></i>Tambah Data</button>
-    <?php } ?>
+    
+      <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahebook" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
+    
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
     <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ebook" frameborder="0"></iframe>
 </div>
@@ -62,16 +62,8 @@
       <div class="modal-body">
         <form method="post" action="<?php echo base_url().'koleksi/tambah_ebook'; ?>">
             <div class="form-group">
-                <label>Nama E-Book</label>
-                <input type="text" name="nama_ebook" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Tahun</label>
-                <input type="text" name="tahun" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Link E-Book</label>
-                <input type="text" name="link_ebook" class="form-control">
+                <label>Nama Koran</label>
+                <input type="text" name="nama_buku" class="form-control">
             </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -91,15 +83,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'koleksi/tambah_ejournal'; ?>">
-            <div class="form-group">
-                <label>Nama E-journal</label>
-                <input type="text" name="nama_ejournal" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Link E-journal</label>
-                <input type="text" name="link_ejournal" class="form-control">
-            </div>
+        <form method="post" action="<?php echo base_url().'koleksi/tambah_majalah'; ?>">
+        <div class="form-group">
+            <label>Nama Majalah</label>
+            <input type="text" name="nama_majalah" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Tahun Mulai Berlangganan</label>
+            <input type="text" name="tahun_dari" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Tahun Selesai Berlangganan</label>
+            <input type="text" name="tahun_hingga" class="form-control">
+        </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
