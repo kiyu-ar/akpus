@@ -20,15 +20,14 @@
         public function get_last_id($table){
             return $this->db->query('SELECT MAX(id) as id FROM '.$table)->row()->id;
         }
-
         public function get_data_order($table, $column){
             $this->db->order_by($column);
             return $this->db->get($table);
         }
-//---Informasi Koleksi---
-        public function get_majalah(){
-            return $this->db->query('SELECT id, nama_majalah, concat(tahun_dari, " - ", tahun_hingga) as tahun_tersedia FROM list_majalah')->result();
+        public function get_nama_prodi($kode_prodi){
+            return $this->db->query("SELECT prodi FROM tbl_prodi where kode ='".$kode_prodi."'")->row()->prodi;
         }
+//---Informasi Koleksi---
         public function get_ebook(){
             return $this->db->query('SELECT * FROM list_ebook order by nama_buku, id')->result();
         }

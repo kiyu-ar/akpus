@@ -27,16 +27,16 @@
         </tr>
     <?php 
     $no = 1;
-    foreach ($login as $log) : ?>
+    foreach ($login as $row) : ?>
         <tr>
             <td><?php echo $no++?></td>
-            <td><?php echo $log->username ?></td>
-            <td><?php echo $log->nama ?></td>
-            <td><?php if($log->akses == 1){echo "Admin";}
-                      else if($log->akses == 2){echo "Operator";}?></td>
-            <td class="btnsq" onclick="javascript: return confirm('Anda yakin?')"><?php echo anchor('user/hapus/'.$log->id, '<div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div>') ?></td>
-            <td class="btnsq"><?php echo anchor('user/edit/'.$log->id,'<div class="btn btn-primary btn-xm" data-toggle="tooltip" data-placement="top" title="Edit User"><i class="fa fa-edit"></i></div>') ?></td>
-            <td class="btnsq"><?php echo anchor('user/editpassword/'.$log->id, '<div class="btn btn-warning btn-xm" data-toggle="tooltip" data-placement="top" title="Ganti Password"><i class="fa fa-cog"></i></div>') ?></td>
+            <td><?php echo $row->username ?></td>
+            <td><?php echo $row->nama ?></td>
+            <td><?php if($row->akses == 1){echo "Admin";}
+                      else if($row->akses == 2){echo "Operator";}?></td>
+            <td class="btnsq tombol-hapus" href="<?php echo base_url('user/hapus/'.$row->id);?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div></td>
+            <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit User"><i class="fa fa-edit"></i></button></td>
+            <td class="btnsq"><button class="btn btn-warning btn-xm" data-toggle="modal" data-target="#edit_pass<?php echo $row->id ?>" title="Ganti Password"><i class="fa fa-cog"></i></button></td>
         </tr>
     <?php endforeach; ?>
     </table>
@@ -81,4 +81,72 @@
   </div>
 </div>
 
+<?php foreach($login as $row): ?>
+<!-- MODAL EDIT USER -->
+<div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>Edit User</b> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo base_url().'user/edit' ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" value="<?php echo $row->username ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" name="nama" class="form-control" value="<?php echo $row->nama ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Akses</label>
+                        <select name="akses" class="form-control"?>">
+                            <?php if($this->session->userdata('akses')=='0') { ?>
+                                <option value="1" <?php echo ($row->akses == 1 ? "selected" : ""); ?>>Admin</option><?php } ?>
+                            <option value="2" <?php echo ($row->akses == 2 ? "selected" : ""); ?>>Operator</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+        </div>
+    </div>
 </div>
+<!-- MODAL EDIT PASSWORD -->
+<div class="modal fade" id="edit_pass<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>Edit Password</b> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo base_url().'user/editpassword' ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" name="password" class="form-control">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+</div>
+

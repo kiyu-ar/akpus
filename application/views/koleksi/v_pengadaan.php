@@ -10,7 +10,7 @@
     <h4>Request Koleksi dari Web, Formulir, atau Wawancara</h4>
     <p>Pengunjung dapat melakukan request koleksi dengan mengimportkan file dalam bentuk excel, sebelumnya pengunjung diwajibkan untuk mendownload template format excel yang tersedia di bawah, lalu kemudian pengunjung dapat menguploadnya di bagian import file</p>
   </div>
-  <a class="btn btn-success" href="<?php echo base_url('importexcel/download_template'); ?>" target="_blank">Download Format Excel</a>
+  <a class="btn btn-success" href="<?php echo base_url('excel/download_template'); ?>" target="_blank">Download Format Excel</a>
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
     Import File
   </button>
@@ -26,7 +26,7 @@
     <p>Berikut merupakan data permintaan buku yang ada melalui surat yang telah dikirimkan kepada prodi</p>
   </div>
   <?php if($akses == '0' || $akses == '1'){ ?>
-    <a class="btn btn-primary" href="<?php echo base_url('importexcel/export_excel'); ?>" target="_blank" style="margin-bottom: 5px;">Export Excel</a>
+    <a class="btn btn-primary" href="<?php echo base_url('excel/export_excel'); ?>" target="_blank" style="margin-bottom: 5px;">Export Excel</a>
   <?php }?>
   <br>
   <div style="overflow-x: auto;">
@@ -77,7 +77,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="<?php echo base_url('importexcel/import_excel') ?>" enctype="multipart/form-data">
+        <form method="POST" action="<?php echo base_url('excel/import_excel') ?>" enctype="multipart/form-data">
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">

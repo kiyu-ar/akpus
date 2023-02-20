@@ -2,10 +2,15 @@
     padding: 10px 15px;
 }
 .div-col{
+    padding: 10px 10px;
     border-style: solid;
-    border-color: grey;
+    border-color: skyblue;
     border-width: 1px;
     height: 402px;
+}
+h5.custom{
+    font-size: 12pt;
+    font-family: "Helvetica", sans-serif;
 }
 .div-card{
     border-style: solid;
@@ -64,6 +69,10 @@ hr{
 .btn-custom{
     background-color: white;
 }
+.btn-dark{
+    background-color: steelblue;
+    color: white;
+}
 td.btnsq{
     width:20px;
 }
@@ -99,8 +108,11 @@ select.custom-select{
 }
 
 iframe.jframe{
-    width:  80%;
-    height: 500px !important;
+    width:  100%;
+}
+iframe.hframe{
+    width: 80%;
+    height: 450px !important;
 }
 img.static{
     width: 80%;

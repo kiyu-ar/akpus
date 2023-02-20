@@ -7,8 +7,11 @@
 </nav>
 <div>
     <div>
-    <h4>Unggah Mandiri per Prodi</h4>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat praesentium ipsa repellat eaque quis doloremque neque doloribus dolorum maxime, esse maiores natus enim sint odit rem magni! Ipsa, in?</p>
+    <div>
+        <h4 style="float: left;">Unggah Mandiri per Prodi per Bulan</h4>
+        <a id="export-mandiri-prodi" style="float: right;" class="btn btn-primary" href="#" target="_blank">Export Excel</a>
+        </div>
+    <p style="clear: both;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat praesentium ipsa repellat eaque quis doloremque neque doloribus dolorum maxime, esse maiores natus enim sint odit rem magni! Ipsa, in?</p>
     <form method="post" action="">
     <select name="id_fakultas" id="id_fakultas" class="custom-select">
         <option value="0">Fakultas</option>
@@ -27,8 +30,11 @@
 </div>
 <hr>
     <div>
-        <h4>Unggah Mandiri per Prodi</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat praesentium ipsa repellat eaque quis doloremque neque doloribus dolorum maxime, esse maiores natus enim sint odit rem magni! Ipsa, in?</p>
+        <div>
+        <h4 style="float: left;">Total Unggah Mandiri per Bulan</h4>
+        <a style="float: right;" class="btn btn-primary" href="<?php echo base_url('excel/export_excel_mandiri');?>" target="_blank">Export Excel</a>
+        </div>
+        <p style="clear: both;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat praesentium ipsa repellat eaque quis doloremque neque doloribus dolorum maxime, esse maiores natus enim sint odit rem magni! Ipsa, in?</p>
         <iframe class="jframe" src="<?php echo base_url() ?>pemustaka/mandiri_total" frameborder="0"></iframe>
     </div>
 </div>

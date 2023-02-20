@@ -123,51 +123,55 @@ use PhpParser\Node\Expr\FuncCall;
             $jenis          = $this->input->post('jenis');
             $tanggal_dari   = $this->input->post('tanggal_dari');
             $tanggal_hingga = $this->input->post('tanggal_hingga');
-            $changelast     = $this->m_main->get_last_id('changelog') + 1;
-            $tablelast      = $this->m_main->get_last_id('list_kerjasama') + 1;
+            $change_last     = $this->m_main->get_last_id('changelog') + 1;
+            $table_last      = $this->m_main->get_last_id('list_kerjasama') + 1;
 
-            $changelog = array('id'=> $changelast);
-            $this->m_main->input_data($changelog, 'changelog');
+            $change_log = array('id'=> $change_last);
+            $this->m_main->input_data($change_log, 'changelog');
 
             $data = array(
-                'id'        => $tablelast,
+                'id'        => $table_last,
                 'instansi'  => $instansi,
                 'jenis'     => $jenis,
                 'tanggal_dari'      => $tanggal_dari,
                 'tanggal_hingga'    => $tanggal_hingga,
-                'update_id'         => $changelast,
+                'update_id'         => $change_last,
             );
 
             $this->m_main->input_data($data, 'list_kerjasama');            
-            redirect('Home/update_changelog/'.$changelast.'/'.$tablelast.'/1/list_kerjasama/lain/kerjasama');
+            redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_kerjasama/lain/kerjasama');
         }
 
-        public function hapus_kerjasama($id, $update_id){
+        public function hapus_kerjasama($id){
             $where = array ('id'=>$id);
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_kerjasama');
             
-            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/3/list_kerjasama/lain/kerjasama');
-            //redirect('lain/kerjasama');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_kerjasama/lain/kerjasama');
         }
 
         public function edit_kerjasama(){
             $id             = $this->input->post('id');  
             $instansi       = $this->input->post('nama_instansi');
-            $tanggal_dari       = $this->input->post('tanggal_mulai');
-            $tanggal_hingga     = $this->input->post('tanggal_selesai');
+            $tanggal_dari   = $this->input->post('tanggal_mulai');
+            $tanggal_hingga = $this->input->post('tanggal_selesai');
             $deskripsi      = $this->input->post('deskripsi');
+            $change_last    = $this->m_main->get_last_id('changelog') + 1;
+
+            $update_id = array('id'=> $change_last);
+            $this->m_main->input_data($update_id, 'changelog');
 
             $data = array(
-                'id'        => $id,
                 'instansi'  => $instansi,
                 'tanggal_dari'  => $tanggal_dari,
                 'tanggal_hingga' => $tanggal_hingga,
                 'deskripsi' => $deskripsi,   
+                'update_id' => $change_last
             );
 
             $where = array ('id'=>$id);
             $this->m_main->update_data($where, $data, 'list_kerjasama');
-            redirect('lain/kerjasama');
+            redirect('Home/update_changelog/'.$change_last.'/'.$id.'/2/list_kerjasama/lain/kerjasama');
         }
         
         public function penguat(){

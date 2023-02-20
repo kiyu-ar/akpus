@@ -12,7 +12,7 @@
                    
             <div class="row line">
                 <div class="col-md-6">
-                    <label style="float:left;"><?php echo $row->nama ?></label>
+                    <label><?php echo $row->nama ?></label>
                     <input type="text" size="7" value="<?php echo $row->jumlah ?>">
                 </div>
                 <div class="col-md-6">

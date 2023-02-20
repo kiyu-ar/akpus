@@ -31,26 +31,28 @@
 </div>
 
 <div id="ta" class="tabcontent">
-  <h4>Laporan penelitian, Skrisi, Tesis, Disertasi</h4>
-    <p>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website UNSLA pada
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=TA&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tugas Akhir UNSLA</a>
-    </p>
-    <p>Data Skripsi dapat diakses melalui website UNSLA pada
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Skripsi&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Skripsi UNSLA</a>
-    </p>
-    <p>Data Tesis dapat diakses melalui website UNSLA pada
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Thesis&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tesis UNSLA</a>
-    </p>
-    <p>Data Disertasi dapat diakses melalui website UNSLA pada
-        <a href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Disertasi&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">TDisertasi UNSLA</a>
-    </p>
+  <h3>Laporan penelitian, Skrisi, Tesis, Disertasi</h3>
+  <table class="table" style="width: 80%">
+    <tr><td>Data Laporan Tugas Akhir oleh sekolah vokasi dapat diakses melalui website UNSLA pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=TA&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tugas Akhir UNSLA</a></td>
+    </tr>
+    <tr><td>Data Skripsi dapat diakses melalui website UNSLA pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Skripsi&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Skripsi UNSLA</a></td>
+    </tr>
+    <tr><td>Data Tesis dapat diakses melalui website UNSLA pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Thesis&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Tesis UNSLA</a></td>
+    </tr>
+    <tr><td>Data Disertasi dapat diakses melalui website UNSLA pada</td>
+        <td style="text-align: center;"><a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Disertasi&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">TDisertasi UNSLA</a></td>
+    </tr>
+  </table>
 </div>
 
 <div id="prosiding" class="tabcontent">
 <?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_prosiding')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Prosiding">Edit Data</button></a></div>
     <?php } ?>
-    <h4>Prosiding</h4>
+    <h3>Prosiding</h3>
     <p>Buku</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ipsum inventore quas, enim pariatur consequatur adipisci laboriosam quo neque eos asperiores harum alias sequi perspiciatis? Totam necessitatibus veniam sunt nisi?</p> 
 </div>
@@ -59,25 +61,26 @@
     <?php if(($this->session->userdata('status')=='login')){ ?>
     <div style="float:right"><a href="<?= base_url('tambah_jurnal')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Jurnal">Edit Data</button></a></div>
     <?php } ?>
-    <h4>Jurnal</h4>
+    <h3>Jurnal</h3>
     <p>Buku</p>
 </div>
 
 <div id="koran" class="tabcontent">
-<h4>Koran</h4>
+<h3>Koran</h3>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahkoran" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/koran" frameborder="0"></iframe>
+    <iframe class="hframe" src="<?php echo base_url() ?>koleksi/koran" frameborder="0"></iframe>
 </div>
 
 <div id="majalah" class="tabcontent">
-<h4>Majalah</h4>
+<h3>Majalah</h3>
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahmajalah" data-toggle="tooltip" data-placement="top" title="Tambah Data Majalah"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <iframe class="jframe" src="<?php echo base_url() ?>koleksi/majalah" frameborder="0"></iframe>
+    <iframe class="hframe" src="<?php echo base_url() ?>koleksi/majalah" frameborder="0"></iframe>
 </div>
+
 <?php if($this->session->userdata('status')== 'login'){ ?>
 <div class="modal fade" id="tambahkoran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -118,11 +121,11 @@
             <input type="text" name="nama_majalah" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tahun Dari</label>
+            <label>Tahun Mulai Berlangganan</label>
             <input type="text" name="tahun_dari" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tahun Hingga</label>
+            <label>Tahun Selesai Berlangganan</label>
             <input type="text" name="tahun_hingga" class="form-control">
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

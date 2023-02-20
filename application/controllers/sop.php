@@ -25,7 +25,7 @@
             if ($file == ''){
                 $file = '';
             }else{
-                $config['upload_path'] = './assets/files';
+                $config['upload_path'] = './assets/files/sop';
                 $config['allowed_types'] = 'jpg|pdf';
                 
                 $this->load->library('upload',$config);
@@ -37,12 +37,12 @@
             }
 
             $data = array(
-                'id' => $id,
+                'id'        => $id,
                 'id_divisi' => $id_divisi,
-                'nomor' => $nomor,
-                'nama_sop' => $nama_sop,
+                'nomor'     => $nomor,
+                'nama_sop'  => $nama_sop,
                 'deskripsi' => $deskripsi,
-                'file' => $file,
+                'file'      => $file,
             );
             $this->m_main->input_data($data,'list_sop');
             redirect ('sop/pengolahan');

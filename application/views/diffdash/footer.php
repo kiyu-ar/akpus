@@ -82,6 +82,7 @@
 					console.log(data);
 					$("#iframe-mandiri").removeAttr('src');
 					$("#iframe-mandiri").attr('src', "<?php echo base_url() ?>pemustaka/mandiri_prodi/"+data);
+					$("#export-mandiri-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_mandiri/"+data);
 				}
 			});
 		});
@@ -96,6 +97,7 @@
 					console.log(data);
 					$("#iframe-sirkulasi").removeAttr('src');
 					$("#iframe-sirkulasi").attr('src', "<?php echo base_url() ?>pemustaka/sirkulasi_prodi/"+data);
+					$("#export-sirkulasi-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_sirkulasi/"+data);
 				}
 			});
 		});
@@ -117,7 +119,8 @@
 		var classis = segments[3];
 		var extend = segments[4];
 		// var akses = $this->session->userdata('akses');
-		// console.log(akses);
+		console.log(action);
+		console.log(classis);
 
 	// ---script untuk navbar---
 		if(action!="" & classis!=""){
