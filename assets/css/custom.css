@@ -2,10 +2,15 @@
     padding: 10px 15px;
 }
 .div-col{
+    padding: 10px 10px;
     border-style: solid;
-    border-color: grey;
+    border-color: skyblue;
     border-width: 1px;
     height: 402px;
+}
+h5.custom{
+    font-size: 12pt;
+    font-family: "Helvetica", sans-serif;
 }
 .div-card{
     border-style: solid;

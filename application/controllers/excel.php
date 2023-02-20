@@ -6,7 +6,7 @@
     use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
     use PhpOffice\PhpSpreadsheet\Style\Border;
     use PhpOffice\PhpSpreadsheet\Style\Color;
-    class Importexcel extends CI_Controller {
+    class Excel extends CI_Controller {
 
         public function __construct()
         {
@@ -121,11 +121,11 @@
             if($insertdata)
             {
                 $this->session->set_flashdata('message','<div class ="alert alert-success"> Data Berhasil Ditambahkan.</div>');
-                redirect('importexcel');
+                redirect('excel');
             }else
             {
                 $this->session->set_flashdata('message','<div class ="alert alert-danger"> Data Tidak Berhasil Ditambahkan.</div>');
-                redirect('importexcel');
+                redirect('excel');
             }
         }
 
@@ -198,12 +198,22 @@
         public function export_excel_sirkulasi()
         {
              # Mengambil Data
-            $data['sirkulasi_total'] = $this->M_excel->list_sirkulasi_total()->result();
+            if(!empty($this->uri->segment(3))){
+                $kode_prodi = $this->uri->segment(3);
+                $data['sirkulasi'] = $this->M_main->sirkulasi_prodi($kode_prodi)->result();
+                $nama_prodi = $this->M_main->get_nama_prodi($kode_prodi);
+            }else{
+                $data['sirkulasi'] = $this->M_excel->list_sirkulasi_total()->result();
+            }
+            
             $sirkulasi = $data;
 
             header('Content-Type: application/vnd.ms-excel');
-            header('Content-Disposition: attachment;filename="Total_Peminjaman_PerBulan.xlsx"');
-
+            if(!empty($this->uri->segment(3))){
+                header('Content-Disposition: attachment;filename="Peminjaman_PerBulan_Prodi_'.$nama_prodi.'.xlsx"');
+            }else{
+                header('Content-Disposition: attachment;filename="Total_Peminjaman_PerBulan.xlsx"');
+            }
             # Style Value
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
@@ -244,7 +254,11 @@
             $sheet->getColumnDimension('N')->setWidth(21);
 
             # Isi Value
-            $sheet->setCellValue('A1', 'Data Total Peminjaman Per Bulan');
+            if(!empty($this->uri->segment(3))){
+                $sheet->setCellValue('A1', 'Data Total Peminjaman Per Bulan Prodi '.$nama_prodi);
+            }else{
+                $sheet->setCellValue('A1', 'Data Total Peminjaman Per Bulan');
+            }
             $sheet->setCellValue('A3', 'Tahun');
             $sheet->setCellValue('B3', 'Januari');
             $sheet->setCellValue('C3', 'Februari');
@@ -261,7 +275,7 @@
             $sheet->setCellValue('N3', 'Total');
             
             $isi = 4;
-            foreach ($sirkulasi['sirkulasi_total'] as $list)
+            foreach ($sirkulasi['sirkulasi'] as $list)
             {
                 $sheet->setCellValue('A'.$isi, $list->tahun);
                 $sheet->setCellValue('B'.$isi, $list->januari);
@@ -284,4 +298,109 @@
             $writer = new Xlsx($spreadsheet);
             $writer->save("php://output");
         }
+
+        public function export_excel_mandiri()
+        {
+             # Mengambil Data
+            if(!empty($this->uri->segment(3))){
+                $kode_prodi = $this->uri->segment(3);
+                $data['mandiri'] = $this->M_main->mandiri_prodi($kode_prodi)->result();
+                $nama_prodi = $this->M_main->get_nama_prodi($kode_prodi);
+            }else{
+                $data['mandiri'] = $this->M_main->mandiri_total()->result();
+            }
+            
+            $mandiri = $data;
+
+            header('Content-Type: application/vnd.ms-excel');
+            if(!empty($this->uri->segment(3))){
+                header('Content-Disposition: attachment;filename="Unggah_Mandiri_PerBulan_Prodi_'.$nama_prodi.'.xlsx"');
+            }else{
+                header('Content-Disposition: attachment;filename="Total_Unggah_Mandiri_PerBulan.xlsx"');
+            }
+            # Style Value
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->mergeCells('A1:N2');
+            $sheet->getStyle('A:N')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+            $sheet->getStyle('A:N')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+            $sheet->getStyle('A1:N3')->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+            $sheet->getStyle('A1:N3')->getFont()->setBold(True)->setSize(13);
+            $sheet->getStyle('A1:N2')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('ec5c0e');
+            $sheet->getStyle('A3:N3')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('ece80e');
+            $sheet->getColumnDimension('A')->setAutoSize(false);
+            $sheet->getColumnDimension('B')->setAutoSize(false);
+            $sheet->getColumnDimension('C')->setAutoSize(false);
+            $sheet->getColumnDimension('D')->setAutoSize(false);
+            $sheet->getColumnDimension('E')->setAutoSize(false);
+            $sheet->getColumnDimension('F')->setAutoSize(false);
+            $sheet->getColumnDimension('G')->setAutoSize(false);
+            $sheet->getColumnDimension('H')->setAutoSize(false);
+            $sheet->getColumnDimension('I')->setAutoSize(false);
+            $sheet->getColumnDimension('J')->setAutoSize(false);
+            $sheet->getColumnDimension('K')->setAutoSize(false);
+            $sheet->getColumnDimension('L')->setAutoSize(false);
+            $sheet->getColumnDimension('M')->setAutoSize(false);
+            $sheet->getColumnDimension('N')->setAutoSize(false);
+            $sheet->getColumnDimension('A')->setWidth(21);
+            $sheet->getColumnDimension('B')->setWidth(21);
+            $sheet->getColumnDimension('C')->setWidth(21);
+            $sheet->getColumnDimension('D')->setWidth(21);
+            $sheet->getColumnDimension('E')->setWidth(21);
+            $sheet->getColumnDimension('F')->setWidth(21);
+            $sheet->getColumnDimension('G')->setWidth(21);
+            $sheet->getColumnDimension('H')->setWidth(21);
+            $sheet->getColumnDimension('I')->setWidth(21);
+            $sheet->getColumnDimension('J')->setWidth(21);
+            $sheet->getColumnDimension('K')->setWidth(21);
+            $sheet->getColumnDimension('L')->setWidth(21);
+            $sheet->getColumnDimension('M')->setWidth(21);
+            $sheet->getColumnDimension('N')->setWidth(21);
+
+            # Isi Value
+            if(!empty($this->uri->segment(3))){
+                $sheet->setCellValue('A1', 'Data Total Unggah Mandiri Per Bulan Prodi '.$nama_prodi);
+            }else{
+                $sheet->setCellValue('A1', 'Data Total Unggah Mandiri Per Bulan');
+            }
+            $sheet->setCellValue('A3', 'Tahun');
+            $sheet->setCellValue('B3', 'Januari');
+            $sheet->setCellValue('C3', 'Februari');
+            $sheet->setCellValue('D3', 'Maret');
+            $sheet->setCellValue('E3', 'April');
+            $sheet->setCellValue('F3', 'Mei');
+            $sheet->setCellValue('G3', 'Juni');
+            $sheet->setCellValue('H3', 'Juli');
+            $sheet->setCellValue('I3', 'Agustus');
+            $sheet->setCellValue('J3', 'September');
+            $sheet->setCellValue('K3', 'Oktober');
+            $sheet->setCellValue('L3', 'November');
+            $sheet->setCellValue('M3', 'Desember');
+            $sheet->setCellValue('N3', 'Total');
+            
+            $isi = 4;
+            foreach ($mandiri['mandiri'] as $list)
+            {
+                $sheet->setCellValue('A'.$isi, $list->tahun);
+                $sheet->setCellValue('B'.$isi, $list->januari);
+                $sheet->setCellValue('C'.$isi, $list->februari);
+                $sheet->setCellValue('D'.$isi, $list->maret);
+                $sheet->setCellValue('E'.$isi, $list->april);
+                $sheet->setCellValue('F'.$isi, $list->mei);
+                $sheet->setCellValue('G'.$isi, $list->juni);
+                $sheet->setCellValue('H'.$isi, $list->juli);
+                $sheet->setCellValue('I'.$isi, $list->agustus);
+                $sheet->setCellValue('J'.$isi, $list->september);
+                $sheet->setCellValue('K'.$isi, $list->oktober);
+                $sheet->setCellValue('L'.$isi, $list->november);
+                $sheet->setCellValue('M'.$isi, $list->desember);
+                $sheet->setCellValue('N'.$isi, $list->total);
+                $isi++;
+            }
+
+            # Output Value
+            $writer = new Xlsx($spreadsheet);
+            $writer->save("php://output");
+        }
+        
     }

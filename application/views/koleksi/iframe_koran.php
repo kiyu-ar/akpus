@@ -59,5 +59,6 @@ foreach ($koran as $row) : $i++ ?>
         </div>
     </div>
 </div>
-<?php endforeach; ?>
 </div>
+<?php endforeach; ?>
+

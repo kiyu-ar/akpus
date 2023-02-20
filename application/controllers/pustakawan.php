@@ -4,9 +4,10 @@
             parent::__construct();
             $this->load->model('m_main');
         }
+//DAFTAR STAFF
         public function daftar_staf(){
             $data['akses'] = $this->session->userdata('akses');
-            $data['pustakawan'] = $this->m_main->get_pegawai()->result();
+            $data['staf'] = $this->m_main->get_pegawai()->result();
             
 
             $this->load->view('diffdash/header');
@@ -18,86 +19,77 @@
             if(empty($this->session->userdata('status'))){
                 redirect ('home');
             }else{
-                $id         = $this->input->post('id');
                 $nama       = $this->input->post('nama');
                 $pangkat    = $this->input->post('pangkat');
-                $jabatan    = "pustakawan";
                 $fungsional = $this->input->post('fungsional');
                 $pendidikan = $this->input->post('pendidikan');
                 $pendidikan_lain = $this->input->post('pendidikan_lain');
                 $pendidikan_tertinggi = $this->input->post('pendidikan_tertinggi');
-                $status = "aktif";
+                $change_last     = $this->m_main->get_last_id('changelog') + 1;
+                $table_last      = $this->m_main->get_last_id('list_pegawai') + 1;
+
+                $change_log = array('id'=> $change_last);
+                $this->m_main->input_data($change_log, 'changelog');
 
                 $data = array(
-                    'id'    => $id,
+                    'id'    => $table_last,
                     'nama'  => $nama,
                     'pangkat' => $pangkat,
-                    'jabatan' => $jabatan,
+                    'jabatan' => "pustakawan",
                     'fungsional' => $fungsional,
                     'pendidikan' => $pendidikan,
                     'pendidikan_lain' => $pendidikan_lain,
                     'pendidikan_tertinggi' => $pendidikan_tertinggi,
-                    'status'    => $status,
+                    'status'    => "aktif",
+                    'update_id' => $change_last,
                 );
 
                 $this->m_main->input_data($data, 'list_pegawai');
-                redirect('pustakawan/daftar_staf');
+                redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_pegawai/pustakawan/daftar_staf');
             }
         }
         public function tambah_non(){
             if(empty($this->session->userdata('status'))){
                 redirect ('home');
             }else{
-                $id         = $this->input->post('id');
                 $nama       = $this->input->post('nama');
                 $pangkat    = $this->input->post('pangkat');
                 $jabatan    = $this->input->post('jabatan');
-                $fungsional = "-";
                 $pendidikan = $this->input->post('pendidikan');
                 $pendidikan_lain = $this->input->post('pendidikan_lain');
                 $pendidikan_tertinggi = $this->input->post('pendidikan_tertinggi');
-                $status     = "aktif";
+                $change_last     = $this->m_main->get_last_id('changelog') + 1;
+                $table_last      = $this->m_main->get_last_id('list_pegawai') + 1;
+
+                $change_log = array('id'=> $change_last);
+                $this->m_main->input_data($change_log, 'changelog');
 
                 $data = array(
-                    'id'    => $id,
+                    'id'    => $table_last,
                     'nama'  => $nama,
                     'pangkat' => $pangkat,
                     'jabatan' => $jabatan,
-                    'fungsional' => $fungsional,
+                    'fungsional' => "-",
                     'pendidikan' => $pendidikan,
                     'pendidikan_lain' => $pendidikan_lain,
                     'pendidikan_tertinggi' => $pendidikan_tertinggi,
-                    'status'    => $status,
+                    'status'    => "aktif",
+                    'update_id' => $change_last,
                 );
 
                 $this->m_main->input_data($data, 'list_pegawai');
-                redirect('pustakawan/daftar_staf');
+                redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_pegawai/pustakawan/daftar_staf');
             }
         }
         public function hapus($id){
             $where = array ('id'=>$id);
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_pegawai');
-            redirect('pustakawan/daftar_staf');
+
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_pegawai/pustakawan/daftar_staf');
         }
-        public function edit($id){
-            $where = array ('id'=>$id);
-            $data['pustakawan'] = $this->m_main->edit_data($where,'list_pegawai')->result();
-            
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('pustakawan/v_edit_pustakawan',$data);
-            $this->load->view('diffdash/footer');
-        }
-        public function edit_non($id){
-            $where = array ('id'=>$id);
-            $data['nonpustakawan'] = $this->m_main->edit_data($where,'list_pegawai')->result();
-            
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('pustakawan/v_edit_nonpustakawan',$data);
-            $this->load->view('diffdash/footer');
-        }
-        public function update(){
+        public function edit_staf(){
+            $id             = $this->input->post('id');
             $nama           = $this->input->post('nama');
             $pangkat        = $this->input->post('pangkat');
             $jabatan        = $this->input->post('jabatan');
@@ -106,6 +98,10 @@
             $pendidikan_lain        = $this->input->post('pendidikan_lain');
             $pendidikan_tertinggi   = $this->input->post('pendidikan_tertinggi');
             $status         = $this->input->post('status');
+            $change_last    = $this->m_main->get_last_id('changelog') + 1;
+
+            $update_id = array('id'=> $change_last);
+            $this->m_main->input_data($update_id, 'changelog');
             $data = array(
                 'nama'              => $nama,
                 'pangkat'           => $pangkat,
@@ -115,12 +111,13 @@
                 'pendidikan_lain'   => $pendidikan_lain,
                 'pendidikan_tertinggi' => $pendidikan_tertinggi,
                 'status'            => $status,
+                'update_id'         => $change_last,
             );
             $where = array('id' => $id);
-
             $this->m_main->update_data($where, $data, 'list_pegawai');
-            redirect('pustakawan/daftar_staf');
+            redirect('Home/update_changelog/'.$change_last.'/'.$id.'/2/list_pegawai/pustakawan/daftar_staf');
         }
+//DATA STATISTIK PUSTAKAWAN
         public function pstatistik(){
             $data['tabel1'] = $this->m_main->get_tabel_p()[0];
             $data['tabel2'] = $this->m_main->get_tabel_f()[0];

@@ -20,10 +20,12 @@
         public function get_last_id($table){
             return $this->db->query('SELECT MAX(id) as id FROM '.$table)->row()->id;
         }
-
         public function get_data_order($table, $column){
             $this->db->order_by($column);
             return $this->db->get($table);
+        }
+        public function get_nama_prodi($kode_prodi){
+            return $this->db->query("SELECT prodi FROM tbl_prodi where kode ='".$kode_prodi."'")->row()->prodi;
         }
 //---Informasi Koleksi---
         public function get_ebook(){

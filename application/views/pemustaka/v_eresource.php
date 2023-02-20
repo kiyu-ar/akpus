@@ -6,15 +6,19 @@
             <li class="crumb">Data Akses E-Resources dan Virtual Visit</li>
         </ol>
     </nav>
+    <?php if($this->session->userdata('status') == "login") {?>
     <button class="btn btn-primary" style="margin-bottom : 10px; float:right;" data-toggle="modal" data-target="#tambaheresource"><i class="fa fa-plus"></i>Tambah Data</button>
+    <?php } ?>
     <table class="table table-hover" style="width:70%">
         <?php foreach($eresource as $row): ?> 
         <tr>
             <td style="padding-left: 60px">
                 <h3><?php echo $row->nama; ?></h3>
                 <div style="float:right">
+                    <?php if($this->session->userdata('status') == "login"){ ?>
                     <button class="btn btn-warning btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id ?>" title="Edit Data"><i class="fa fa-edit"></i></button>
                     <button class="btn btn-danger btn-xm tombol-hapus" href="<?php echo base_url('pemustaka/hapus_eresource/'.$row->id); ?>" title="Hapus Data"><i class="fa fa-trash"></i></button>
+                    <?php } ?>
                 </div>
                 <p><?php echo $row->catatan; ?>
                 </p>

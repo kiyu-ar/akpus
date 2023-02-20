@@ -36,11 +36,7 @@ class Home extends CI_Controller {
                 $id_user = $this->session->userdata('id_user');
                 if($action == 1) $action = 'create data';
                 else if($action == 2) $action = 'update data';
-                else {
-                        $action = 'delete data';
-                        $changelog = array('id' => $update_id);
-                        $this->m_main->input_data($changelog, 'changelog');
-                }
+                else $action = 'update password';
                 
                 $changelog = array(
                     'id'        => $update_id,
@@ -52,7 +48,8 @@ class Home extends CI_Controller {
                 );
                 $where = array('id' => $update_id);
                 $this->m_main->update_data($where, $changelog, 'changelog');
-                redirect($v_name.'/'.$f_name);
+                if($f_name == "empty"){redirect($v_name);}
+                else{redirect($v_name.'/'.$f_name);}
             }
 
         public function insert_changelog($update_id, $id, $t_name, $v_name, $f_name){
@@ -66,7 +63,8 @@ class Home extends CI_Controller {
                         'tanggal'   => date("Y-m-d h:i:s"),
                     );
                 $this->m_main->input_data($changelog, 'changelog');
-                redirect($v_name.'/'.$f_name);
+                if($f_name == "empty"){redirect($v_name);}
+                else{redirect($v_name.'/'.$f_name);}
         }
 }
 
