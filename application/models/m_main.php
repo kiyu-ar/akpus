@@ -214,6 +214,14 @@
             $this->db->where($where);
             $this->db->update($tabel, $data);
         }
+        public function cek_file_kuesioner($id){
+            $query = $this->db->get_where('list_kuesioner', ['id' => $id]);
+            return $query->row();
+        }
+        public function download($id){
+			$query = $this->db->get_where('list_kuesioner',['id'=>$id]);
+			return $query->row_array();
+		}
 //---Informasi SOP---
         public function get_sop(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();

@@ -1,5 +1,9 @@
 <?php
+
+use PhpParser\Node\Expr\FuncCall;
+
     Class Lain extends CI_Controller{
+        // Fungsi View
         public function __construct(){
             parent::__construct();
             $this->load->model('m_main');
@@ -21,6 +25,7 @@
             $this->load->view('diffdash/footer');
         }
         public function kuesioner(){
+            $data['akses'] = $this->session->userdata('akses');
             $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -43,6 +48,8 @@
             $this->load->view('lain/v_restools', $data);
             $this->load->view('diffdash/footer');
         }
+
+        // Fungsi Anggaran
         public function anggaran(){
             $data['akses'] = $this->session->userdata('akses');
             $data['anggaran'] = $this->m_main->get_data_order('list_anggaran','jenis')->result();
@@ -99,7 +106,8 @@
             </div>');
             redirect('lain/anggaran');
         }
-
+        
+        // Fungsi KerjaSama
         public function kerjasama(){
             $data['akses'] = $this->session->userdata('akses');
             
@@ -168,6 +176,115 @@
             $this->load->view('diffdash/footer');
         }
 
+        // Fungsi Kuesioner
+        public function tambah_kuesioner(){
+            $nama           = $this->input->post('nama_kuesioner');
+            $deskripsi      = $this->input->post('deskripsi');
+            $bukti          = $_FILES['file_kuesioner'];
+
+            if ($bukti == ''){
+                $bukti = '';
+            }else{
+                $config['upload_path']   = './assets/files';
+                $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
+                $config['max_size']      = 51200;
+                
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('file_kuesioner')){
+                    $this->session->set_flashdata('pesan','<div class ="alert alert-danger alert-dismissible fade in" style="margin-top: 5px;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    Format file upload tidak sesuai
+                    </div>');
+                    redirect('lain/kuesioner');
+                }else{
+                    $bukti = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'nama' => $nama,
+                'deskripsi' => $deskripsi,
+                'file' => $bukti,
+            );
+
+            $this->m_main->input_data($data,'list_kuesioner');
+            $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+            Data Berhasil Ditambahkan
+            </div>');
+            redirect('lain/kuesioner');
+        }
+
+        public function hapus_kuesioner($id){
+            $data_kuesioner = new m_main;
+            if($data_kuesioner->cek_file_kuesioner($id)){
+                $data_k = $data_kuesioner->cek_file_kuesioner($id);
+                if(file_exists("./assets/files/".$data_k->file)){
+                    unlink("./assets/files/".$data_k->file);
+                }
+            $where = array ('id'=>$id);
+            $this->m_main->delete_data($where, 'list_kuesioner');
+            redirect('lain/kuesioner');
+            }
+        }
+
+        public function edit_kuesioner(){
+        $id             = $this->input->post('id');
+        $nama           = $this->input->post('nama_kuesioner');
+        $deskripsi      = $this->input->post('deskripsi');
+        $bukti          = $_FILES['file_kuesioner'];
+
+        if ($bukti == ''){
+            $bukti = '';
+        }else{
+            $config['upload_path']   = './assets/files';
+            $config['allowed_types'] = 'jpg|pdf|png|jpeg';
+            $config['max_size']      = 51200;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('file_kuesioner')) {
+                $nama           = $this->input->post('nama_kuesioner');
+                $deskripsi      = $this->input->post('deskripsi');
+
+                $data = array(
+                    'id' => $id,
+                    'nama' => $nama,
+                    'deskripsi' => $deskripsi,
+                );
+
+                $where = array('id' => $id);
+                $this->m_main->update_data($where, $data, 'list_kuesioner');
+                $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                Data Berhasil Diedit
+                </div>');
+                redirect('lain/kuesioner');
+            } else {
+                $bukti       = $this->upload->data('file_name');
+            }
+
         
+        $data = array(
+            'id'    => $id,
+            'nama' => $nama,
+            'deskripsi' => $deskripsi,
+            'file' => $bukti,
+        );
+
+        $where = array('id' => $id);
+        $this->m_main->update_data($where, $data, 'list_kuesioner');
+        $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+        Data Berhasil Diedit
+        </div>');
+        redirect('lain/kuesioner');
+        }
+        }
+
+        public function cetak_file($id){
+            $this->load->helper('download');
+            $fileinfo = $this->m_main->download($id);
+            $file = './assets/files/'.$fileinfo['file'];
+            force_download($file, NULL);
+        }
     }    
 ?>

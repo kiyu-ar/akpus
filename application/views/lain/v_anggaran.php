@@ -73,7 +73,7 @@
                         <input type="radio" id="0" name="jenis_anggaran" required="" value="0">
                         <label for="0">Internal</label><br>
                         <input type="radio" id="1" name="jenis_anggaran" required="" value="1">
-                        <label for="1">External</label>  
+                        <label for="1">Eksternal</label>  
                     </div>
             </div>
             <div class="modal-footer">
@@ -114,7 +114,7 @@ foreach ($anggaran as $row) : $i++ ?>
                             <input type="radio" id="0" name="jenis_anggaran" required="" value="0" <?php if($row->jenis=='0') echo 'checked'?>>
                             <label for="0">Internal</label><br>
                             <input type="radio" id="1" name="jenis_anggaran" required="" value="1" <?php if($row->jenis=='1') echo 'checked'?>>
-                            <label for="1">External</label>  
+                            <label for="1">Eksternal</label>  
                         </div>
                 </div>
                 <div class="modal-footer">
