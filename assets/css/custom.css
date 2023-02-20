@@ -64,6 +64,10 @@ hr{
 .btn-custom{
     background-color: white;
 }
+.btn-dark{
+    background-color: steelblue;
+    color: white;
+}
 td.btnsq{
     width:20px;
 }
@@ -142,6 +146,25 @@ img.static{
 .title{
     font-size: medium;
     color: #000;
+}
+.line{
+    margin: 15px 10px;
+    background-color: white;
+    clear: both;
+}
+.row.tab{
+    margin: 15px 30px;
+    background-color: white;
+    clear: both;
+}
+.line label{
+    font-family: 'Times New Roman', serif;
+    font-weight: normal;
+    float:left;
+}
+.line input{
+    float:right;
+    text-align:right;
 }
 .swal2-container {
     zoom: 1.5;

@@ -139,7 +139,7 @@
             $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_kerjasama');
             
-            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/3/list_kerjasama/lain/kerjasama');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_kerjasama/lain/kerjasama');
             //redirect('lain/kerjasama');
         }
 

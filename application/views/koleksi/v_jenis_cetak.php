@@ -80,6 +80,7 @@
     <?php } ?>
     <iframe class="hframe" src="<?php echo base_url() ?>koleksi/majalah" frameborder="0"></iframe>
 </div>
+
 <?php if($this->session->userdata('status')== 'login'){ ?>
 <div class="modal fade" id="tambahkoran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -120,11 +121,11 @@
             <input type="text" name="nama_majalah" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tahun Dari</label>
+            <label>Tahun Mulai Berlangganan</label>
             <input type="text" name="tahun_dari" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tahun Hingga</label>
+            <label>Tahun Selesai Berlangganan</label>
             <input type="text" name="tahun_hingga" class="form-control">
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

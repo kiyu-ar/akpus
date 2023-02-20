@@ -117,7 +117,8 @@
 		var classis = segments[3];
 		var extend = segments[4];
 		// var akses = $this->session->userdata('akses');
-		// console.log(akses);
+		console.log(action);
+		console.log(classis);
 
 	// ---script untuk navbar---
 		if(action!="" & classis!=""){

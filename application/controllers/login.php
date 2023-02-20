@@ -6,7 +6,10 @@
             $this->load->library('session');
         }
         public function index(){
+            if(empty($this->session->userdata('status'))){
             $this->load->view('v_login.php');
+            }
+            else redirect('home/index');
         }
         public function proses_login(){
             $uname = $this->input->post('uname');

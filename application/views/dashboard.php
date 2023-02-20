@@ -3,7 +3,6 @@
   <title>NAMA WEBSITE</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="refresh" content="120">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.min.css">
@@ -16,7 +15,8 @@
 <h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
-				<div class="section-heading clearfix" style="margin-top: 30px">
+				<div class="dashboard-section">
+				<div class="section-heading clearfix">
 						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Statistik UPT Perpustakaan</h2>
 					</div>
 					<div class="panel-cont">

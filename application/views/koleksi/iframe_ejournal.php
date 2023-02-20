@@ -2,10 +2,13 @@
 <head>
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/vendor/sweetalert2-11.7.1/css/sweetalert2.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/main.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/custom.css">
 </head>
+<body>
 <div>
+    <div>
     <table id="themed">
         <tr>
             <th>No</th>
@@ -22,12 +25,45 @@
             <td><?php echo $row->nama_jurnal ?></td>
             <td><a href="<?php echo $row->link_jurnal ?>"><?php echo $row->link_jurnal ?></a></td>
             <?php if ($status == 'login'){ ?>
-                <td class="btnsq" onclick="javascript: return confirm('Anda yakin?')"><?php echo anchor('koleksi/hapus_tabel/6/'.$row->id, '<div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Jurnal"><i class="fa fa-trash"></i></div>') ?></td>
-                <td class="btnsq"><?php echo anchor('koleksi/edit_tabel/'.$row->id,'<div class="btn btn-primary btn-xm" data-toggle="tooltip" data-placement="top" title="Edit Jurnal"><i class="fa fa-edit"></i></div>') ?></td>
+                <td class="btnsq tombol-hapus" href="<?php echo base_url('koleksi/hapus_tabel/6/'.$row->id)?>"><button class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Jurnal"><i class="fa fa-trash"></i></button></td>
+                <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id ?>" title="Edit Jurnal"><i class="fa fa-edit"></i></button></td>
             <?php } ?>
         </tr>
     <?php endforeach; ?>
     </table>
-</div>
 
-</html>
+    <div>
+<?php
+$i = 1;
+foreach ($ejournal as $row) : $i++ ?>
+<div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>Edit E-Journal</b> </h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="<?php echo base_url().'koleksi/edit_tabel/6' ?>" enctype="multipart/form-data">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+                    <div class="form-group">
+                        <label>Nama E-Journal</label>
+                        <input type="text" name="nama_jurnal" class="form-control" value="<?php echo $row->nama_jurnal?>">
+                    </div>
+                    <div class="form-group">
+                        <label>Link E-Jurnal</label>
+                        <input type="text" name="link_jurnal" class="form-control" value="<?php echo $row->link_jurnal?>">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+</div>

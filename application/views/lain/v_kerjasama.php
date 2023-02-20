@@ -93,7 +93,7 @@
   </div>
 </div>
 
-<!-- Modal Edit Kunjungan -->
+<!-- Modal Edit Kerja sama -->
 <?php
 $i = 1;
 foreach ($kerjasama as $row) : $i++ ?>

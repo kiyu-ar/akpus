@@ -6,9 +6,9 @@
 
 <div id="buku" class="tabcontent">
     <h3>Buku</h3>
-    
+    <?php if(($this->session->userdata('status')=='login')){ ?>
       <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahebook" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
-    
+    <?php } ?>
     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
     <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ebook" frameborder="0"></iframe>
 </div>
@@ -62,8 +62,16 @@
       <div class="modal-body">
         <form method="post" action="<?php echo base_url().'koleksi/tambah_ebook'; ?>">
             <div class="form-group">
-                <label>Nama Koran</label>
+                <label>Nama E-Book</label>
                 <input type="text" name="nama_buku" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Tahun</label>
+                <input type="text" name="tahun" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Link E-Book</label>
+                <input type="text" name="link_buku" class="form-control">
             </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -85,16 +93,12 @@
       <div class="modal-body">
         <form method="post" action="<?php echo base_url().'koleksi/tambah_majalah'; ?>">
         <div class="form-group">
-            <label>Nama Majalah</label>
-            <input type="text" name="nama_majalah" class="form-control">
+            <label>Nama E-Journal</label>
+            <input type="text" name="nama_jurnal" class="form-control">
         </div>
         <div class="form-group">
-            <label>Tahun Mulai Berlangganan</label>
-            <input type="text" name="tahun_dari" class="form-control">
-        </div>
-        <div class="form-group">
-            <label>Tahun Selesai Berlangganan</label>
-            <input type="text" name="tahun_hingga" class="form-control">
+            <label>Link E-Journal</label>
+            <input type="text" name="link_jurnal" class="form-control">
         </div>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>

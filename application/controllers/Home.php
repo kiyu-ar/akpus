@@ -23,6 +23,14 @@ class Home extends CI_Controller {
                 $this->load->view('dashboard',$data);
                 $this->load->view('diffdash/footer_dashboard');
         }
+        public function dashboard2(){
+                $top= $this->m_user->get_top_monthly()->result_array();
+                $data['prodi_top'] = array_column($top,'prodi');
+                $data['jumlah_top'] = array_column($top, 'jumlah');
+                
+                $this->load->view('dashboard2',$data);
+                $this->load->view('diffdash/footer_dashboard');
+        }
 
         public function update_changelog($update_id, $id, $action, $t_name, $v_name, $f_name){
                 $id_user = $this->session->userdata('id_user');
@@ -46,6 +54,20 @@ class Home extends CI_Controller {
                 $this->m_main->update_data($where, $changelog, 'changelog');
                 redirect($v_name.'/'.$f_name);
             }
+
+        public function insert_changelog($update_id, $id, $t_name, $v_name, $f_name){
+                $id_user = $this->session->userdata('id_user');
+                $changelog = array(
+                        'id'        => $update_id,
+                        'id_user'   => $id_user,
+                        'nama_tabel' => $t_name,
+                        'item_id'   => $id,
+                        'action'    => 'delete data',
+                        'tanggal'   => date("Y-m-d h:i:s"),
+                    );
+                $this->m_main->input_data($changelog, 'changelog');
+                redirect($v_name.'/'.$f_name);
+        }
 }
 
 
