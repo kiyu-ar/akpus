@@ -1,8 +1,8 @@
-<nav class="crumbs">
-  <ol>
-    <li class="crumb"><a href="<?= base_url() ?>">Home</a></li>
-    <li class="crumb"><a href="#">Informasi Koleksi</a></li>
-    <li class="crumb">Data Pengadaan</li>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" style="background-color: #E1EEDD;">
+    <li class="breadcrumb-item "><a href="<?= base_url() ?>">Home</a></li>
+    <li class="breadcrumb-item "><a href="#">Informasi Koleksi</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data Pengadaan</li>
   </ol>
 </nav>
 <div>

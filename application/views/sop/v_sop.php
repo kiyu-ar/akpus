@@ -1,9 +1,9 @@
 <div>
-    <nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
-            <li class="crumb"><a href="#">Informasi SOP</a></li>
-            <li class="crumb">SOP Pengolahan</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: #E1EEDD;">
+            <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi SOP</a></li>
+            <li class="breadcrumb-item active" aria-current="page">SOP Pengolahan</li>
         </ol>
     </nav>
 <div>

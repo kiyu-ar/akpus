@@ -1,9 +1,9 @@
 <div>
-    <nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="#">Home</a></li>
-            <li class="crumb"><a href="#">SOP</a></li>
-            <li class="crumb">Edit SOP</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: #E1EEDD;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">SOP</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit SOP</li>
         </ol>
     </nav>
 

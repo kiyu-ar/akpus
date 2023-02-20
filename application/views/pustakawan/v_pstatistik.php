@@ -1,9 +1,9 @@
 <div>
-<nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="#">Home</a></li>
-            <li class="crumb"><a href="#">Informasi Koleksi</a></li>
-            <li class="crumb">Jenis Koleksi Cetak</li>
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: #E1EEDD;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Koleksi</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Jenis Koleksi Cetak</li>
         </ol>
     </nav>
     <form style="float: right;" action="<?php echo base_url().'pustakawan/daftar_staf'; ?>"><button type="submit" class="btn btn-primary"  style="margin-top:30px">Daftar Staf</button></form>

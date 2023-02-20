@@ -1,9 +1,9 @@
 <div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb" style="background-color: #E1EEDD;">
-            <li class="breadcrumb-item "><a href="#"><b>Home</b></a></li>
-            <li class="breadcrumb-item "><a href="#"><b>Lain</b></a></li>
-            <li class="breadcrumb-item active" aria-current="page"><b>Data Kuesioner</b></li>
+            <li class="breadcrumb-item "><a href="#">Home</a></li>
+            <li class="breadcrumb-item "><a href="#">Lain</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data Kuesioner</li>
         </ol>
     </nav>
     <div>
