@@ -1,9 +1,9 @@
 <div>
-    <nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="#">Home</a></li>
-            <li class="crumb"><a href="#">Informasi Lain</a></li>
-            <li class="crumb">Data Sarana dan Prasarana</li>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background-color: #E1EEDD;">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Lain</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data Sarana dan Prasarana</li>
         </ol>
     </nav>
     <?php $jenis=9; $subjenis=0;
