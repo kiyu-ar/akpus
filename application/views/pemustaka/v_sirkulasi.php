@@ -1,8 +1,8 @@
-<nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="<?=base_url()?>">Home</a></li>
-            <li class="crumb"><a href="#">Informasi Pemustaka</a></li>
-            <li class="crumb">Data Sirkulasi</li>
+<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Pemustaka</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data Sirkulasi</li>
         </ol>
     </nav>
 <div>
@@ -20,7 +20,7 @@
         <?php endforeach ?>
     </select>
 
-    <select name="id_prodi" id="id_prodi" class="custom-select">
+    <select name="id_prodi" id="id_prodi" class="custom-select" disabled>
         <option value="0">Prodi</option>
     </select>
     <button type="button" class="btn btn-primary" id="submit-sirkulasi">search</button>

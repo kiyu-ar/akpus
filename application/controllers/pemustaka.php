@@ -4,14 +4,13 @@
             parent::__construct();
             $this->load->model('m_main');
         }
-//Data KEANGGOTAAN
+        // Fungsi View
         public function keanggotaan(){
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pemustaka/v_keanggotaan');
             $this->load->view('diffdash/footer');
         }
-//DATA KUNJUNGAN FISIK
         public function kunjungan(){
             $data['akses'] = $this->session->userdata('akses');
             $data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
@@ -20,6 +19,22 @@
             $this->load->view('pemustaka/v_kunjungan', $data);
             $this->load->view('diffdash/footer', $data);
         }
+        public function eresource(){
+            $data['eresource'] = $this->m_main->get_data('list_eresource')->result();
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pemustaka/v_eresource', $data);
+            $this->load->view('diffdash/footer');
+        }
+        public function sirkulasi(){
+            $data['fakultas'] = $this->m_main->get_data('tbl_fakultas')->result();
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pemustaka/v_sirkulasi',$data);
+            $this->load->view('diffdash/footer');
+        }
+
+        // Fungsi Kunjungan Fisik
         public function tambah_kunjungan(){
             $tanggal           = $this->input->post('tanggal_kunjungan');
             $instansi          = $this->input->post('nama_instansi');
@@ -75,7 +90,6 @@
             redirect('pemustaka/kunjungan');
             }
         }
-
         public function edit_kunjungan(){
         $dokumentasi       = $_FILES['dokumentasi_kunjungan'];
         $id                = $this->input->post('id');
@@ -116,7 +130,6 @@
                 $dokumentasi       = $this->upload->data('file_name');
             }
 
-        
         $data = array(
             'id'    => $id,
             'tanggal' => $tanggal,
@@ -133,17 +146,10 @@
         Data Berhasil Diedit
         </div>');
         redirect('pemustaka/kunjungan');
-        }
+            }
         }
     
-//DATA AKSES E-RESOURCE DAN KUNJUNGAN VIRTUAL
-        public function eresource(){
-            $data['eresource'] = $this->m_main->get_data('list_eresource')->result();
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('pemustaka/v_eresource', $data);
-            $this->load->view('diffdash/footer');
-        }
+        //Fungsi E-Resource dan Kunjungan Virtual
         public function tambah_eresource(){
             $nama       = $this->input->post('nama'); 
             $catatan    = $this->input->post('catatan');
@@ -184,20 +190,46 @@
             $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_eresource');
 
-            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/3/list_eresource/pemustaka/eresource/');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_eresource/pemustaka/eresource/');
         }
-        public function edit_eresource($id){
-            
+        public function edit_eresource(){
+            $id         = $this->input->post('id');
+            $nama       = $this->input->post('nama');
+            $catatan    = $this->input->post('catatan');
+            $file_old   = $this->input->post('file_old');
+            $file       = $_FILES['fileinput'];
+            $update_id  = $this->m_main->get_last_id('changelog') + 1;
+
+            $change_log = array('id'=>$update_id);
+            $this->m_main->input_data($change_log, 'changelog');
+
+            if($file == ""){
+                $file = $file_old;
+            }else{
+                $config['upload_path'] = './assets/files/eresource';
+                $config['allowed_types'] = 'png|jpg|jpeg';
+
+                $this->load->library('upload', $config);
+                if(!$this->upload->do_upload('fileinput')){
+                    $file = $file_old;
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'nama'      => $nama,
+                'catatan'   => $catatan,
+                'file'      => $file,
+                'update_id' => $update_id,
+            );
+            $where = array('id'  => $id);
+            $this->m_main->update_data($where, $data, 'list_eresource');
+            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_eresource/pemustaka/eresource');
         }
 
 //DATA SIRKULASI PEMINJAMAN
-        public function sirkulasi(){
-            $data['fakultas'] = $this->m_main->get_data('tbl_fakultas')->result();
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('pemustaka/v_sirkulasi',$data);
-            $this->load->view('diffdash/footer');
-        }
+        
         public function sirkulasi_prodi(){
             $kode_prodi = $this->uri->segment(3);
             $data['sirkulasi_p'] = $this->m_main->sirkulasi_prodi($kode_prodi)->result();

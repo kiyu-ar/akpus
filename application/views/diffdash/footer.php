@@ -64,6 +64,7 @@
 					$("#id_prodi").find('option').not(':first').remove();
 					$.each(data,function(index,data){
 						$("#id_prodi").append('<option value="'+data['id_prodi']+'">'+data['prodi']+'</option>');
+						$("#id_prodi").removeAttr('disabled');
 					});
 				}
 			});
@@ -159,9 +160,9 @@
         });
 
 		// notification popup
-		toastr.options.closeButton = true;
-		toastr.options.positionClass = 'toast-bottom-right';
-		toastr.options.showDuration = 1000;
+		// toastr.options.closeButton = true;
+		// toastr.options.positionClass = 'toast-bottom-right';
+		// toastr.options.showDuration = 1000;
 		//toastr['info']('Hello, welcome to DiffDash, a unique admin dashboard.');
 	});
 

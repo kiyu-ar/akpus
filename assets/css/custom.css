@@ -23,35 +23,17 @@ h5.custom{
     display: inline-block;
     width: 45%;
 }
-nav.crumbs{
-    background-color: lightblue;
-    color: black;
-}
-.crumb a{
-    text-decoration: none;
-    color: black;
-}
-.crumbs ol {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-.crumb {
-    display: inline-block;
-}
-.crumb a::after {
-    display: inline-block;
-    color: #000;
-    content: '/';
-    font-size: 80%;
-    font-weight: bold;
-    padding: 0 3px;
-}
 .login-button:hover {
     background-color: blueviolet;
   }
 #left-sidebar{
     background-color: lightblue !important;
+}
+.breadcrumb-item{
+    font-weight: bold !important;
+}
+.breadcrumb{
+    background-color: #E1EEDD !important;
 }
 hr{
     border-top: 1px solid grey;

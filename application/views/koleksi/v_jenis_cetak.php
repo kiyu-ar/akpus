@@ -1,11 +1,4 @@
-<nav class="crumbs">
-        <ol>
-            <li class="crumb"><a href="#">Home</a></li>
-            <li class="crumb"><a href="#">Informasi Koleksi</a></li>
-            <li class="crumb">Jenis Koleksi Cetak</li>
-        </ol>
-    </nav>
-
+<div style="margin-top: -30px">
 <button class="tablink cetak" onclick="openPage('buku', this, 'steelblue')" id="defaultOpen">Buku</button>
 <button class="tablink cetak" onclick="openPage('referensi', this, 'steelblue')" >Referensi</button>
 <button class="tablink cetak" onclick="openPage('ta', this, 'steelblue')">Tugas Akhir</button>
@@ -137,3 +130,5 @@
 </div>
 </div>
 <?php } ?>
+
+</div>

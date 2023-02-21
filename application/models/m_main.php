@@ -189,12 +189,13 @@
             count(CASE WHEN pendidikan_tertinggi = "SMA/Sederajat" THEN 1 END) as "SMA/Sederajat",
             count(*) as Total FROM list_pegawai')->result_array();
         }
-        public function get_psdm(){
-            return $this->db->query('SELECT * FROM list_psdm ORDER BY jenis')->result();
-        }
         public function search_psdm($keyword){
             $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
             return $this->db->query("SELECT * FROM list_psdm $where order by jenis")->result();
+        }
+        public function search_psdm_kepala($keyword){
+            $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
+            return $this->db->query("SELECT * FROM list_psdm_kepala $where order by jenis")->result();
         }
 //---Informasi Lain---
         public function get_sarpras(){
@@ -208,10 +209,6 @@
             $this->db->order_by('jenis');
             $sql = $this->db->get('list_kerjasama');
             return $sql;
-        }
-        public function update_anggaran($where, $data, $tabel){
-            $this->db->where($where);
-            $this->db->update($tabel, $data);
         }
         public function cek_file_kuesioner($id){
             $query = $this->db->get_where('list_kuesioner', ['id' => $id]);

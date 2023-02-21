@@ -35,8 +35,7 @@
 
     <div>
 <?php
-$i = 1;
-foreach ($majalah as $row) : $i++ ?>
+foreach ($majalah as $row) :?>
 <div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

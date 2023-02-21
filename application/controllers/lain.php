@@ -17,7 +17,7 @@ use PhpParser\Node\Expr\FuncCall;
             $this->load->view('diffdash/footer');
         }
         public function sarpras(){
-            $data['sarpras'] = $this->m_main->get_data('list_sarpras2')->result();
+            $data['sarpras'] = $this->m_main->get_data('list_sarpras')->result();
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -48,7 +48,55 @@ use PhpParser\Node\Expr\FuncCall;
             $this->load->view('lain/v_restools', $data);
             $this->load->view('diffdash/footer');
         }
+        // Fungsi Sarpras
+        public function tambah_sarpras(){
+            $nama   = $this->input->post('nama');
+            $jumlah = $this->input->post('jumlah');
+            $deskripsi  = $this->input->post('deskripsi');
+            $change_last  = $this->m_main->get_last_id('changelog') + 1;
+            $table_last   = $this->m_main->get_last_id('list_sarpras') + 1;
 
+            $changelog = array('id'=> $change_last);
+            $this->m_main->input_data($changelog, 'changelog');
+
+            $data = array(
+                'id'    => $table_last,
+                'nama'  => $nama,
+                'jumlah'=> $jumlah,
+                'deskripsi' => $deskripsi,
+                'update_id' => $change_last,
+            );
+
+            $this->m_main->input_data($data, 'list_sarpras');
+            redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_sarpras/lain/sarpras');
+        }
+        public function edit_sarpras(){
+            $id     = $this->input->post('id');
+            $nama   = $this->input->post('nama');
+            $jumlah = $this->input->post('jumlah');
+            $deskripsi  = $this->input->post('deskripsi');
+            $update_id  = $this->m_main->get_last_id('changelog') + 1;
+
+            $changelog = array('id'=> $update_id);
+            $this->m_main->input_data($changelog, 'changelog');
+
+            $data = array(
+                'nama'  => $nama,
+                'jumlah'=> $jumlah,
+                'deskripsi' => $deskripsi,
+                'update_id' => $update_id,
+            );
+
+            $where = array('id' => $id);
+            $this->m_main->update_data($where, $data, 'list_sarpras');
+            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_sarpras/lain/sarpras');
+        }
+        public function hapus_sarpras($id){
+            $where = array('id' => $id);
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
+            $this->m_main->delete_data($where, 'list_sarpras');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_sarpras/lain/sarpras');
+        }
         // Fungsi Anggaran
         public function anggaran(){
             $data['akses'] = $this->session->userdata('akses');
@@ -99,7 +147,7 @@ use PhpParser\Node\Expr\FuncCall;
             );
 
             $where = array('id' => $id);
-            $this->m_main->update_anggaran($where, $data, 'list_anggaran');
+            $this->m_main->update_data($where, $data, 'list_anggaran');
             $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
             Data Berhasil Diedit
@@ -156,22 +204,22 @@ use PhpParser\Node\Expr\FuncCall;
             $tanggal_dari   = $this->input->post('tanggal_mulai');
             $tanggal_hingga = $this->input->post('tanggal_selesai');
             $deskripsi      = $this->input->post('deskripsi');
-            $change_last    = $this->m_main->get_last_id('changelog') + 1;
+            $update_id      = $this->m_main->get_last_id('changelog') + 1;
 
-            $update_id = array('id'=> $change_last);
-            $this->m_main->input_data($update_id, 'changelog');
+            $change_log = array('id'=> $update_id);
+            $this->m_main->input_data($change_log, 'changelog');
 
             $data = array(
                 'instansi'  => $instansi,
                 'tanggal_dari'  => $tanggal_dari,
                 'tanggal_hingga' => $tanggal_hingga,
                 'deskripsi' => $deskripsi,   
-                'update_id' => $change_last
+                'update_id' => $update_id,
             );
 
             $where = array ('id'=>$id);
             $this->m_main->update_data($where, $data, 'list_kerjasama');
-            redirect('Home/update_changelog/'.$change_last.'/'.$id.'/2/list_kerjasama/lain/kerjasama');
+            redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_kerjasama/lain/kerjasama');
         }
         
         public function penguat(){

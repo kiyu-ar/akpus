@@ -9,7 +9,6 @@
             $data['akses'] = $this->session->userdata('akses');
             $data['staf'] = $this->m_main->get_pegawai()->result();
             
-
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pustakawan/v_daftar_staf',$data);
@@ -129,20 +128,41 @@
             $this->load->view('pustakawan/v_pstatistik', $data);
             $this->load->view('diffdash/footer');
         }
-        public function tambah_psdm(){
-            $id         = $this->input->post('id');
+        public function sdm(){
+            $data['keyword'] = $this->input->get('keyword');
+            if(!empty($this->input->get('keyword'))){
+                $data['psdm_kepala'] = $this->m_main->search_psdm_kepala($data['keyword']);
+                $data['psdm'] = $this->m_main->search_psdm($data['keyword']);
+            }
+            else{
+                $data['psdm_kepala'] = $this->m_main->get_data_order('list_psdm_kepala', 'jenis')->result();    
+                $data['psdm'] = $this->m_main->get_data_order('list_psdm', 'jenis')->result();
+            }
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pustakawan/v_sdm', $data);
+            $this->load->view('diffdash/footer');
+        }
+        public function tambah_psdm($psdm){
             $jenis      = $this->input->post('jenis');
             $nama       = $this->input->post('nama');
             $peserta    = $this->input->post('peserta');
             $tanggal_dari    = $this->input->post('tanggal_dari');
             $tanggal_hingga    = $this->input->post('tanggal_hingga');
             $file       = $_FILES['filePdf'];
+            $change_last     = $this->m_main->get_last_id('changelog') + 1;
+            if($psdm == 1){$table_last      = $this->m_main->get_last_id('list_psdm_kepala') + 1;}
+            else          {$table_last      = $this->m_main->get_last_id('list_psdm') + 1;}
+
+            $change_log = array('id'=> $change_last);
+            $this->m_main->input_data($change_log, 'changelog');
+
 
             if ($file == ''){
                 $file = '';
             }else{
-                $config['upload_path'] = './assets/files';
-                $config['allowed_types'] = 'jpg|pdf';
+                $config['upload_path'] = './assets/files/psdm';
+                $config['allowed_types'] = 'jpeg|jpg|pdf';
                 
                 $this->load->library('upload',$config);
                 if(!$this->upload->do_upload('filePdf')){
@@ -153,31 +173,80 @@
             }
 
             $data = array(
-                'id' => $id,
-                'jenis' => $jenis,
-                'nama' => $nama,
-                'peserta' => $peserta,
-                'tanggal_dari' => $tanggal_dari,
+                'id'        => $table_last,
+                'jenis'     => $jenis,
+                'nama'      => $nama,
+                'peserta'   => $peserta,
+                'tanggal_dari'   => $tanggal_dari,
                 'tanggal_hingga' => $tanggal_hingga,
-                'file' => $file,
+                'file'           => $file,
+                'update_id'      => $change_last,
             );
-            $this->m_main->input_data($data,'list_psdm');
-            redirect ('pustakawan/sdm');
+            if($psdm == 1){
+                $this->m_main->input_data($data,'list_psdm_kepala');
+                redirect ('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_psdm_kepala/pustakawan/sdm');
+            }else{
+                $this->m_main->input_data($data,'list_psdm');
+                redirect ('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_psdm/pustakawan/sdm');
+            }
+        }
+        public function hapus_psdm($tabel,$id){
+            $where = array ('id'=>$id);
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
+            if($tabel == 1){
+                $this->m_main->delete_data($where, 'list_psdm_kepala');
+                redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_psdm_kepala/pustakawan/sdm');
+            }else{
+                $this->m_main->delete_data($where, 'list_psdm');
+                redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_psdm/pustakawan/sdm');
+            }
+        }
+        public function edit_psdm($tabel){
+            $id             = $this->input->post('id');  
+            $jenis          = $this->input->post('jenis');
+            $nama           = $this->input->post('nama');
+            $peserta        = $this->input->post('peserta');
+            $tanggal_dari   = $this->input->post('tanggal_dari');
+            $tanggal_hingga = $this->input->post('tanggal_hingga');
+            $file_old       = $this->input->post('file_old');
+            $file           = $_FILES['fileinput'];
+            $update_id      = $this->m_main->get_last_id('changelog') + 1;
+
+            $change_log = array('id'=> $update_id);
+            $this->m_main->input_data($change_log, 'changelog');
+
+            if($file == ''){
+                $file = $file_old;
+            }else{
+                $config['upload_path'] = './assets/files/psdm';
+                $config['allowed_types'] = 'png|jpg|jpeg';
+
+                $this->load->library('upload', $config);
+                if(!$this->upload->do_upload('fileinput')){
+                    $file = $file_old;
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
+            $data = array(
+                'jenis'     => $jenis,
+                'nama'      => $nama,
+                'peserta'   => $peserta,
+                'tanggal_dari'   => $tanggal_dari,
+                'tanggal_hingga' => $tanggal_hingga,
+                'file'           => $file,
+                'update_id'      => $update_id,
+            );
+
+            $where = array ('id'=>$id);
+            if($tabel == 1){
+                $this->m_main->update_data($where, $data, 'list_psdm_kepala');
+                redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_psdm_kepala/pustakawan/sdm') ;
+            }else{
+                $this->m_main->update_data($where, $data, 'list_psdm');
+                redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_psdm/pustakawan/sdm');
+            }
         }
 
-        public function sdm(){
-            $data['keyword'] = $this->input->get('keyword');
-            if(!empty($this->input->get('keyword'))){
-                $data['psdm'] = $this->m_main->search_psdm($data['keyword']);
-            }
-            else{
-                $data['psdm'] = $this->m_main->get_psdm();
-            }
-
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('pustakawan/v_sdm', $data);
-            $this->load->view('diffdash/footer');
-        }
     }    
 ?>

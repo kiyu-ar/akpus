@@ -30,10 +30,9 @@
     <?php endforeach; ?>
     </table>
     
-<div>
+
 <?php
-$i = 1;
-foreach ($koran as $row) : $i++ ?>
+foreach ($koran as $row) :?>
 <div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -58,7 +57,6 @@ foreach ($koran as $row) : $i++ ?>
             </form>
         </div>
     </div>
-</div>
 </div>
 <?php endforeach; ?>
 
