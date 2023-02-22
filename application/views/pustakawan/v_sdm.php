@@ -1,7 +1,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Pustakawan</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Pustakawan/Staf</a></li>
             <li class="breadcrumb-item active" aria-active="page">Data Pengembangan SDM</li>
         </ol>
     </nav>

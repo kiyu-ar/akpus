@@ -7,7 +7,7 @@
 			<div class="sidebar-scroll">
 				<div class="user-account">
 					<?php if($this->session->userdata('status') != 'login'){ ?>
-						<form action="<?= base_url('login/index')?>"><button class="btn login-button" type="submit">Login</button></form>
+						<form action="<?= base_url('user/login')?>"><button class="btn login-button" type="submit">Login</button></form>
 					<?php } else {?>
 					<div class="dropdown">
 						<a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Hello, <strong><?php echo $this->session->userdata('nama') ?></strong> <i class="fa fa-caret-down"></i></a>
@@ -16,7 +16,7 @@
 							<li><a href="#">Messages</a></li>
 							<li><a href="#">Settings</a></li>
 							<li class="divider"></li>
-							<li><a href="<?= base_url('login/logout')?>">Logout</a></li>
+							<li><a href="<?= base_url('user/logout')?>">Logout</a></li>
 						</ul>
 					</div>
 					<?php } ?>
@@ -73,8 +73,8 @@
 								<li id ="pengolahan"><a href="<?= base_url('sop/pengolahan')?>">SOP Pengolahan</a></li>
 								<li id ="lain"><a href="<?= base_url('sop/lain')?>">SOP Lain-lain</a></li>
 							</ul>
-						<li class=""><a href="notifications.html"><i class="lnr lnr-alarm"></i> <span>Notifications</span> <span class="badge bg-danger">15</span></a></li>
-						<li class=""><a href="typography.html"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
+						<!-- <li class=""><a href="notifications.html"><i class="lnr lnr-alarm"></i> <span>Notifications</span> <span class="badge bg-danger">15</span></a></li>
+						<li class=""><a href="typography.html"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li> -->
 					</ul>
 				</nav>
 			</div>

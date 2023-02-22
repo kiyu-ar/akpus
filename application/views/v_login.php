@@ -10,7 +10,7 @@
 <!-- partial:index.partial.html -->
 <div class="login-page">
   <div class="form">
-    <form class="login-form" method="post" action="<?php echo base_url().'login/proses_login'; ?>">
+    <form class="login-form" method="post" action="<?php echo base_url().'user/proses_login'; ?>">
       <input type="text" name="uname" placeholder="username">
       <input type="password" name="pass" placeholder="password">
       <button type="submit">login</button>

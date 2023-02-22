@@ -45,7 +45,7 @@
             if ($dokumentasi == ''){
                 $dokumentasi = '';
             }else{
-                $config['upload_path']   = './assets/files';
+                $config['upload_path']   = './assets/files/kunjungan';
                 $config['allowed_types'] = 'jpg|pdf|png|jpeg';
                 $config['max_size']      = 51200;
                 
@@ -101,7 +101,7 @@
         if ($dokumentasi == ''){
             $dokumentasi = '';
         }else{
-            $config['upload_path']   = './assets/files';
+            $config['upload_path']   = './assets/files/kunjungan';
             $config['allowed_types'] = 'jpg|pdf|png|jpeg';
             $config['max_size']      = 51200;
             $this->load->library('upload', $config);

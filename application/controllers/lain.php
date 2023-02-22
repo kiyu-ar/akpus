@@ -8,14 +8,16 @@ use PhpParser\Node\Expr\FuncCall;
             parent::__construct();
             $this->load->model('m_main');
         }
-        public function sarpras2(){
-            $data['sarpras'] = $this->m_main->get_sarpras()->result();
+        // public function sarpras2(){
+        //     $data['sarpras'] = $this->m_main->get_sarpras()->result();
 
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_sarpras2', $data);
-            $this->load->view('diffdash/footer');
-        }
+        //     $this->load->view('diffdash/header');
+        //     $this->load->view('diffdash/sidebar');
+        //     $this->load->view('lain/v_sarpras2', $data);
+        //     $this->load->view('diffdash/footer');
+        // }
+     
+        // Fungsi Sarpras
         public function sarpras(){
             $data['sarpras'] = $this->m_main->get_data('list_sarpras')->result();
 
@@ -24,31 +26,6 @@ use PhpParser\Node\Expr\FuncCall;
             $this->load->view('lain/v_sarpras', $data);
             $this->load->view('diffdash/footer');
         }
-        public function kuesioner(){
-            $data['akses'] = $this->session->userdata('akses');
-            $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_kuesioner', $data);
-            $this->load->view('diffdash/footer');
-        }
-        public function promosi(){
-            $data['promosi'] = $this->m_main->get_data('list_promosi')->result();
-
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_promosi', $data);
-            $this->load->view('diffdash/footer');
-        }
-        public function restools(){
-            $data['restools'] = $this->m_main->get_data('list_restools')->result();
-
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_restools', $data);
-            $this->load->view('diffdash/footer');
-        }
-        // Fungsi Sarpras
         public function tambah_sarpras(){
             $nama   = $this->input->post('nama');
             $jumlah = $this->input->post('jumlah');
@@ -96,6 +73,177 @@ use PhpParser\Node\Expr\FuncCall;
             $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_sarpras');
             redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_sarpras/lain/sarpras');
+        }
+        // Fungsi Kuesioner
+        public function kuesioner(){
+            $data['akses'] = $this->session->userdata('akses');
+            $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('lain/v_kuesioner', $data);
+            $this->load->view('diffdash/footer');
+        }
+        public function tambah_kuesioner(){
+            $nama           = $this->input->post('nama_kuesioner');
+            $deskripsi      = $this->input->post('deskripsi');
+            $bukti          = $_FILES['file_kuesioner'];
+
+            if ($bukti == ''){
+                $bukti = '';
+            }else{
+                $config['upload_path']   = './assets/files';
+                $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
+                $config['max_size']      = 51200;
+                
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('file_kuesioner')){
+                    $this->session->set_flashdata('pesan','<div class ="alert alert-danger alert-dismissible fade in" style="margin-top: 5px;">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                    Format file upload tidak sesuai
+                    </div>');
+                    redirect('lain/kuesioner');
+                }else{
+                    $bukti = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'nama' => $nama,
+                'deskripsi' => $deskripsi,
+                'file' => $bukti,
+            );
+
+            $this->m_main->input_data($data,'list_kuesioner');
+            $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+            Data Berhasil Ditambahkan
+            </div>');
+            redirect('lain/kuesioner');
+        }
+
+        public function hapus_kuesioner($id){
+            $data_kuesioner = new m_main;
+            if($data_kuesioner->cek_file_kuesioner($id)){
+                $data_k = $data_kuesioner->cek_file_kuesioner($id);
+                if(file_exists("./assets/files/".$data_k->file)){
+                    unlink("./assets/files/".$data_k->file);
+                }
+            $where = array ('id'=>$id);
+            $this->m_main->delete_data($where, 'list_kuesioner');
+            redirect('lain/kuesioner');
+            }
+        }
+
+        public function edit_kuesioner(){
+        $id             = $this->input->post('id');
+        $nama           = $this->input->post('nama_kuesioner');
+        $deskripsi      = $this->input->post('deskripsi');
+        $bukti          = $_FILES['file_kuesioner'];
+
+        if ($bukti == ''){
+            $bukti = '';
+        }else{
+            $config['upload_path']   = './assets/files';
+            $config['allowed_types'] = 'jpg|pdf|png|jpeg';
+            $config['max_size']      = 51200;
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('file_kuesioner')) {
+                $nama           = $this->input->post('nama_kuesioner');
+                $deskripsi      = $this->input->post('deskripsi');
+
+                $data = array(
+                    'id' => $id,
+                    'nama' => $nama,
+                    'deskripsi' => $deskripsi,
+                );
+
+                $where = array('id' => $id);
+                $this->m_main->update_data($where, $data, 'list_kuesioner');
+                $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+                Data Berhasil Diedit
+                </div>');
+                redirect('lain/kuesioner');
+            } else {
+                $bukti       = $this->upload->data('file_name');
+            }
+
+        
+            $data = array(
+                'id'    => $id,
+                'nama' => $nama,
+                'deskripsi' => $deskripsi,
+                'file' => $bukti,
+            );
+
+            $where = array('id' => $id);
+            $this->m_main->update_data($where, $data, 'list_kuesioner');
+            $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+            Data Berhasil Diedit
+            </div>');
+            redirect('lain/kuesioner');
+            }
+        }
+
+        public function cetak_file($id){
+            $this->load->helper('download');
+            $fileinfo = $this->m_main->download($id);
+            $file = './assets/files/'.$fileinfo['file'];
+            force_download($file, NULL);
+        }
+       
+        // Fungsi Promosi
+        public function promosi(){
+            $data['promosi'] = $this->m_main->get_data_order('list_promosi', 'tanggal_dari')->result();
+            $data['jenis_promosi'] = $this->m_main->get_data('list_jenis_promosi')->result();
+
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('lain/v_promosi', $data);
+            $this->load->view('diffdash/footer');
+        }
+        public function tambah_promosi(){
+            $nama           = $this->input->post('nama');
+            $jenis          = $this->input->post('jenis');
+            $deskripsi      = $this->input->post('deskripsi');
+            $tanggal_dari   = $this->input->post('tanggal_dari');
+            $tanggal_hingga = $this->input->post('tanggal_hingga');
+            $update_id      = $this->m_main->get_last_id('changelog') + 1;
+            $table_last     = $this->m_main->get_last_id('list_promosi') + 1;
+
+            $where = array ('id' => $update_id);
+            $this->m_main->insert_data($where, 'changelog');
+
+            $data = array(
+                'id'        => $table_last,
+                'jenis'     => $jenis,
+                'deskripsi' => $deskripsi,
+                'tanggal_dari'      => $tanggal_dari,
+                'tanggal_hingga'    => $tanggal_hingga,
+                'file'              => $file,
+                'update_id'         => $update_id,
+            );
+            $this->m_main->input_data($data, 'list_promosi');
+            redirect('Home/update_changelog/'.$update_id.'');
+        }
+        public function edit_promosi(){
+
+        }
+        public function hapus_promosi($id){
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
+            $where = array('id' => $id);
+            $this->m_main->delete_data($where, 'list_promosi');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_promosi/lain/promosi');
+        }
+        // Fungsi Research Tools
+        public function restools(){
+            $data['restools'] = $this->m_main->get_data('list_restools')->result();
+
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('lain/v_restools', $data);
+            $this->load->view('diffdash/footer');
         }
         // Fungsi Anggaran
         public function anggaran(){
@@ -221,122 +369,12 @@ use PhpParser\Node\Expr\FuncCall;
             $this->m_main->update_data($where, $data, 'list_kerjasama');
             redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_kerjasama/lain/kerjasama');
         }
-        
+        // Fungsi Komponen Penguat
         public function penguat(){
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('diffdash/footer');
         }
 
-        // Fungsi Kuesioner
-        public function tambah_kuesioner(){
-            $nama           = $this->input->post('nama_kuesioner');
-            $deskripsi      = $this->input->post('deskripsi');
-            $bukti          = $_FILES['file_kuesioner'];
-
-            if ($bukti == ''){
-                $bukti = '';
-            }else{
-                $config['upload_path']   = './assets/files';
-                $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
-                $config['max_size']      = 51200;
-                
-                $this->load->library('upload',$config);
-                if(!$this->upload->do_upload('file_kuesioner')){
-                    $this->session->set_flashdata('pesan','<div class ="alert alert-danger alert-dismissible fade in" style="margin-top: 5px;">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                    Format file upload tidak sesuai
-                    </div>');
-                    redirect('lain/kuesioner');
-                }else{
-                    $bukti = $this->upload->data('file_name');
-                }
-            }
-
-            $data = array(
-                'nama' => $nama,
-                'deskripsi' => $deskripsi,
-                'file' => $bukti,
-            );
-
-            $this->m_main->input_data($data,'list_kuesioner');
-            $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-            Data Berhasil Ditambahkan
-            </div>');
-            redirect('lain/kuesioner');
-        }
-
-        public function hapus_kuesioner($id){
-            $data_kuesioner = new m_main;
-            if($data_kuesioner->cek_file_kuesioner($id)){
-                $data_k = $data_kuesioner->cek_file_kuesioner($id);
-                if(file_exists("./assets/files/".$data_k->file)){
-                    unlink("./assets/files/".$data_k->file);
-                }
-            $where = array ('id'=>$id);
-            $this->m_main->delete_data($where, 'list_kuesioner');
-            redirect('lain/kuesioner');
-            }
-        }
-
-        public function edit_kuesioner(){
-        $id             = $this->input->post('id');
-        $nama           = $this->input->post('nama_kuesioner');
-        $deskripsi      = $this->input->post('deskripsi');
-        $bukti          = $_FILES['file_kuesioner'];
-
-        if ($bukti == ''){
-            $bukti = '';
-        }else{
-            $config['upload_path']   = './assets/files';
-            $config['allowed_types'] = 'jpg|pdf|png|jpeg';
-            $config['max_size']      = 51200;
-            $this->load->library('upload', $config);
-            if (!$this->upload->do_upload('file_kuesioner')) {
-                $nama           = $this->input->post('nama_kuesioner');
-                $deskripsi      = $this->input->post('deskripsi');
-
-                $data = array(
-                    'id' => $id,
-                    'nama' => $nama,
-                    'deskripsi' => $deskripsi,
-                );
-
-                $where = array('id' => $id);
-                $this->m_main->update_data($where, $data, 'list_kuesioner');
-                $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-                Data Berhasil Diedit
-                </div>');
-                redirect('lain/kuesioner');
-            } else {
-                $bukti       = $this->upload->data('file_name');
-            }
-
-        
-        $data = array(
-            'id'    => $id,
-            'nama' => $nama,
-            'deskripsi' => $deskripsi,
-            'file' => $bukti,
-        );
-
-        $where = array('id' => $id);
-        $this->m_main->update_data($where, $data, 'list_kuesioner');
-        $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
-        Data Berhasil Diedit
-        </div>');
-        redirect('lain/kuesioner');
-        }
-        }
-
-        public function cetak_file($id){
-            $this->load->helper('download');
-            $fileinfo = $this->m_main->download($id);
-            $file = './assets/files/'.$fileinfo['file'];
-            force_download($file, NULL);
-        }
-    }    
+    }  
 ?>
