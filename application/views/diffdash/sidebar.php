@@ -59,19 +59,20 @@
 							<a href="" class="has-arrow" aria-expanded="false"><i class="lnr lnr-layers"></i> <span>INFORMASI LAIN</span></a>
 							<ul id="lain" aria-expanded="true">
 								<li id ="sarpras"><a href="<?= base_url('lain/sarpras')?>">Data Sarana dan Prasarana</a></li>
+								<?php if($this->session->userdata('status')=="login"){ ?>
 								<li id ="kuesioner"><a href="<?= base_url('lain/kuesioner')?>">Data Kuesioner</a></li>
+								<?php } ?>
 								<li id ="promosi"><a href="<?= base_url('lain/promosi')?>">Data Promosi</a></li>
 								<li id ="restools"><a href="<?= base_url('lain/restools')?>">Data Research Tools</a></li>
 								<li id ="anggaran"><a href="<?= base_url('lain/anggaran')?>">Data Anggaran</a></li>
 								<li id ="kerjasama"><a href="<?= base_url('lain/kerjasama')?>">Data Kerjasama</a></li>
-								<li id ="penguat"><a href="<?= base_url('lain/penguat')?>">Komponen Penguat</a></li>
+								<li id ="komponen"><a href="<?= base_url('lain/komponen')?>">Komponen Penguat</a></li>
 							</ul>
 						</li>
 						<li class="">
 							<a href="#charts" class="has-arrow" aria-expanded="false"><i class="lnr lnr-chart-bars"></i> <span>INFORMASI SOP</span></a>
 							<ul id="sop" aria-expanded="true">
-								<li id ="pengolahan"><a href="<?= base_url('sop/pengolahan')?>">SOP Pengolahan</a></li>
-								<li id ="lain"><a href="<?= base_url('sop/lain')?>">SOP Lain-lain</a></li>
+								<li id ="sop"><a href="<?= base_url('sop/sop')?>">Data SOP</a></li>
 							</ul>
 						<!-- <li class=""><a href="notifications.html"><i class="lnr lnr-alarm"></i> <span>Notifications</span> <span class="badge bg-danger">15</span></a></li>
 						<li class=""><a href="typography.html"><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li> -->

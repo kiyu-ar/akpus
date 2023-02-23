@@ -28,7 +28,7 @@
                 $table_last      = $this->m_main->get_last_id('list_pegawai') + 1;
 
                 $change_log = array('id'=> $change_last);
-                $this->m_main->input_data($change_log, 'changelog');
+                $this->m_main->insert_data($change_log, 'changelog');
 
                 $data = array(
                     'id'    => $table_last,
@@ -43,7 +43,7 @@
                     'update_id' => $change_last,
                 );
 
-                $this->m_main->input_data($data, 'list_pegawai');
+                $this->m_main->insert_data($data, 'list_pegawai');
                 redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_pegawai/pustakawan/daftar_staf');
             }
         }
@@ -61,7 +61,7 @@
                 $table_last      = $this->m_main->get_last_id('list_pegawai') + 1;
 
                 $change_log = array('id'=> $change_last);
-                $this->m_main->input_data($change_log, 'changelog');
+                $this->m_main->insert_data($change_log, 'changelog');
 
                 $data = array(
                     'id'    => $table_last,
@@ -76,7 +76,7 @@
                     'update_id' => $change_last,
                 );
 
-                $this->m_main->input_data($data, 'list_pegawai');
+                $this->m_main->insert_data($data, 'list_pegawai');
                 redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_pegawai/pustakawan/daftar_staf');
             }
         }
@@ -100,7 +100,7 @@
             $change_last    = $this->m_main->get_last_id('changelog') + 1;
 
             $update_id = array('id'=> $change_last);
-            $this->m_main->input_data($update_id, 'changelog');
+            $this->m_main->insert_data($update_id, 'changelog');
             $data = array(
                 'nama'              => $nama,
                 'pangkat'           => $pangkat,
@@ -155,7 +155,7 @@
             else          {$table_last      = $this->m_main->get_last_id('list_psdm') + 1;}
 
             $change_log = array('id'=> $change_last);
-            $this->m_main->input_data($change_log, 'changelog');
+            $this->m_main->insert_data($change_log, 'changelog');
 
 
             if ($file == ''){
@@ -183,10 +183,10 @@
                 'update_id'      => $change_last,
             );
             if($psdm == 1){
-                $this->m_main->input_data($data,'list_psdm_kepala');
+                $this->m_main->insert_data($data,'list_psdm_kepala');
                 redirect ('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_psdm_kepala/pustakawan/sdm');
             }else{
-                $this->m_main->input_data($data,'list_psdm');
+                $this->m_main->insert_data($data,'list_psdm');
                 redirect ('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_psdm/pustakawan/sdm');
             }
         }
@@ -213,7 +213,7 @@
             $update_id      = $this->m_main->get_last_id('changelog') + 1;
 
             $change_log = array('id'=> $update_id);
-            $this->m_main->input_data($change_log, 'changelog');
+            $this->m_main->insert_data($change_log, 'changelog');
 
             if($file == ''){
                 $file = $file_old;

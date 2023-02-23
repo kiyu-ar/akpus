@@ -70,7 +70,7 @@
                 'dokumentasi' => $dokumentasi,
             );
 
-            $this->m_main->input_data($data,'list_kunjungan');
+            $this->m_main->insert_data($data,'list_kunjungan');
             $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
             Data Berhasil Ditambahkan
@@ -154,11 +154,11 @@
             $nama       = $this->input->post('nama'); 
             $catatan    = $this->input->post('catatan');
             $file       = $_FILES['fileinput'];
-            $tablelast  = $this->m_main->get_last_id('list_eresource') + 1;
-            $changelast = $this->m_main->get_last_id('changelog') + 1;
+            $table_last  = $this->m_main->get_last_id('list_eresource') + 1;
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
 
-            $changelog = array('id' => $changelast);
-            $this->m_main->input_data($changelog, 'changelog');
+            $change_log = array('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
 
             if($file == ''){
                 $file ='';
@@ -175,15 +175,15 @@
             }
 
             $data = array(
-                'id'        => $tablelast,
+                'id'        => $table_last,
                 'nama'      => $nama,
                 'catatan'   => $catatan,
                 'file'      => $file,
-                'update_id' => $changelast,
+                'update_id' => $update_id,
             );
 
-            $this->m_main->input_data($data, 'list_eresource');
-            redirect('Home/update_changelog/'.$changelast.'/'.$tablelast.'/1/list_eresource/pemustaka/eresource');
+            $this->m_main->insert_data($data, 'list_eresource');
+            redirect('Home/update_changelog/'.$update_id.'/'.$table_last.'/1/list_eresource/pemustaka/eresource');
         }
         public function hapus_eresource($id){
             $where = array ('id' => $id);
@@ -201,7 +201,7 @@
             $update_id  = $this->m_main->get_last_id('changelog') + 1;
 
             $change_log = array('id'=>$update_id);
-            $this->m_main->input_data($change_log, 'changelog');
+            $this->m_main->insert_data($change_log, 'changelog');
 
             if($file == ""){
                 $file = $file_old;

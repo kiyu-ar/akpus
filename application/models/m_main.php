@@ -3,7 +3,7 @@
         public function get_data($table){
             return $this->db->get($table);
         }
-        public function input_data($data, $table){
+        public function insert_data($data, $table){
             $this->db->insert($table, $data);
         }
         public function delete_data($where, $table){
@@ -218,6 +218,12 @@
 			$query = $this->db->get_where('list_kuesioner',['id'=>$id]);
 			return $query->row_array();
 		}
+        public function get_promosi(){
+            $query = $this->db->query('SELECT *, tbl.nama_jenis
+            FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id 
+            ORDER BY l.tanggal_dari DESC');
+            return $query->result();
+        }
 //---Informasi SOP---
         public function get_sop(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();

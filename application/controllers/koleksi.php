@@ -36,7 +36,7 @@
             $table_last   = $this->m_main->get_last_id('list_koran') + 1;
 
             $changelog = array('id'=> $change_last);
-            $this->m_main->input_data($changelog, 'changelog');
+            $this->m_main->insert_data($changelog, 'changelog');
 
             $data = array(
                 'id'          => $table_last,
@@ -44,7 +44,7 @@
                 'update_id'   => $change_last,
             );
 
-            $this->m_main->input_data($data, 'list_koran');
+            $this->m_main->insert_data($data, 'list_koran');
             redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_koran/koleksi/jeniscetak');
         }
         public function majalah(){
@@ -61,7 +61,7 @@
             $table_last   = $this->m_main->get_last_id('list_majalah') + 1;
 
             $changelog = array('id'=> $change_last);
-            $this->m_main->input_data($changelog, 'changelog');
+            $this->m_main->insert_data($changelog, 'changelog');
             $data = array(
                 'id'            => $table_last,
                 'nama_majalah'  => $nama_majalah,
@@ -69,7 +69,7 @@
                 'tahun_hingga'  => $tahun_hingga,
                 'update_id'     => $change_last,
             );
-            $this->m_main->input_data($data, 'list_majalah');
+            $this->m_main->insert_data($data, 'list_majalah');
             redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_majalah/koleksi/jeniscetak');
         }
         public function hapus_tabel($id_tabel, $id){
@@ -111,7 +111,7 @@
                     $nama_koran = $this->input->post('nama_koran');
 
                     $changelog = array('id'=> $update_id);
-                    $this->m_main->input_data($changelog, 'changelog');
+                    $this->m_main->insert_data($changelog, 'changelog');
 
                     $data = array(
                         'nama_koran'    => $nama_koran,
@@ -128,7 +128,7 @@
                     $tahun_hingga   = $this->input->post('tahun_hingga');
 
                     $changelog = array('id'=> $update_id);
-                    $this->m_main->input_data($changelog, 'changelog');
+                    $this->m_main->insert_data($changelog, 'changelog');
 
                     $data = array(
                         'nama_majalah'  => $nama_majalah,
@@ -168,7 +168,7 @@
                 'tahun'        => $tahun,
                 'link_buku'    => $link_ebook,
             );
-            $this->m_main->input_data($data, 'list_ebook');
+            $this->m_main->insert_data($data, 'list_ebook');
             redirect('koleksi/jeniselektronik');
         }
         public function ejournal(){
@@ -186,7 +186,7 @@
                 'nama_jurnal' => $nama_ejournal,
                 'link_jurnal' => $link_ejournal,
             );
-            $this->m_main->input_data($data, 'list_ejournal');
+            $this->m_main->insert_data($data, 'list_ejournal');
             redirect('koleksi/jeniselektronik');
         }
         public function statistik(){

@@ -91,7 +91,7 @@
                 }
 
                 $update = array('id'=> $change_last);
-                $this->m_main->input_data($update, 'changelog');
+                $this->m_main->insert_data($update, 'changelog');
 
                 $data = array(
                     'id'        => $table_last,
@@ -102,7 +102,7 @@
                     'update_id' => $change_last,
                 );
 
-                $this->m_user->input_data($data, 'login');
+                $this->m_user->insert_data($data, 'login');
                 redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/login/user/empty');
                 }else{
                     redirect ('home');
@@ -136,7 +136,7 @@
                     $change_last    = $this->m_main->get_last_id('changelog') + 1;
 
                     $update_id = array('id'=> $change_last);
-                    $this->m_main->input_data($update_id, 'changelog');
+                    $this->m_main->insert_data($update_id, 'changelog');
 
                     $data = array(
                         'username'  => $username,
@@ -164,7 +164,7 @@
                     $change_last    = $this->m_main->get_last_id('changelog') + 1;
 
                     $update_id = array('id'=> $change_last);
-                    $this->m_main->input_data($update_id, 'changelog');
+                    $this->m_main->insert_data($update_id, 'changelog');
 
                     $data = array(
                         'password'  => $passhash,

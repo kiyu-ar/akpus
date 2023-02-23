@@ -62,7 +62,7 @@ class Home extends CI_Controller {
                         'action'    => 'delete data',
                         'tanggal'   => date("Y-m-d h:i:s"),
                     );
-                $this->m_main->input_data($changelog, 'changelog');
+                $this->m_main->insert_data($changelog, 'changelog');
                 if($f_name == "empty"){redirect($v_name);}
                 else{redirect($v_name.'/'.$f_name);}
         }

@@ -34,7 +34,7 @@ use PhpParser\Node\Expr\FuncCall;
             $table_last   = $this->m_main->get_last_id('list_sarpras') + 1;
 
             $changelog = array('id'=> $change_last);
-            $this->m_main->input_data($changelog, 'changelog');
+            $this->m_main->insert_data($changelog, 'changelog');
 
             $data = array(
                 'id'    => $table_last,
@@ -44,7 +44,7 @@ use PhpParser\Node\Expr\FuncCall;
                 'update_id' => $change_last,
             );
 
-            $this->m_main->input_data($data, 'list_sarpras');
+            $this->m_main->insert_data($data, 'list_sarpras');
             redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_sarpras/lain/sarpras');
         }
         public function edit_sarpras(){
@@ -55,7 +55,7 @@ use PhpParser\Node\Expr\FuncCall;
             $update_id  = $this->m_main->get_last_id('changelog') + 1;
 
             $changelog = array('id'=> $update_id);
-            $this->m_main->input_data($changelog, 'changelog');
+            $this->m_main->insert_data($changelog, 'changelog');
 
             $data = array(
                 'nama'  => $nama,
@@ -76,12 +76,16 @@ use PhpParser\Node\Expr\FuncCall;
         }
         // Fungsi Kuesioner
         public function kuesioner(){
-            $data['akses'] = $this->session->userdata('akses');
-            $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
-            $this->load->view('diffdash/header');
-            $this->load->view('diffdash/sidebar');
-            $this->load->view('lain/v_kuesioner', $data);
-            $this->load->view('diffdash/footer');
+            if($this->session->userdata('status')=="login"){
+                $data['akses'] = $this->session->userdata('akses');
+                $data['kuesioner'] = $this->m_main->get_data('list_kuesioner')->result();
+                $this->load->view('diffdash/header');
+                $this->load->view('diffdash/sidebar');
+                $this->load->view('lain/v_kuesioner', $data);
+                $this->load->view('diffdash/footer');
+            }else{
+                redirect('home');
+            }
         }
         public function tambah_kuesioner(){
             $nama           = $this->input->post('nama_kuesioner');
@@ -113,7 +117,7 @@ use PhpParser\Node\Expr\FuncCall;
                 'file' => $bukti,
             );
 
-            $this->m_main->input_data($data,'list_kuesioner');
+            $this->m_main->insert_data($data,'list_kuesioner');
             $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
             Data Berhasil Ditambahkan
@@ -195,8 +199,8 @@ use PhpParser\Node\Expr\FuncCall;
        
         // Fungsi Promosi
         public function promosi(){
-            $data['promosi'] = $this->m_main->get_data_order('list_promosi', 'tanggal_dari')->result();
-            $data['jenis_promosi'] = $this->m_main->get_data('list_jenis_promosi')->result();
+            $data['promosi'] = $this->m_main->get_promosi();
+            $data['jenis_promosi'] = $this->m_main->get_data('tbl_jenis_promosi')->result();
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -209,14 +213,30 @@ use PhpParser\Node\Expr\FuncCall;
             $deskripsi      = $this->input->post('deskripsi');
             $tanggal_dari   = $this->input->post('tanggal_dari');
             $tanggal_hingga = $this->input->post('tanggal_hingga');
-            $update_id      = $this->m_main->get_last_id('changelog') + 1;
+            $file           = $_FILES['file'];
             $table_last     = $this->m_main->get_last_id('list_promosi') + 1;
+            $update_id      = $this->m_main->get_last_id('changelog') + 1;
 
-            $where = array ('id' => $update_id);
-            $this->m_main->insert_data($where, 'changelog');
+            $change_log = array ('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
+
+            if($file == ''){
+                $file = '';
+            }else{
+                $config['upload_path']   = './assets/files/promosi';
+                $config['allowed_types'] = 'png|jpg|pdf';
+
+                $this->load->library('upload', $config);
+                if(!$this->upload->do_upload('file')){
+                    echo "upload gagal!"; die();
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
 
             $data = array(
                 'id'        => $table_last,
+                'nama'      => $nama,
                 'jenis'     => $jenis,
                 'deskripsi' => $deskripsi,
                 'tanggal_dari'      => $tanggal_dari,
@@ -224,10 +244,49 @@ use PhpParser\Node\Expr\FuncCall;
                 'file'              => $file,
                 'update_id'         => $update_id,
             );
-            $this->m_main->input_data($data, 'list_promosi');
-            redirect('Home/update_changelog/'.$update_id.'');
+            $this->m_main->insert_data($data, 'list_promosi');
+            redirect('Home/update_changelog/'.$update_id.'/'.$table_last.'/1/list_promosi/lain/promosi');
         }
         public function edit_promosi(){
+            $id             = $this->input->post('id');
+            $nama           = $this->input->post('nama');
+            $jenis          = $this->input->post('jenis');
+            $deskripsi      = $this->input->post('deskripsi');
+            $tanggal_dari   = $this->input->post('tanggal_dari');
+            $tanggal_hingga = $this->input->post('tanggal_hingga');
+            $file           = $_FILES['file'];
+            $file_old       = $this->input->post('file_old');
+            $update_id      = $this->m_main->get_last_id('changelog') + 1;
+
+            $change_log = array ('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
+
+            if($file == ''){
+                $file = $file_old;
+            }else{
+                $config['upload_path']   = './assets/files/promosi';
+                $config['allowed_types'] = 'png|jpg|pdf';
+
+                $this->load->library('upload', $config);
+                if(!$this->upload->do_upload('file')){
+                    $file = $file_old;
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'nama'      => $nama,
+                'jenis'     => $jenis,
+                'deskripsi' => $deskripsi,
+                'tanggal_dari'      => $tanggal_dari,
+                'tanggal_hingga'    => $tanggal_hingga,
+                'file'              => $file,
+                'update_id'         => $update_id,
+            );
+            $where = array('id' => $id);
+            $this->m_main->update_data($where, $data, 'list_promosi');
+            redirect('Home/update_changelog/'.$update_id.'/'.$table_last.'/2/list_promosi/lain/promosi');
 
         }
         public function hapus_promosi($id){
@@ -267,7 +326,7 @@ use PhpParser\Node\Expr\FuncCall;
                 'jenis' => $jenis,
             );
 
-            $this->m_main->input_data($data,'list_anggaran');
+            $this->m_main->insert_data($data,'list_anggaran');
             $this->session->set_flashdata('pesan', '<div class ="alert alert-success alert-dismissible fade in">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
             Data Berhasil Ditambahkan
@@ -323,7 +382,7 @@ use PhpParser\Node\Expr\FuncCall;
             $table_last      = $this->m_main->get_last_id('list_kerjasama') + 1;
 
             $change_log = array('id'=> $change_last);
-            $this->m_main->input_data($change_log, 'changelog');
+            $this->m_main->insert_data($change_log, 'changelog');
 
             $data = array(
                 'id'        => $table_last,
@@ -334,7 +393,7 @@ use PhpParser\Node\Expr\FuncCall;
                 'update_id'         => $change_last,
             );
 
-            $this->m_main->input_data($data, 'list_kerjasama');            
+            $this->m_main->insert_data($data, 'list_kerjasama');            
             redirect('Home/update_changelog/'.$change_last.'/'.$table_last.'/1/list_kerjasama/lain/kerjasama');
         }
 
@@ -355,7 +414,7 @@ use PhpParser\Node\Expr\FuncCall;
             $update_id      = $this->m_main->get_last_id('changelog') + 1;
 
             $change_log = array('id'=> $update_id);
-            $this->m_main->input_data($change_log, 'changelog');
+            $this->m_main->inserst_data($change_log, 'changelog');
 
             $data = array(
                 'instansi'  => $instansi,
@@ -370,10 +429,25 @@ use PhpParser\Node\Expr\FuncCall;
             redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_kerjasama/lain/kerjasama');
         }
         // Fungsi Komponen Penguat
-        public function penguat(){
+        public function komponen(){
+            $data['komponen'] = $this->m_main->get_data('list_komponen')->result();
+
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
+            $this->load->view('lain/v_komponen', $data);
             $this->load->view('diffdash/footer');
+        }
+        public function tambah_jenis_komponen(){
+
+        }
+        public function tambah_komponen(){
+
+        }
+        public function hapus_komponen($id){
+
+        }
+        public function edit_komponen(){
+            
         }
 
     }  
