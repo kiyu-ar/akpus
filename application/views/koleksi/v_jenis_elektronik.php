@@ -1,4 +1,4 @@
-
+<div style="margin-top: -30px">
 <button class="tablink elektronik" onclick="openPage('buku', this, 'steelblue')" id="defaultOpen">Buku</button>
 <button class="tablink elektronik" onclick="openPage('jurnal', this, 'steelblue')" >Jurnal</button>
 <button class="tablink elektronik" onclick="openPage('prosiding', this, 'steelblue')">Prosiding</button>
@@ -106,4 +106,7 @@
       </div>
     </div>
   </div>
+</div>
+
+
 </div>

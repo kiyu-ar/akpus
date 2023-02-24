@@ -1,8 +1,8 @@
 <div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: #E1EEDD;">
-            <li class="breadcrumb-item "><a href="#">Home</a></li>
-            <li class="breadcrumb-item "><a href="#">Informasi Lain</a></li>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Lain</a></li>
             <li class="breadcrumb-item active" aria-current="page">Data Kerja Sama</li>
         </ol>
     </nav>
@@ -58,7 +58,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">DATA SOP</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Tambah Kerja Sama</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -95,8 +95,7 @@
 
 <!-- Modal Edit Kerja sama -->
 <?php
-$i = 1;
-foreach ($kerjasama as $row) : $i++ ?>
+foreach ($kerjasama as $row) : ?>
 <div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -114,6 +113,14 @@ foreach ($kerjasama as $row) : $i++ ?>
                         <input type="text" name="nama_instansi" class="form-control" value="<?php echo $row->instansi?>">
                     </div>
                     <div class="form-group">
+                        <label>Jenis Kerja sama</label>
+                        <select name="jenis" class="form-control">
+                            <option>Pilih Jenis</option>
+                            <option value="0" <?php echo ($row->jenis == "0" ? "selected" : "");?>>Internal</option>
+                            <option value="1" <?php echo ($row->jenis == "1" ? "selected" : "");?>>Eksternal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Tanggal Mulai</label>
                         <input type="datetime" name="tanggal_mulai" class="form-control" value="<?php echo $row->tanggal_dari?>">
                     </div>
@@ -121,10 +128,10 @@ foreach ($kerjasama as $row) : $i++ ?>
                         <label>Tanggal Selesai</label>
                         <input type="datetime" name="tanggal_selesai" class="form-control" value="<?php echo $row->tanggal_hingga?>">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Deskripsi</label>
-                        <input type="text" name="deskripsi" class="form-control" value="<?php echo $row->deskripsi?>">
-                    </div>
+                        <input type="text" name="deskripsi" class="form-control" value="<?php //echo $row->deskripsi?>">
+                    </div> -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

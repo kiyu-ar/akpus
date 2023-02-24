@@ -314,7 +314,7 @@
 		toastr.options.closeButton = true;
 		toastr.options.positionClass = 'toast-bottom-right';
 		toastr.options.showDuration = 1000;
-		toastr['info']('Hello, welcome to DiffDash, a unique admin dashboard.');
+		toastr['info']('Selamat datang di Website Akpus');
 
 	});
 	</script>

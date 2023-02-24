@@ -1,8 +1,8 @@
 <div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: #E1EEDD;">
-            <li class="breadcrumb-item "><a href="#">Home</a></li>
-            <li class="breadcrumb-item "><a href="#">Informasi Pemustaka</a></li>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Pemustaka</a></li>
             <li class="breadcrumb-item active" aria-current="page">Data Akses E-Resources dan Virtual Visit</li>
         </ol>
     </nav>
@@ -77,14 +77,19 @@ foreach ($eresource as $row) : $i++ ?>
             </div>
             <div class="modal-body">
                 <form method="post" action="<?php echo base_url().'pemustaka/edit_eresource' ?>" enctype="multipart/form-data">
-                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+                    <input type="hidden" name="id" class="form-control" value="<?php echo $row->id?>">
+                    <input type="hidden" name="file_old" class=form-control value="<?php echo $row->file?>">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" name="nama" class="form-control" value="<?php echo $row->nama?>">
+                    </div>
                     <div class="form-group">
                         <label>Catatan</label>
                         <input type="text" name="catatan" class="form-control" value="<?php echo $row->catatan?>">
                     </div>
                     <div class="form-group">
                         <label>File</label>
-                        <input type="file" name="deskripsi" class="form-control" value="<?php echo $row->file?>">
+                        <input type="file" name="fileinput" class="form-control">
                     </div>
             </div>
             <div class="modal-footer">

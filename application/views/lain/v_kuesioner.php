@@ -1,8 +1,8 @@
 <div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: #E1EEDD;">
+        <ol class="breadcrumb">
             <li class="breadcrumb-item "><a href="#">Home</a></li>
-            <li class="breadcrumb-item "><a href="#">Lain</a></li>
+            <li class="breadcrumb-item "><a href="#">Informasi Lain</a></li>
             <li class="breadcrumb-item active" aria-current="page">Data Kuesioner</li>
         </ol>
     </nav>

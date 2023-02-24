@@ -15,7 +15,6 @@
 <h1 class="sr-only">Dashboard</h1>
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
-				<div class="dashboard-section">
 				<div class="section-heading clearfix">
 						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Statistik UPT Perpustakaan</h2>
 					</div>

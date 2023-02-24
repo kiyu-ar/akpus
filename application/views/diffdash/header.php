@@ -45,10 +45,10 @@
 				<!-- end logo -->
 				<div class="navbar-right">
 					<!-- search form -->
-					<form id="navbar-search" class="navbar-form search-form">
+					<!-- <form id="navbar-search" class="navbar-form search-form">
 						<input value="" class="form-control" placeholder="Search here..." type="text">
 						<button type="button" class="btn btn-default"><i class="fa fa-search"></i></button>
-					</form>
+					</form> -->
 					<!-- end search form -->
 					<!-- navbar menu -->
 					<div id="navbar-menu">

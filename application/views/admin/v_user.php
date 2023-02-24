@@ -1,8 +1,8 @@
 <div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: #E1EEDD;">
-            <li class="breadcrumb-item "><a href="<?=base_url()?>">Home</a></li>
-            <li class="breadcrumb-item active">Kelola User</li>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kelola User</li>
         </ol>
     </nav>
 <div>

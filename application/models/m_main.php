@@ -3,7 +3,7 @@
         public function get_data($table){
             return $this->db->get($table);
         }
-        public function input_data($data, $table){
+        public function insert_data($data, $table){
             $this->db->insert($table, $data);
         }
         public function delete_data($where, $table){
@@ -189,12 +189,13 @@
             count(CASE WHEN pendidikan_tertinggi = "SMA/Sederajat" THEN 1 END) as "SMA/Sederajat",
             count(*) as Total FROM list_pegawai')->result_array();
         }
-        public function get_psdm(){
-            return $this->db->query('SELECT * FROM list_psdm ORDER BY jenis')->result();
-        }
         public function search_psdm($keyword){
             $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
             return $this->db->query("SELECT * FROM list_psdm $where order by jenis")->result();
+        }
+        public function search_psdm_kepala($keyword){
+            $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
+            return $this->db->query("SELECT * FROM list_psdm_kepala $where order by jenis")->result();
         }
 //---Informasi Lain---
         public function get_sarpras(){
@@ -209,10 +210,6 @@
             $sql = $this->db->get('list_kerjasama');
             return $sql;
         }
-        public function update_anggaran($where, $data, $tabel){
-            $this->db->where($where);
-            $this->db->update($tabel, $data);
-        }
         public function cek_file_kuesioner($id){
             $query = $this->db->get_where('list_kuesioner', ['id' => $id]);
             return $query->row();
@@ -221,6 +218,12 @@
 			$query = $this->db->get_where('list_kuesioner',['id'=>$id]);
 			return $query->row_array();
 		}
+        public function get_promosi(){
+            $query = $this->db->query('SELECT *, tbl.nama_jenis
+            FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id 
+            ORDER BY l.tanggal_dari DESC');
+            return $query->result();
+        }
 //---Informasi SOP---
         public function get_sop(){
             return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();

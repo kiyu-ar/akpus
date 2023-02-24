@@ -1,25 +1,14 @@
 <div>
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb" style="background-color: #E1EEDD;">
-            <li class="breadcrumb-item "><a href="#">Home</a></li>
-            <li class="breadcrumb-item "><a href="#">Informasi Lain</a></li>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Informasi Lain</a></li>
             <li class="breadcrumb-item active" aria-current="page">Data Research Tools</li>
         </ol>
     </nav>
 
     <div>
-        <?php $no = 1; ?>
-        Media Promosi
         <table class="table table-hover">
-            <!-- <tr>
-                <th>No</th>
-                <th>Nama</th>
-                <th>Deskripsi</th>
-                <th>Tautan</th>
-                <?php //if($this->session->userdata('status')=='login'){ ?>
-                    <th>Aksi</th>
-                <?php //} ?>
-            </tr> -->
             <tr><td><h4>1. Turnitin<h4></td></tr>
             <tr>
                 <td width="30%"><img width="100%" src="<?php echo base_url().'assets/files/static/tools_turnitin.png'?>"></td>
