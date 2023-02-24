@@ -127,7 +127,7 @@
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pustakawan/v_pstatistik', $data);
-            $this->load->view('diffdash/footer');
+            $this->load->view('diffdash/footer', $data);
         }
         public function tambah_psdm(){
             $id         = $this->input->post('id');
