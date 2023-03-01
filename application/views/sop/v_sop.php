@@ -7,11 +7,13 @@
         </ol>
     </nav>
 <div>
-<?php $kolom=0; ?>
+<?php $kolom=0;
+if($this->session->userdata('status')=="login"){ ?>
 <div style="float:left;">
   <button class="btn btn-primary" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahsop"><i class="fa fa-plus"></i>Tambah SOP</button>
   <button class="btn btn-success" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahdivisi"><i class="fa fa-plus"></i>Tambah Divisi</button>
 </div>
+<?php } ?>
 <div style="float:right;">
   <form action="" method="GET" style="flex-direction: row; width:360px">
       <div class="form-group">
@@ -20,7 +22,7 @@
       </div>
   </form>
 </div>
-<div style="clear:both;">
+<div >
     <?php foreach ($sop as $row) : ?>
       <?php 
         if($kolom != $row->id_divisi){ 
@@ -31,17 +33,20 @@
             <th style="width:5%">NO</th>
             <th style="width:30%">Nama SOP</th>
             <th style="">Deskripsi</th>
-            <th colspan=3 style="width:115px">AKSI</th>
+            <?php if($this->session->userdata('status')=="login"){ ?>
+              <th colspan=3 style="width:115px">AKSI</th>
+            <?php } ?>
         </tr>
       <?php $kolom = $row->id_divisi; }?>
       <tr>
           <td><?php echo $row->nomor?></td>
           <td><?php echo $row->nama_sop?></td>
           <td><?php echo $row->deskripsi?></td>
-          <!-- <td class="btnsq del_msg"><?php //echo anchor('sop/hapus_sop/'.$row->id,'<div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus User"><i class="fa fa-trash"></i></div>') ?></td> -->
-          <td class="btnsq tombol-hapus" href="<?php echo base_url('sop/hapus_sop/'.$row->id); ?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus SOP"><i class="fa fa-trash"></i></div></td>
-          <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit User"><i class="fa fa-edit"></i></button></td>
-          <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
+          <?php if($this->session->userdata('status')=="login"){ ?>
+            <td class="btnsq tombol-hapus" href="<?php echo base_url('sop/hapus_sop/'.$row->id); ?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus SOP"><i class="fa fa-trash"></i></div></td>
+            <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit User"><i class="fa fa-edit"></i></button></td>
+            <td class="btnsq"><button class="btn btn-success btn-xm" data-toggle="modal" data-target="#file<?php echo $row->id ?>"><i class="fa fa-eye"></i></button></td>
+          <?php } ?>
       </tr>
     <?php endforeach;?>
       </table>
@@ -96,7 +101,7 @@
             <select name="id_divisi" class="form-control">
                 <option>Pilih Jenis</option>
                 <?php foreach($divisi as $row_div): ?>
-                <option value="<?php echo $row_div->id?>"><?php echo $row_div->divisi ?></option>
+                <option value="<?=$row_div->id?>"><?php echo $row_div->divisi ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -153,6 +158,23 @@ foreach ($sop as $row) : ?>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Lihat Detail File SOP -->
+<div class="modal fade" id="file<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>Dokumentasi Kunjungan</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="<?php echo base_url('/assets/files/sop/' . $row->file)?>" width="100%" height="500px"></iframe>
+            </div>
         </div>
     </div>
 </div>

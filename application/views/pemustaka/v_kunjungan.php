@@ -117,8 +117,7 @@
 <?php } ?>
 <!-- Modal Edit Kunjungan -->
 <?php
-$i = 1;
-foreach ($kunjungan as $row) : $i++; 
+foreach ($kunjungan as $row) :
 if($this->session->userdata('status')=='login'){?>
 <div class="modal fade" id="edit<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

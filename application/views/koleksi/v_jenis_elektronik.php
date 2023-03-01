@@ -9,7 +9,7 @@
     <?php if(($this->session->userdata('status')=='login')){ ?>
       <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahebook" data-toggle="tooltip" data-placement="top" title="Tambah Data Koran"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
+    <p></p>
     <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ebook" frameborder="0"></iframe>
 </div>
 
@@ -18,7 +18,7 @@
     <?php if(($this->session->userdata('status')=='login')){ ?>
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahejournal" data-toggle="tooltip" data-placement="top" title="Tambah Data E-jurnal"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum, nam ratione accusamus veritatis assumenda ipsa tempora accusantium aliquid quasi in delectus nisi inventore libero eaque dolorum omnis asperiores modi aut.</p>
+    <p></p>
     <iframe class="hframe" src="<?php echo base_url() ?>koleksi/ejournal" frameborder="0"></iframe>
 </div>
 

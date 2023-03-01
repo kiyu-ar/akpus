@@ -1,10 +1,10 @@
 <div>
-    <?php //if ($this->session->userdata('status')== "login") {?>
+    <?php if ($this->session->userdata('status')== "login") {?>
     <div style="float:left;">
         <button class="btn btn-primary" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahpustakawan"><i class="fa fa-plus"></i>Tambah Pustakawan</button>
         <button class="btn btn-success" style="margin-bottom : 10px" data-toggle="modal" data-target="#tambahnonpustakawan"><i class="fa fa-plus"></i>Tambah Non-pustakawan</button>
     </div>
-    <?php //} ?>
+    <?php } ?>
     <table class="table">
         <tr>
             <th>No</th>

@@ -13,7 +13,7 @@
         <div class="div-card">
     <?php foreach ($sarpras as $row):?>
             <div class="row line">
-                <div class="col-md-4" style="margin-bottom: 30px">
+                <div class="col-md-4" style="margin-bottom: 20px">
                     <label><?php echo $row->nama ?></label>
                     <input type="text" size="7" value="<?php echo $row->jumlah ?>">
                 </div>

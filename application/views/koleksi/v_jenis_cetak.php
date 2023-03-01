@@ -51,11 +51,11 @@
 </div>
 
 <div id="jurnal" class="tabcontent">
-    <?php if(($this->session->userdata('status')=='login')){ ?>
-    <div style="float:right"><a href="<?= base_url('tambah_jurnal')?>"><button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Edit Data Jurnal">Edit Data</button></a></div>
-    <?php } ?>
-    <h3>Jurnal</h3>
-    <p>Buku</p>
+    <h3>Artikel Jurnal</h3>
+    <p>Data referensi dapat diakses melalui website UNSLA pada 
+        <a class="btn btn-custom" href="https://unsla.uns.ac.id/neounsla/index.php?title=&author=&subject=&location=0&colltype=Artikel&gmd=0&year-from=&year-until=&searchtype=advance&search=search" target="_blank">Artikel Jurnal UNSLA</a>
+    </p>
+    <img class="static" src="<?php echo base_url().'assets/files/static/cet_jurnal.png' ?>" alt="">
 </div>
 
 <div id="koran" class="tabcontent">

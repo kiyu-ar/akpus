@@ -8,12 +8,17 @@
 <div>
   <div>
     <h4>Request Koleksi dari Web, Formulir, atau Wawancara</h4>
-    <p>Pengunjung dapat melakukan request koleksi dengan mengimportkan file dalam bentuk excel, sebelumnya pengunjung diwajibkan untuk mendownload template format excel yang tersedia di bawah, lalu kemudian pengunjung dapat menguploadnya di bagian import file</p>
+    <?php if($this->session->userdata('status')=="login"){?>
+      <p>importkan file dalam bentuk excel, sebelumnya diwajibkan untuk mendownload template format excel yang tersedia di bawah, kemudian dapat menguploadnya di bagian import file</p>
+      <a class="btn btn-success" href="<?php echo base_url('excel/download_template'); ?>" target="_blank">Download Format Excel</a>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Import File</button>
+    <?php }else{ ?>
+      <p>Pengunjung dapat mengusulkan buku dengan mengisi google form pada website uns library</p>
+      <a class="btn btn-primary" href="https://library.uns.ac.id/request-a-book/" target="_blank">Request a Book</a>
+    <?php } ?>
+    
   </div>
-  <a class="btn btn-success" href="<?php echo base_url('excel/download_template'); ?>" target="_blank">Download Format Excel</a>
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Import File
-  </button>
+  
   <br>
   <?php
   if ($this->session->flashdata('message')) {

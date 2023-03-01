@@ -14,13 +14,15 @@
       </div>
   </form>
 </div>
+<?php if($this->session->userdata('status')=="login"){ ?>
 <div style="float: left;">
   <button class="btn btn-primary" style="margin-bottom: 10px;" data-toggle="modal" data-target="#tambahpsdm"><i class="fa fa-plus"></i>Tambah PSDM</button>
   <button class="btn btn-success" style="margin-bottom: 10px;" data-toggle="modal" data-target="#tambahpsdmkepala"><i class="fa fa-plus"></i>Tambah PSDM Kepala</button>
 </div>
-
 <h4 style="clear:both;">Kepala Perpustakaan</h4>
-<?php $a="0"; $nomor = 0;?>
+<?php }else{ ?>
+<h4>Kepala Perpustakaan</h4>
+<?php } $a="0"; $nomor = 0;?>
 <div>
 <?php if(empty($psdm_kepala)){echo "<p style='color: red;'>Data Pengembangan SDM Kepala Perpustakaan Kosong</p>";} ?>
 <?php foreach ($psdm_kepala as $row) : 
@@ -33,17 +35,21 @@
             <th style="width:30%">Nama</th>
             <th style="">Peserta</th>
             <th style="width:20%">Tanggal</th>
-            <th colspan=3 style="width:115px">AKSI</th>
+            <?php if($this->session->userdata('status')=="login"){ ?>
+                <th colspan=3 style="width:115px">AKSI</th>
+            <?php } ?>
         </tr>
         <?php  }?>
       <tr>
-          <td><?php echo $nomor++?></td>
-          <td><?php echo $row->nama?></td>
-          <td><?php echo $row->peserta?></td>
-          <td><?php echo $row->tanggal_dari." - ".$row->tanggal_hingga ?></td>
-          <td class="btnsq tombol-hapus" href="<?php echo base_url('pustakawan/hapus_psdm/1/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus PSDM Kepala"><i class="fa fa-trash"></i></div></td>
-          <td class="btnsq"><div class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit_kepala<?php echo $row->id ?>" title="Edit PSDM Kepala"><i class="fa fa-edit"></i></div></td>
-          <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
+            <td><?php echo $nomor++?></td>
+            <td><?php echo $row->nama?></td>
+            <td><?php echo $row->peserta?></td>
+            <td><?php echo $row->tanggal_dari." - ".$row->tanggal_hingga ?></td>
+            <?php if($this->session->userdata('status')=="login"){ ?>
+                <td class="btnsq tombol-hapus" href="<?php echo base_url('pustakawan/hapus_psdm/1/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus PSDM Kepala"><i class="fa fa-trash"></i></div></td>
+                <td class="btnsq"><div class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit_kepala<?php echo $row->id ?>" title="Edit PSDM Kepala"><i class="fa fa-edit"></i></div></td>
+                <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
+            <?php } ?>
       </tr>    
     <?php endforeach;?>
     </table>
@@ -63,17 +69,21 @@
             <th style="width:30%">Nama</th>
             <th style="">Peserta</th>
             <th style="width:20%">Tanggal</th>
-            <th colspan=3 style="width:115px">AKSI</th>
+            <?php if($this->session->userdata('status')=="login"){ ?>
+                <th colspan=3 style="width:115px">AKSI</th>
+            <?php } ?>
         </tr>
         <?php  }?>
       <tr>
-          <td><?php echo $nomor++?></td>
-          <td><?php echo $row->nama?></td>
-          <td><?php echo $row->peserta?></td>
-          <td><?php echo $row->tanggal_dari." - ".$row->tanggal_hingga ?></td>
-          <td class="btnsq tombol-hapus" href="<?php echo base_url('pustakawan/hapus_psdm/2/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus PSDM"><i class="fa fa-trash"></i></div></td>
-          <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit PSDM"><i class="fa fa-edit"></i></button></td>
-          <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
+            <td><?php echo $nomor++?></td>
+            <td><?php echo $row->nama?></td>
+            <td><?php echo $row->peserta?></td>
+            <td><?php echo $row->tanggal_dari." - ".$row->tanggal_hingga ?></td>
+            <?php if($this->session->userdata('status')=="login"){ ?>
+                <td class="btnsq tombol-hapus" href="<?php echo base_url('pustakawan/hapus_psdm/2/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus PSDM"><i class="fa fa-trash"></i></div></td>
+                <td class="btnsq"><button class="btn btn-primary btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit PSDM"><i class="fa fa-edit"></i></button></td>
+                <td class="btnsq" title="Lihat file"><button type="button" class="btn btn-success btn-xm openfile" value="<?=$row->file?>" data-toggle="modal" data-target="#openFile"><i class="fa fa-eye"></i></button></td>
+            <?php } ?>
       </tr>    
     <?php endforeach;?>
         </table>

@@ -220,8 +220,13 @@
 		}
         public function get_promosi(){
             $query = $this->db->query('SELECT *, tbl.nama_jenis
-            FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id 
-            ORDER BY l.tanggal_dari DESC');
+                FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id 
+                ORDER BY l.tanggal_dari DESC');
+            return $query->result();
+        }
+        public function get_komponen(){
+            $query = $this->db->query('SELECT *, tbl.komponen 
+                FROM list_komponen as l LEFT JOIN tbl_jenis_komponen as tbl ON l.jenis = tbl.id');
             return $query->result();
         }
 //---Informasi SOP---

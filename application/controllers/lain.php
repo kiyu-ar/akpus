@@ -430,7 +430,8 @@ use PhpParser\Node\Expr\FuncCall;
         }
         // Fungsi Komponen Penguat
         public function komponen(){
-            $data['komponen'] = $this->m_main->get_data('list_komponen')->result();
+            $data['komponen'] = $this->m_main->get_komponen();
+            $data['jenis_komponen'] = $this->m_main->get_data('tbl_jenis_komponen')->result();
 
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -438,16 +439,67 @@ use PhpParser\Node\Expr\FuncCall;
             $this->load->view('diffdash/footer');
         }
         public function tambah_jenis_komponen(){
+            $nama       = $this->input->post('komponen');
+            $table_last = $this->m_main->get_last_id('tbl_jenis_komponen') + 1;
+            $update_id  = $this->m_main->get_last_id('changelog') + 1;
 
+            $change_log    = array('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
+
+            $data = array(
+                'id'        => $table_last,
+                'komponen'  => $nama,
+                'update_id' => $update_id,
+            );
+            $this->m_main->insert_data($data, 'tbl_jenis_komponen');
+            redirect('Home/update_data/'.$update_id.'/'.$table_last.'/1/tbl_jenis_komponen/lain/komponen');
         }
         public function tambah_komponen(){
+            $nama       = $this->input->post('nama');
+            $jenis      = $this->input->post('jenis'); 
+            $deskripsi  = $this->input->post('deskripsi');
+            $file       = $_FILES['file'];
+            $table_last = $this->m_main->get_last_id('list_komponen') + 1;
+            $update_id  = $this->m_main->get_last_id('changelog') + 1 ;
 
+            $change_log = array('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
+
+            if($file == ""){
+                $file="";
+            }else{
+                $config['upload_path'] = './assets/files/komponen';
+                $config['allowed_types'] = 'jpg|jpeg|pdf';
+
+                $this->load->library('upload', $config);
+                if(!$this->upload->do_upload('file')){
+                    $error = $this->upload->display_errors();
+                    echo $error; die();
+                }else{
+                    $file = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'id'        => $table_last,
+                'nama'      => $nama,
+                'jenis'     => $jenis,
+                'deskripsi' => $deskripsi,
+                'file'      => $file,
+                'update_id' => $update_id,
+            );
+
+            $this->m_main->insert_data($data, 'list_komponen');
+            redirect('Home/update_changelog/'.$update_id.'/'.$table_last.'/1/list_komponen/lain/komponen');
         }
         public function hapus_komponen($id){
-
+            $update_id  = $this->m_main->get_last_id('changelog') + 1;
+            $where = array('id' => $id);
+            $this->m_main->delete_data($where,'list_komponen');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_komponen/lain/komponen');
         }
         public function edit_komponen(){
-            
+
         }
 
     }  
