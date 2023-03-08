@@ -126,7 +126,7 @@
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
             $this->load->view('pustakawan/v_pstatistik', $data);
-            $this->load->view('diffdash/footer', $data);
+            $this->load->view('diffdash/footer');
         }
         public function sdm(){
             $data['keyword'] = $this->input->get('keyword');

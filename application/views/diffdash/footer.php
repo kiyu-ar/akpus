@@ -1,33 +1,34 @@
 </div>
-		</div>
-		<!-- END MAIN CONTENT -->
+</div>
+<!-- END MAIN CONTENT -->
 
 <div class="clearfix"></div>
 <footer>
-			<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
-		</footer>
-	</div>
-	<!-- END WRAPPER -->
-	<!-- Javascript -->
-	<script src="<?php
+	<p class="copyright">&copy; 2017 <a href="https://www.themeineed.com" target="_blank">Theme I Need</a>. All Rights Reserved.</p>
+</footer>
+</div>
+<!-- END WRAPPER -->
+<!-- Javascript -->
+<script src="<?php
 
-	use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\Value;
 
- 	echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/metisMenu/metisMenu.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/select2-4.0.13/js/select2.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/sweetalert2-11.7.1/js/sweetalert2.min.js"></script>
-	<script src="<?php echo base_url() ?>assets/vendor/toastr/toastr.js"></script>
-	<script src="<?php echo base_url() ?>assets/scripts/common.js"></script>
-	<!-- CHART JS -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-	<!-- CHART MORRIS -->
-	<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/metisMenu/metisMenu.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/select2-4.0.13/js/select2.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/sweetalert2-11.7.1/js/sweetalert2.min.js"></script>
+<script src="<?php echo base_url() ?>assets/vendor/toastr/toastr.js"></script>
+<script src="<?php echo base_url() ?>assets/scripts/common.js"></script>
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+<!-- CHART JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<!-- CHART MORRIS -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
-	<script>
-		$('.swal_delete').click(function(){
+<script>
+	$('.swal_delete').click(function() {
 		var href = $(this).attr("href");
 		var id = $(this).attr("id");
 		console.log(id);
@@ -36,43 +37,49 @@
 			title: 'Anda yakin akan menghapus?',
 			showCancelButton: true,
 			confirmButtonText: 'Hapus',
-			}).then((result) => {
+		}).then((result) => {
 			/* Read more about isConfirmed, isDenied below */
 			if (result.isConfirmed) {
 				$.ajax({
-				url: href+id,
-				type: 'POST',
-				data : {id: id},
-				success: function(data) {
-					Swal.fire('Berhasil Menghapus Data','','success').then(function(){location.reload();});
-				}
-			});
+					url: href + id,
+					type: 'POST',
+					data: {
+						id: id
+					},
+					success: function(data) {
+						Swal.fire('Berhasil Menghapus Data', '', 'success').then(function() {
+							location.reload();
+						});
+					}
+				});
 			}
-			});
+		});
 	});
-	try{
+	try {
 		var iframe = document.getElementsByClassName("jframe");
-		iframe[0].onload = function(){
+		iframe[0].onload = function() {
 			iframe[0].style.height = iframe[0].contentWindow.document.body.scrollHeight + 'px';
 		}
-		iframe[1].onload = function(){
+		iframe[1].onload = function() {
 			iframe[1].style.height = iframe[1].contentWindow.document.body.scrollHeight + 'px';
 		}
-	}
-	catch(e){}
-	function loadprodi(){
-		$("#id_fakultas").change(function(){
+	} catch (e) {}
+
+	function loadprodi() {
+		$("#id_fakultas").change(function() {
 			var getfakultas = $(this).val();
 			$.ajax({
-				method : "POST",
-				dataType : "JSON",
-				url : "<?= base_url(); ?>pemustaka/getdataprodi",
-				data : {dfakultas : getfakultas},
-				success : function(data){
+				method: "POST",
+				dataType: "JSON",
+				url: "<?= base_url(); ?>pemustaka/getdataprodi",
+				data: {
+					dfakultas: getfakultas
+				},
+				success: function(data) {
 					console.log(data);
 					$("#id_prodi").find('option').not(':first').remove();
-					$.each(data,function(index,data){
-						$("#id_prodi").append('<option value="'+data['id_prodi']+'">'+data['prodi']+'</option>');
+					$.each(data, function(index, data) {
+						$("#id_prodi").append('<option value="' + data['id_prodi'] + '">' + data['prodi'] + '</option>');
 						$("#id_prodi").removeAttr('disabled');
 					});
 				}
@@ -80,34 +87,38 @@
 		});
 	}
 
-	function sendprodi(){
-		$("#submit-mandiri").click(function(){
+	function sendprodi() {
+		$("#submit-mandiri").click(function() {
 			var getprodi = $("#id_prodi").val();
 			$.ajax({
-				method : "POST",
-				dataType : "JSON",
-				url : "<?= base_url(); ?>pemustaka/getkodeprodi",
-				data : {dprodi : getprodi},
-				success : function(data){
+				method: "POST",
+				dataType: "JSON",
+				url: "<?= base_url(); ?>pemustaka/getkodeprodi",
+				data: {
+					dprodi: getprodi
+				},
+				success: function(data) {
 					console.log(data);
 					$("#iframe-mandiri").removeAttr('src');
-					$("#iframe-mandiri").attr('src', "<?php echo base_url() ?>pemustaka/mandiri_prodi/"+data);
-					$("#export-mandiri-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_mandiri/"+data);
+					$("#iframe-mandiri").attr('src', "<?php echo base_url() ?>pemustaka/mandiri_prodi/" + data);
+					$("#export-mandiri-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_mandiri/" + data);
 				}
 			});
 		});
-		$("#submit-sirkulasi").click(function(){
+		$("#submit-sirkulasi").click(function() {
 			var getprodi = $("#id_prodi").val();
 			$.ajax({
-				method : "POST",
-				dataType : "JSON",
-				url : "<?= base_url(); ?>pemustaka/getkodeprodi",
-				data : {dprodi : getprodi},
-				success : function(data){
+				method: "POST",
+				dataType: "JSON",
+				url: "<?= base_url(); ?>pemustaka/getkodeprodi",
+				data: {
+					dprodi: getprodi
+				},
+				success: function(data) {
 					console.log(data);
 					$("#iframe-sirkulasi").removeAttr('src');
-					$("#iframe-sirkulasi").attr('src', "<?php echo base_url() ?>pemustaka/sirkulasi_prodi/"+data);
-					$("#export-sirkulasi-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_sirkulasi/"+data);
+					$("#iframe-sirkulasi").attr('src', "<?php echo base_url() ?>pemustaka/sirkulasi_prodi/" + data);
+					$("#export-sirkulasi-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_sirkulasi/" + data);
 				}
 			});
 		});
@@ -124,7 +135,7 @@
 		loadprodi();
 		sendprodi();
 		var pathname = window.location.pathname;
-		var segments = pathname.split( '/' );
+		var segments = pathname.split('/');
 		var action = segments[2];
 		var classis = segments[3];
 		var extend = segments[4];
@@ -132,41 +143,41 @@
 		console.log(action);
 		console.log(classis);
 
-	// ---script untuk navbar---
-		if(action!="" & classis!=""){
+		// ---script untuk navbar---
+		if (action != "" & classis != "") {
 			//$("li").removeClass("active");
-			if(action != "index.php"){
-				$("ul#"+action).attr("aria-expanded","true");
-				$("ul#"+action).addClass("collapse in");
-				$("ul#"+action).parents("li").addClass("active");
+			if (action != "index.php") {
+				$("ul#" + action).attr("aria-expanded", "true");
+				$("ul#" + action).addClass("collapse in");
+				$("ul#" + action).parents("li").addClass("active");
 				//$("ul#"+action).children("#"+classis).addClass("active");
-				$("ul#"+action).children("#"+classis).attr("style","background:#F1F2F1");
-				document.querySelector('#'+action).scrollIntoView();
-			}else{
-				$("ul#"+classis).attr("aria-expanded","true");
-				$("ul#"+classis).addClass("collapse in");
-				$("ul#"+classis).parents("li").addClass("active");
-				$("ul#"+classis).children("#"+extend).attr("style","background:#F1F2F1");
-				document.querySelector('#'+classis).scrollIntoView();
+				$("ul#" + action).children("#" + classis).attr("style", "background:#F1F2F1");
+				document.querySelector('#' + action).scrollIntoView();
+			} else {
+				$("ul#" + classis).attr("aria-expanded", "true");
+				$("ul#" + classis).addClass("collapse in");
+				$("ul#" + classis).parents("li").addClass("active");
+				$("ul#" + classis).children("#" + extend).attr("style", "background:#F1F2F1");
+				document.querySelector('#' + classis).scrollIntoView();
 			}
-		}else{
+		} else {
 			$("li#home").addClass("active");
 		}
 
-		if(action=="user" || classis=="user"){
+		if (action == "user" || classis == "user") {
 			$("li#user").addClass("active");
-		}else if(classis=="home"){
+		} else if (classis == "home") {
 			$("li#home").addClass("active");
 		}
 
-	//---script open file---
+		//---script open file---
 		$('.openfile').click(function() {
 			let myIframe = document.getElementById("myIframe");
-			var BASE_URL = "<?php echo base_url('assets/files/');?>";
-			urlFile = BASE_URL+$(this).attr("value")+"#view=fitH";
+			var BASE_URL = "<?php echo base_url('assets/files/'); ?>";
+			urlFile = BASE_URL + $(this).attr("value") + "#view=fitH";
 			//alert(urlFile);
 			myIframe.src = urlFile;
-        });
+		});
 
 		// notification popup
 		// toastr.options.closeButton = true;
@@ -176,7 +187,7 @@
 	});
 
 	// Fungsi SWAL hapus data
-	$('.tombol-hapus').on('click', function (e){
+	$('.tombol-hapus').on('click', function(e) {
 		e.preventDefault();
 		const href = $(this).attr('href')
 
@@ -191,34 +202,36 @@
 		}).then((result) => {
 			if (result.isConfirmed) {
 				Swal.fire({
-				title: 'Data Berhasil Dihapus',
-				icon:'success',
-				timer :2000,
-				showConfirmButton: false,
-				}).then(function(){document.location.href = href;})
+					title: 'Data Berhasil Dihapus',
+					icon: 'success',
+					timer: 2000,
+					showConfirmButton: false,
+				}).then(function() {
+					document.location.href = href;
+				})
 			}
-		})		
+		})
 	});
 
 	function openPage(pageName, elmnt, color) {
-	// Hide all elements with class="tabcontent" by default */
-	var i, tabcontent, tablinks;
-	tabcontent = document.getElementsByClassName("tabcontent");
-	for (i = 0; i < tabcontent.length; i++) {
-		tabcontent[i].style.display = "none";
-	}
+		// Hide all elements with class="tabcontent" by default */
+		var i, tabcontent, tablinks;
+		tabcontent = document.getElementsByClassName("tabcontent");
+		for (i = 0; i < tabcontent.length; i++) {
+			tabcontent[i].style.display = "none";
+		}
 
-	// Remove the background color of all tablinks/buttons
-	tablinks = document.getElementsByClassName("tablink");
-	for (i = 0; i < tablinks.length; i++) {
-		tablinks[i].style.backgroundColor = "";
-	}
+		// Remove the background color of all tablinks/buttons
+		tablinks = document.getElementsByClassName("tablink");
+		for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].style.backgroundColor = "";
+		}
 
-	// Show the specific tab content
-	document.getElementById(pageName).style.display = "block";
+		// Show the specific tab content
+		document.getElementById(pageName).style.display = "block";
 
-	// Add the specific color to the button used to open the tab content
-	elmnt.style.backgroundColor = color;
+		// Add the specific color to the button used to open the tab content
+		elmnt.style.backgroundColor = color;
 	}
 
 	// Get the element with id="defaultOpen" and click on it
@@ -229,35 +242,35 @@
 	var data = {
 		labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
 		datasets: [{
-		label: 'apples',
-		data: [12, 19, 3, 17, 6, 3, 7],
-		backgroundColor: "rgba(153,255,51,0.4)"
+			label: 'apples',
+			data: [12, 19, 3, 17, 6, 3, 7],
+			backgroundColor: "rgba(153,255,51,0.4)"
 		}, {
-		label: 'oranges',
-		data: [2, 29, 5, 5, 2, 3, 10],
-		backgroundColor: "rgba(255,153,0,0.4)"
+			label: 'oranges',
+			data: [2, 29, 5, 5, 2, 3, 10],
+			backgroundColor: "rgba(255,153,0,0.4)"
 		}]
 	};
 	var option = {
 		scales: {
-		yAxes:[{
-				stacked:true,
-			gridLines: {
-				display:true,
-			color:"rgba(255,99,132,0.2)"
-			}
-		}],
-		xAxes:[{
+			yAxes: [{
+				stacked: true,
 				gridLines: {
-				display:true
-			}
-		}]
-	}
+					display: true,
+					color: "rgba(255,99,132,0.2)"
+				}
+			}],
+			xAxes: [{
+				gridLines: {
+					display: true
+				}
+			}]
+		}
 	};
 
-	var myBarChart = Chart.Line(canvas,{
-		data:data,
-	options:option
+	var myBarChart = Chart.Line(canvas, {
+		data: data,
+		options: option
 	});
 
 	// var ctx = document.getElementById('myChart').getContext('2d');
@@ -286,25 +299,6 @@
 	// 		}
 	// 	});
 
-	// const ctx = document.getElementById('pop');
-	// new Chart(ctx, {
-	// 	type: 'bar',
-	// 	data: {
-	// 	labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-	// 	datasets: [{
-	// 		label: '# of Votes',
-	// 		data: [12, 19, 3, 5, 2, 3],
-	// 		borderWidth: 1
-	// 	}]
-	// 	},
-	// 	options: {
-	// 	scales: {
-	// 		y: {
-	// 		beginAtZero: true
-	// 		}
-	// 	}
-	// 	}
-	// });
 	// Morris JS
 	// new Morris.Bar({
 	//           element: 'graph',
@@ -313,7 +307,32 @@
 	//           ykeys: ['value'],
 	//           labels: ['value']
 	//         });
-	</script>
-	</body>
+
+	var data = {
+		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+		series: [
+			[5, 4, 3, 7, 5, 10, 3, 4, 8, 10, 6, 8],
+			[3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4]
+		]
+	};
+
+	var options = {
+		seriesBarDistance: 10
+	};
+
+	var responsiveOptions = [
+		['screen and (max-width: 640px)', {
+			seriesBarDistance: 5,
+			axisX: {
+				labelInterpolationFnc: function(value) {
+					return value[0];
+				}
+			}
+		}]
+	];
+
+	new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
+</script>
+</body>
 
 </html>

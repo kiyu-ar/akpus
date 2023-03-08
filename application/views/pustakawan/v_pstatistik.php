@@ -20,11 +20,8 @@
             </tr>
         </table>
     <hr>
-    <div class="container">
-        <div>
-            <canvas id="myChart" width="600" height="400">
-            </canvas>
-        </div>
+    <div class="ct-chart ct-perfect-fourth">
+        <!-- <canvas id="ct-chart" width="600" height="400"></canvas> -->
     </div>
     <div class="row" style="margin:10px">
         <h5 class="custom">Jumlah pustakawan menurut jabatan fungsional, kepangkatan, dan pendidikan 

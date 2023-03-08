@@ -207,6 +207,22 @@ use PhpParser\Node\Expr\FuncCall;
             $this->load->view('lain/v_promosi', $data);
             $this->load->view('diffdash/footer');
         }
+        public function tambah_jenis_promosi(){
+            $nama       = $this->input->post('jenis_promosi');
+            $table_last = $this->m_main->get_last_id('tbl_jenis_promosi') + 1;
+            $update_id  = $this->m_main->get_last_id('changelog') + 1;
+
+            $change_log    = array('id' => $update_id);
+            $this->m_main->insert_data($change_log, 'changelog');
+
+            $data = array(
+                'id'        => $table_last,
+                'nama_jenis'  => $nama,
+                'update_id' => $update_id,
+            );
+            $this->m_main->insert_data($data, 'tbl_jenis_promosi');
+            redirect('Home/update_changelog/'.$update_id.'/'.$table_last.'/1/tbl_jenis_promosi/lain/promosi');
+        }
         public function tambah_promosi(){
             $nama           = $this->input->post('nama');
             $jenis          = $this->input->post('jenis');
