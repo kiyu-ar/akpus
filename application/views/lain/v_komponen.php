@@ -35,7 +35,7 @@
                 <?php if($this->session->userdata('status')=="login"){ ?>
                     <td class="btnsq tombol-hapus" href="<?php echo base_url('lain/hapus_komponen/'.$row->id)?>"><button class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Komponen"><i class="fa fa-trash"></i></button></td>
                     <td class="btnsq"><button class="btn btn-warning btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Komponen"><i class="fa fa-edit"></i></button></td>
-                    <td class="btnsq"><button class="btn btn-success btn-xm" data-toggle="tooltip" data-placement="top" title="Lihat File"><i class="fa fa-eye"></i></button></td>
+                    <td class="btnsq"><button class="btn btn-success btn-xm" data-toggle="modal" data-target="#komponen<?php echo $row->id?>" title="Lihat File"><i class="fa fa-eye"></i></button></td>
                 <?php } ?>
             </tr>
         <?php endforeach; ?>
@@ -119,8 +119,8 @@
       </div>
       <div class="modal-body">
       <form method="post" action="<?php echo base_url().'lain/tambah_komponen'?>" enctype="multipart/form-data">
-      <input type="text" name="id" class="form-control" value="<?php echo $row->id ?>">
-      <input type="text" name="file_old" class="form-control" value="<?php echo $row->file?>">
+      <input type="hidden" name="id" class="form-control" value="<?php echo $row->id ?>">
+      <input type="hidden" name="file_old" class="form-control" value="<?php echo $row->file?>">
         <div class="form-group">
             <label>Nama Komponen Pendukung</label>
             <input type="text" name="nama" class="form-control" value="<?php echo $row->nama ?>">
@@ -148,6 +148,22 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Modal Lihat Detail File Komponen -->
+<div class="modal fade" id="komponen<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>File Promosi</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="<?php echo base_url('/assets/files/komponen/' . $row->file)?>" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </div>
 </div>
 <?php endforeach; } ?>
 </div>
