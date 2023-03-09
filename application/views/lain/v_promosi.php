@@ -35,7 +35,7 @@
                     <?php if ($this->session->userdata('status')=="login"){ ?>
                         <td class="btnsq tombol-hapus" href="<?php echo base_url('lain/hapus_promosi/'.$row->id)?>"><div class="btn btn-danger btn-xm" data-toggle="tooltip" data-placement="top" title="Hapus Promosi"><i class="fa fa-trash"></i></div></td>
                         <td class="btnsq"><button class="btn btn-warning btn-xm" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Promosi"><i class="fa fa-edit"></i></button></td>
-                        <td class="btnsq"><button class="btn btn-success btn-xm" title="Lihat file"><i class="fa fa-eye"></i></button></td>
+                        <td class="btnsq"><button class="btn btn-success btn-xm" data-toggle="modal" title="Lihat file" data-target="#promosi<?php echo $row->id?>"><i class="fa fa-eye"></i></button></td>
                     <?php } ?>
                 </tr>
             <?php endforeach; ?>
@@ -169,5 +169,21 @@ foreach ($promosi as $row) : ?>
         </div>
     </div>
 </div>
-<?php endforeach;}?>
+<!-- Modal Lihat Detail File Promosi -->
+<div class="modal fade" id="promosi<?php echo $row->id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><b>File Promosi</b></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="<?php echo base_url('/assets/files/promosi/' . $row->file)?>" width="100%" height="500px"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; }?>
 </div>
