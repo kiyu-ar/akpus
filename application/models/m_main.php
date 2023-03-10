@@ -18,14 +18,16 @@
             $this->db->update($table, $data);
         }
         public function get_last_id($table){
-            return $this->db->query('SELECT MAX(id) as id FROM '.$table)->row()->id;
+            $this->db->select_max('id');
+            return $this->db->get($table)->row()->id;
         }
         public function get_data_order($table, $column){
             $this->db->order_by($column);
             return $this->db->get($table);
         }
         public function get_nama_prodi($kode_prodi){
-            return $this->db->query("SELECT prodi FROM tbl_prodi where kode ='".$kode_prodi."'")->row()->prodi;
+            $sql = "SELECT prodi FROM tbl_prodi where kode = ?";
+            return $this->db->query($sql, array($kode_prodi))->row()->prodi;
         }
 //---Informasi Koleksi---
         public function get_ebook(){
@@ -35,8 +37,7 @@
 //---Informasi Pemustaka---
         public function get_prodi($postData){
             $id_fakultas = array('id_fakultas' => $postData['dfakultas']);
-            $q = $this->db->get_where('tbl_prodi', $id_fakultas)->result();
-            return $q;
+            return $this->db->get_where('tbl_prodi', $id_fakultas)->result();
         }
         public function get_kode_prodi($postData){
             $id_prodi = $postData['dprodi'];
@@ -47,7 +48,7 @@
         }
         public function sirkulasi_prodi($kode_prodi){
             $this->slim = $this->load->database('slim',TRUE);
-            return $this->slim->query("SELECT * FROM (SELECT YEAR(loan_date) as tahun, 
+            $sql = "SELECT * FROM (SELECT YEAR(loan_date) as tahun, 
             COUNT(CASE WHEN MONTH(loan_date)=1 THEN 1 END) AS januari, 
             COUNT(CASE WHEN MONTH(loan_date)=2 THEN 1 END) AS februari, 
             COUNT(CASE WHEN MONTH(loan_date)=3 THEN 1 END) AS maret, 
@@ -59,10 +60,11 @@
             COUNT(CASE WHEN MONTH(loan_date)=9 THEN 1 END) AS september, 
             COUNT(CASE WHEN MONTH(loan_date)=10 THEN 1 END) AS oktober, 
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
-            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = 1
-            and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok1 
-            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = 1
-            and SUBSTRING(member_id,1,3) = '$kode_prodi' GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun");
+            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = ?
+            and SUBSTRING(member_id,1,3) = ? GROUP BY YEAR(loan_date)) AS dok1 
+            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = ?
+            and SUBSTRING(member_id,1,3) = ? GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun";
+            return $this->slim->query($sql, array('1',$kode_prodi,'1',$kode_prodi));
         }
         public function sirkulasi_total(){
             $this->slim = $this->load->database('slim',TRUE);
@@ -122,80 +124,73 @@
                 GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
         }
 
-        public function edit_data_kunjungan(){
-            $data = [
-                "tanggal"           => $this->input->post('tanggal_kunjungan'),
-                "instansi"          => $this->input->post('nama_instansi'),
-                "tujuan"            => $this->input->post('tujuan_kunjungan'),
-                "jumlah_tamu"       => $this->input->post('tamu_kunjungan'),
-                "dokumentasi"       => $_FILES['dokumentasi_kunjungan'],
-            ];
-            
-            $this->db->where('id', $this->input->post('id'));
-            $this->db->update('list_kunjungan', $data);
-        }
-
         public function cek_file($id){
             $query = $this->db->get_where('list_kunjungan', ['id' => $id]);
             return $query->row();
         }
 //---Informasi Pustakawan---
         public function get_pegawai(){
-            return $this->db->query('SELECT CASE when jabatan = "Kepala Perpustakaan" then 1 else 2 end as sort, t.* FROM list_pegawai as t 
-            order by sort, substring(pangkat,1,1) DESC, substring(pangkat, 2,1) DESC');
+            $sql = "SELECT CASE when jabatan = 'Kepala Perpustakaan' then 1 else 2 end as sort, t.* FROM list_pegawai as t 
+            order by sort, substring(pangkat,1,1) DESC, substring(pangkat, 2,1) DESC";
+            return $this->db->query($sql);
         }
         
         public function get_tabel_p(){
-            return $this->db->query('SELECT 
-            count(CASE WHEN (pendidikan like "%S3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as S3,
-            count(CASE WHEN (pendidikan like "%S2%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as S2,
-            count(CASE WHEN (pendidikan like "%S1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as S1,
-            count(CASE WHEN (pendidikan like "%D4%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D4,
-            count(CASE WHEN (pendidikan like "%D3%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D3,
-            count(CASE WHEN (pendidikan like "%D2%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D2,
-            count(CASE WHEN (pendidikan like "%D1%" AND pendidikan like "%perpustakaan%") THEN 1 END ) as D1,
-            count(CASE WHEN (pendidikan not like "%perpustakaan%") THEN 1 END ) as Lain,
+            $sql = "SELECT 
+            count(CASE WHEN (pendidikan like '%S3%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as S3,
+            count(CASE WHEN (pendidikan like '%S2%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as S2,
+            count(CASE WHEN (pendidikan like '%S1%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as S1,
+            count(CASE WHEN (pendidikan like '%D4%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as D4,
+            count(CASE WHEN (pendidikan like '%D3%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as D3,
+            count(CASE WHEN (pendidikan like '%D2%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as D2,
+            count(CASE WHEN (pendidikan like '%D1%' AND pendidikan like '%perpustakaan%') THEN 1 END ) as D1,
+            count(CASE WHEN (pendidikan not like '%perpustakaan%') THEN 1 END ) as Lain,
             count(*) as Total
-            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
+            FROM list_pegawai WHERE jabatan = ? ";
+            return $this->db->query($sql,array('pustakawan'))->result_array();
         }
         public function get_tabel_f(){
-            return $this->db->query('SELECT 
-            count(CASE WHEN fungsional = "PUSTAKAWAN MADYA" THEN 1 END) as "PUSTAKAWAN MADYA",
-            count(CASE WHEN fungsional = "PUSTAKAWAN MUDA" THEN 1 END) as "PUSTAKAWAN MUDA",
-            count(CASE WHEN fungsional = "PUSTAKAWAN PERTAMA" THEN 1 END) as "PUSTAKAWAN PERTAMA",
-            count(CASE WHEN fungsional = "PUSTAKAWAN PENYELIA" THEN 1 END) as "PUSTAKAWAN PENYELIA",
-            count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA LANJUTAN" THEN 1 END) as "PUSTAKAWAN PELAKSANA LANJUTAN",
-            count(CASE WHEN fungsional = "PUSTAKAWAN PELAKSANA" THEN 1 END) as "PUSTAKAWAN PELAKSANA",
-            count(*) as Total
-            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
+            $sql = "SELECT 
+            count(CASE WHEN fungsional = 'PUSTAKAWAN MADYA' THEN 1 END) as 'PUSTAKAWAN MADYA',
+            count(CASE WHEN fungsional = 'PUSTAKAWAN MUDA' THEN 1 END) as 'PUSTAKAWAN MUDA',
+            count(CASE WHEN fungsional = 'PUSTAKAWAN PERTAMA' THEN 1 END) as 'PUSTAKAWAN PERTAMA',
+            count(CASE WHEN fungsional = 'PUSTAKAWAN PENYELIA' THEN 1 END) as 'PUSTAKAWAN PENYELIA',
+            count(CASE WHEN fungsional = 'PUSTAKAWAN PELAKSANA LANJUTAN' THEN 1 END) as 'PUSTAKAWAN PELAKSANA LANJUTAN',
+            count(CASE WHEN fungsional = 'PUSTAKAWAN PELAKSANA' THEN 1 END) as 'PUSTAKAWAN PELAKSANA',
+            count(*) as Total FROM list_pegawai WHERE jabatan='pustakawan'";
+            return $this->db->query($sql)->result_array();
         }
         public function get_tabel_j(){
-            return $this->db->query('SELECT
-            count(CASE WHEN pangkat = "4c" THEN 1 END) as "IV/c",
-            count(CASE WHEN pangkat = "4b" THEN 1 END) as "IV/b",
-            count(CASE WHEN pangkat = "4a" THEN 1 END) as "IV/a", 
-            count(CASE WHEN pangkat = "3d" THEN 1 END) as "III/d",
-            count(CASE WHEN pangkat = "3c" THEN 1 END) as "III/c",
-            count(CASE WHEN pangkat = "3b" THEN 1 END) as "III/b",
-            count(CASE WHEN pangkat = "3a" THEN 1 END) as "III/a",
-            count(CASE WHEN pangkat = "2d" THEN 1 END) as "II/d",
-            count(*) as Total
-            FROM list_pegawai WHERE jabatan="pustakawan"')->result_array();
+            $sql = "SELECT
+            count(CASE WHEN pangkat = '4c' THEN 1 END) as 'IV/c',
+            count(CASE WHEN pangkat = '4b' THEN 1 END) as 'IV/b',
+            count(CASE WHEN pangkat = '4a' THEN 1 END) as 'IV/a', 
+            count(CASE WHEN pangkat = '3d' THEN 1 END) as 'III/d',
+            count(CASE WHEN pangkat = '3c' THEN 1 END) as 'III/c',
+            count(CASE WHEN pangkat = '3b' THEN 1 END) as 'III/b',
+            count(CASE WHEN pangkat = '3a' THEN 1 END) as 'III/a',
+            count(CASE WHEN pangkat = '2d' THEN 1 END) as 'II/d',
+            count(*) as Total FROM list_pegawai WHERE jabatan='pustakawan'";
+            return $this->db->query()->result_array();
         }
         public function get_tabel_ptinggi(){
-            return $this->db->query('SELECT count(CASE WHEN pendidikan_tertinggi = "Master" THEN 1 END) as "Master",
-            count(CASE WHEN pendidikan_tertinggi = "Sarjana" THEN 1 END) as "Sarjana",
-            count(CASE WHEN pendidikan_tertinggi = "Diploma" THEN 1 END) as "Diploma",
-            count(CASE WHEN pendidikan_tertinggi = "SMA/Sederajat" THEN 1 END) as "SMA/Sederajat",
-            count(*) as Total FROM list_pegawai')->result_array();
+            $sql = "SELECT 
+            count(CASE WHEN pendidikan_tertinggi = 'Master' THEN 1 END) as 'Master',
+            count(CASE WHEN pendidikan_tertinggi = 'Sarjana' THEN 1 END) as 'Sarjana',
+            count(CASE WHEN pendidikan_tertinggi = 'Diploma' THEN 1 END) as 'Diploma',
+            count(CASE WHEN pendidikan_tertinggi = 'SMA/Sederajat' THEN 1 END) as 'SMA/Sederajat',
+            count(*) as Total FROM list_pegawai";
+            return $this->db->query($sql)->result_array();
         }
         public function search_psdm($keyword){
-            $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
-            return $this->db->query("SELECT * FROM list_psdm $where order by jenis")->result();
+            $key = $this->db->escape_like_str($keyword);
+            $sql = "SELECT * FROM list_psdm WHERE peserta like '%".$key."%' OR nama like '%".$key."%'  order by jenis";
+            return $this->db->query($sql)->result();
         }
         public function search_psdm_kepala($keyword){
-            $where = "WHERE peserta like '%$keyword%' OR nama like '%$keyword%' ";
-            return $this->db->query("SELECT * FROM list_psdm_kepala $where order by jenis")->result();
+            $key = $this->db->escape_like_str($keyword);
+            $sql = "SELECT * FROM list_psdm_kepala WHERE peserta like '%".$key."%' OR nama like '%".$key."%'  order by jenis";
+            return $this->db->query($sql)->result();
         }
 //---Informasi Lain---
         public function get_sarpras(){
@@ -219,23 +214,24 @@
 			return $query->row_array();
 		}
         public function get_promosi(){
-            $query = $this->db->query('SELECT *, tbl.nama_jenis
-                FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id 
-                ORDER BY l.tanggal_dari DESC');
-            return $query->result();
+            $sql = "SELECT *, tbl.nama_jenis FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id ORDER BY l.tanggal_dari DESC";
+            return $this->db->query()->result();
         }
         public function get_komponen(){
-            $query = $this->db->query('SELECT *, tbl.komponen 
-                FROM list_komponen as l LEFT JOIN tbl_jenis_komponen as tbl ON l.jenis = tbl.id');
-            return $query->result();
+            $sql = "SELECT *, tbl.komponen FROM list_komponen as l LEFT JOIN tbl_jenis_komponen as tbl ON l.jenis = tbl.id";
+            return $this->db->query($sql)->result();
         }
 //---Informasi SOP---
         public function get_sop(){
-            return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor")->result();
+            $sql = "SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id order by id_divisi,nomor";
+            return $this->db->query($sql)->result();
         }
         public function search_sop($keyword){
-            $where = "WHERE tds.divisi like '%$keyword%' OR sp.nomor like '%$keyword%' OR sp.nama_sop like '%$keyword%' OR sp.deskripsi like '%$keyword%'";
-            return $this->db->query("SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id $where order by id_divisi,nomor")->result();
+            $key = $this->db->escape_like_str($keyword);
+            $sql = "SELECT sp.*, tds.divisi FROM list_sop AS sp left join tbl_divisi_sop AS tds ON sp.id_divisi = tds.id 
+                    WHERE tds.divisi like '%".$key."%' OR sp.nomor like '%".$key."%' OR sp.nama_sop like '%".$key."%' 
+                    OR sp.deskripsi like '%".$key."%' order by id_divisi,nomor";
+                return $this->db->query($sql)->result();
         }
         public function cek_file_sop($id){
             $query = $this->db->get_where('list_sop', ['id' => $id]);
