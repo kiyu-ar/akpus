@@ -171,7 +171,7 @@
             count(CASE WHEN pangkat = '3a' THEN 1 END) as 'III/a',
             count(CASE WHEN pangkat = '2d' THEN 1 END) as 'II/d',
             count(*) as Total FROM list_pegawai WHERE jabatan='pustakawan'";
-            return $this->db->query()->result_array();
+            return $this->db->query($sql)->result_array();
         }
         public function get_tabel_ptinggi(){
             $sql = "SELECT 
@@ -215,7 +215,7 @@
 		}
         public function get_promosi(){
             $sql = "SELECT *, tbl.nama_jenis FROM list_promosi as l LEFT JOIN tbl_jenis_promosi as tbl ON l.jenis=tbl.id ORDER BY l.tanggal_dari DESC";
-            return $this->db->query()->result();
+            return $this->db->query($sql)->result();
         }
         public function get_komponen(){
             $sql = "SELECT *, tbl.komponen FROM list_komponen as l LEFT JOIN tbl_jenis_komponen as tbl ON l.jenis = tbl.id";

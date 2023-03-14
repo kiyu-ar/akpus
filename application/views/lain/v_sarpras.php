@@ -10,11 +10,11 @@
         <button class="btn btn-primary" style="margin-bottom : 10px; float:right" data-toggle="modal" data-target="#tambahsarpras" data-toggle="tooltip" data-placement="top" title="Tambah Data Sarpras"><i class="fa fa-plus"></i>Tambah Data</button>
     <?php } ?>
     <div class="col-md-12">
-        <div class="div-card">
+        <div class="div-card" style="border-radius:10px;">
     <?php foreach ($sarpras as $row):?>
-            <div class="row line">
+            <div class="row line" style="border-radius:10px; background-color:#F1F1F1; padding-top: 2%;">
                 <div class="col-md-4" style="margin-bottom: 20px">
-                    <label><?php echo $row->nama ?></label>
+                    <label><b><?php echo $row->nama ?></b></label>
                     <input type="text" size="7" value="<?php echo $row->jumlah ?>">
                 </div>
                 <?php if($this->session->userdata('status')=="login"){ ?>
