@@ -6,7 +6,7 @@
 </head>
 <div>
 <?php 
-    if(empty($sirkulasi_p)){
+    if(empty($kunjungan_p)){
         echo "<h4 style='background:cyan'>pilih fakultas dan prodi<h4>";
     }else{?>
     <table id="themed"> 
@@ -27,7 +27,7 @@
             <th>Total</th>
         </tr>
         <?php 
-    foreach ($sirkulasi_p as $row) : ?>
+    foreach ($kunjungan_p as $row) : ?>
         <tr>
             <td><?php echo $row->tahun ?></td>
             <td><?php echo $row->januari ?></td>

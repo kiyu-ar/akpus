@@ -28,33 +28,7 @@ echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script> -->
 <script>
-	$('.swal_delete').click(function() {
-		var href = $(this).attr("href");
-		var id = $(this).attr("id");
-		console.log(id);
-		console.log(href);
-		Swal.fire({
-			title: 'Anda yakin akan menghapus?',
-			showCancelButton: true,
-			confirmButtonText: 'Hapus',
-		}).then((result) => {
-			/* Read more about isConfirmed, isDenied below */
-			if (result.isConfirmed) {
-				$.ajax({
-					url: href + id,
-					type: 'POST',
-					data: {
-						id: id
-					},
-					success: function(data) {
-						Swal.fire('Berhasil Menghapus Data', '', 'success').then(function() {
-							location.reload();
-						});
-					}
-				});
-			}
-		});
-	});
+	
 	try {
 		var iframe = document.getElementsByClassName("jframe");
 		iframe[0].onload = function() {
@@ -88,6 +62,23 @@ echo base_url() ?>assets/vendor/jquery/jquery.min.js"></script>
 	}
 
 	function sendprodi() {
+		$("#submit-kunjungan").click(function() {
+			var getprodi = $("#id_prodi").val();
+			$.ajax({
+				method: "POST",
+				dataType: "JSON",
+				url: "<?= base_url(); ?>pemustaka/getkodeprodi",
+				data: {
+					dprodi: getprodi
+				},
+				success: function(data) {
+					console.log(data);
+					$("#iframe-kunjungan").removeAttr('src');
+					$("#iframe-kunjungan").attr('src', "<?php echo base_url() ?>pemustaka/kunjungan_prodi/" + data);
+					$("#export-kunjungan-prodi").attr('href', "<?php echo base_url() ?>excel/export_excel_mandiri/" + data);
+				}
+			});
+		});
 		$("#submit-mandiri").click(function() {
 			var getprodi = $("#id_prodi").val();
 			$.ajax({
