@@ -11,13 +11,21 @@
             $this->load->view('pemustaka/v_keanggotaan');
             $this->load->view('diffdash/footer');
         }
-        public function kunjungan(){
+        public function fisik(){
+            $data['akses'] = $this->session->userdata('akses');
+            //$data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pemustaka/v_fisik', $data);
+            $this->load->view('diffdash/footer');
+        }
+        public function instansi(){
             $data['akses'] = $this->session->userdata('akses');
             $data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
-            $this->load->view('diffdash/header', $data);
-            $this->load->view('diffdash/sidebar', $data);
-            $this->load->view('pemustaka/v_kunjungan', $data);
-            $this->load->view('diffdash/footer', $data);
+            $this->load->view('diffdash/header');
+            $this->load->view('diffdash/sidebar');
+            $this->load->view('pemustaka/v_instansi', $data);
+            $this->load->view('diffdash/footer');
         }
         public function eresource(){
             $data['eresource'] = $this->m_main->get_data('list_eresource')->result();
