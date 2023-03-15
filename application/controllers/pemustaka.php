@@ -13,6 +13,7 @@
         }
         public function fisik(){
             $data['akses'] = $this->session->userdata('akses');
+            $data['fakultas'] = $this->m_main->get_data('tbl_fakultas')->result();
             //$data['kunjungan'] = $this->m_main->get_data('list_kunjungan')->result();
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
@@ -41,8 +42,17 @@
             $this->load->view('pemustaka/v_sirkulasi',$data);
             $this->load->view('diffdash/footer');
         }
-
-        // Fungsi Kunjungan Fisik
+// Fungsi Kunjungan Fisik
+        public function kunjungan_prodi(){
+            $kode_prodi = $this->uri->segment(3);
+            $data['kunjungan_p'] = $this->m_main->kunjungan_prodi($kode_prodi)->result();
+            $this->load->view('pemustaka/iframe_kunjungan_prodi',$data);
+        }
+        public function kunjungan_total(){
+            $data['kunjungan_t'] = $this->m_main->kunjungan_total()->result();
+            $this->load->view('pemustaka/iframe_kunjungan_total',$data);
+        }
+// Fungsi Kunjungan Instansi
         public function tambah_kunjungan(){
             $tanggal           = $this->input->post('tanggal_kunjungan');
             $instansi          = $this->input->post('nama_instansi');
@@ -236,8 +246,7 @@
             redirect('Home/update_changelog/'.$update_id.'/'.$id.'/2/list_eresource/pemustaka/eresource');
         }
 
-//DATA SIRKULASI PEMINJAMAN
-        
+// Fungsi Data Sirkulasi
         public function sirkulasi_prodi(){
             $kode_prodi = $this->uri->segment(3);
             $data['sirkulasi_p'] = $this->m_main->sirkulasi_prodi($kode_prodi)->result();

@@ -46,6 +46,14 @@
             return $this->db->get('tbl_prodi')->row('kode');
             //return $this->db->query("SELECT kode from tbl_prodi where id_prodi = '$id_prodi'")->result();
         }
+        public function kunjungan_prodi($kode_prodi){
+            $this->digilib = $this->load->database('digilib',TRUE);
+            return $this->digilib->query("");
+        }
+        public function kunjungan_total(){
+            $this->digilib = $this->load->database('digilib',TRUE);
+            return $this->digilib->query("");
+        }
         public function sirkulasi_prodi($kode_prodi){
             $this->slim = $this->load->database('slim',TRUE);
             $sql = "SELECT * FROM (SELECT YEAR(loan_date) as tahun, 
