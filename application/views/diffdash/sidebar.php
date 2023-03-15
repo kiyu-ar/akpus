@@ -41,7 +41,8 @@
 							<a href="" class="has-arrow" aria-expanded="false"><i class="lnr lnr-users"></i> <span>INFORMASI PEMUSTAKA</span></a>
 							<ul id="pemustaka" aria-expanded="true">
 								<li id ="keanggotaan"><a href="<?= base_url('pemustaka/keanggotaan')?>">Data Keanggotaan</a></li>
-								<li id ="kunjungan"><a href="<?= base_url('pemustaka/kunjungan')?>">Data Kunjungan Fisik</a></li>
+								<li id ="fisik"><a href="<?= base_url('pemustaka/fisik')?>">Data Kunjungan Fisik</a></li>
+								<li id ="instansi"><a href="<?= base_url('pemustaka/instansi')?>">Data Kunjungan Instansi</a></li>
 								<li id ="eresource"><a href="<?= base_url('pemustaka/eresource')?>">Data Akses E-Resources dan Virtual Visit</a></li>
 								<li id ="sirkulasi"><a href="<?= base_url('pemustaka/sirkulasi')?>">Data Sirkulasi</a></li>
 								<li id ="literasi"><a href="<?= base_url('pemustaka/literasi')?>">Data Literasi</a></li>
