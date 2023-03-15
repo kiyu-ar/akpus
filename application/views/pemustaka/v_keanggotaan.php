@@ -8,7 +8,9 @@
 <div>
     <div>
         <h4>Keanggotaan Secara Luring</h4>
-        <p>daikdkwabdkaudbka</p>
+        <p><?php foreach($aktif_m as $key=>$value): ?></p>
+        <p>Banyak anggota yang aktif yaitu <td><?php echo $value ?></td></p> 
+        <?php endforeach; ?>
     </div>
     <hr>
     <div>

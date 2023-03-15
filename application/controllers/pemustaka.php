@@ -6,9 +6,10 @@
         }
         // Fungsi View
         public function keanggotaan(){
+            $data['aktif_m'] = $this->m_main->get_member_active()[0];
             $this->load->view('diffdash/header');
             $this->load->view('diffdash/sidebar');
-            $this->load->view('pemustaka/v_keanggotaan');
+            $this->load->view('pemustaka/v_keanggotaan', $data);
             $this->load->view('diffdash/footer');
         }
         public function kunjungan(){
