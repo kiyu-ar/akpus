@@ -81,8 +81,16 @@
                         <input type="description" name="deskripsi" class="form-control" required="">
                     </div>
                     <div class="form-group">
-                        <label>File</label>
-                        <input type="file" name="file_kuesioner" class="form-control" required="">
+                        <label>File Pertanyaan</label>
+                        <input type="file" name="file_pertanyaan" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>File Data</label>
+                        <input type="file" name="file_data" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>File Laporan</label>
+                        <input type="file" name="file_laporan" class="form-control" required="">
                     </div>
             </div>
             <div class="modal-footer">
@@ -124,8 +132,16 @@ if($this->session->userdata('status')=='login'){?>
                         <input type="text" name="deskripsi" class="form-control" required="" value="<?php echo $row->deskripsi?>">
                     </div>
                     <div class="form-group">
-                        <label>File</label>
-                        <input type="file" name="file_kuesioner" class="form-control" required="">
+                        <label>File Pertanyaan</label>
+                        <input type="file" name="file_pertanyaan" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>File Data</label>
+                        <input type="file" name="file_data" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>File Laporan</label>
+                        <input type="file" name="file_laporan" class="form-control" required="">
                     </div>
             </div>
             <div class="modal-footer">
