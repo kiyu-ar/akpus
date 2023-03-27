@@ -46,7 +46,11 @@
 // Fungsi Kunjungan Fisik
         public function kunjungan_prodi(){
             $kode_prodi = $this->uri->segment(3);
-            $data['kunjungan_p'] = $this->m_main->kunjungan_prodi($kode_prodi)->result();
+            if($kode_prodi == '0'){
+                $data['kunjungan_p'] = "";
+            }else{
+                $data['kunjungan_p'] = $this->m_main->kunjungan_prodi($kode_prodi)->result();
+            }
             $this->load->view('pemustaka/iframe_kunjungan_prodi',$data);
         }
         public function kunjungan_total(){
@@ -250,7 +254,11 @@
 // Fungsi Data Sirkulasi
         public function sirkulasi_prodi(){
             $kode_prodi = $this->uri->segment(3);
-            $data['sirkulasi_p'] = $this->m_main->sirkulasi_prodi($kode_prodi)->result();
+            if($kode_prodi == '0'){
+                $data['sirkulasi_p'] = "";
+            }else{
+                $data['sirkulasi_p'] = $this->m_main->sirkulasi_prodi($kode_prodi)->result();
+            }
             $this->load->view('pemustaka/iframe_sirkulasi_prodi',$data);
         }
         public function sirkulasi_total(){
@@ -291,7 +299,11 @@
         }
         public function mandiri_prodi(){
             $kode_prodi = $this->uri->segment(3);
-            $data['mandiri_p'] = $this->m_main->mandiri_prodi($kode_prodi)->result();
+            if($kode_prodi == '0'){
+                $data['mandiri_p'] = "";
+            }else{
+                $data['mandiri_p'] = $this->m_main->mandiri_prodi($kode_prodi)->result();
+            }   
             $this->load->view('pemustaka/iframe_mandiri_prodi',$data);
         }
         public function mandiri_total(){

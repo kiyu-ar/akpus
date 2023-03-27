@@ -35,13 +35,6 @@
         }
 
 //---Informasi Pemustaka---
-        public function get_member_active(){
-            $this->slim = $this->load->database('slim',TRUE);
-            $sql = "SELECT count(member_id)
-            FROM member 
-            WHERE timestamp(expire_date) >= now() and is_pending = 0";
-            return $this->slim->query($sql)->result_array();
-        }
         public function get_prodi($postData){
             $id_fakultas = array('id_fakultas' => $postData['dfakultas']);
             return $this->db->get_where('tbl_prodi', $id_fakultas)->result();
@@ -54,16 +47,49 @@
             //return $this->db->query("SELECT kode from tbl_prodi where id_prodi = '$id_prodi'")->result();
         }
         public function kunjungan_prodi($kode_prodi){
-            $this->digilib = $this->load->database('digilib',TRUE);
-            return $this->digilib->query("");
+            $this->loker = $this->load->database('loker',TRUE);
+            $sql = "SELECT YEAR(waktu_pinjam) as tahun, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=1 THEN 1 END) AS januari, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=2 THEN 1 END) AS februari, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=3 THEN 1 END) AS maret, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=4 THEN 1 END) AS april, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=5 THEN 1 END) AS mei, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=6 THEN 1 END) AS juni, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=7 THEN 1 END) AS juli, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=8 THEN 1 END) AS agustus, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=9 THEN 1 END) AS september, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=10 THEN 1 END) AS oktober, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=11 THEN 1 END) AS november, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=12 THEN 1 END) AS desember,
+            COUNT(*) as total FROM 
+            (SELECT m.pin, h.waktu_pinjam FROM history as h LEFT JOIN member as m 
+             ON m.member_id = h.barcode_anggota WHERE SUBSTRING(m.pin,1,3) = ?) AS loker 
+            GROUP BY YEAR(loker.waktu_pinjam)";
+            return $this->loker->query($sql, array($kode_prodi));
         }
         public function kunjungan_total(){
-            $this->digilib = $this->load->database('digilib',TRUE);
-            return $this->digilib->query("");
+            $this->loker = $this->load->database('loker',TRUE);
+            return $this->loker->query("SELECT YEAR(waktu_pinjam) as tahun, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=1 THEN 1 END) AS januari, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=2 THEN 1 END) AS februari, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=3 THEN 1 END) AS maret, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=4 THEN 1 END) AS april, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=5 THEN 1 END) AS mei, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=6 THEN 1 END) AS juni, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=7 THEN 1 END) AS juli, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=8 THEN 1 END) AS agustus, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=9 THEN 1 END) AS september, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=10 THEN 1 END) AS oktober, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=11 THEN 1 END) AS november, 
+            COUNT(CASE WHEN MONTH(loker.waktu_pinjam)=12 THEN 1 END) AS desember, 
+            COUNT(*) as total FROM 
+            (SELECT m.pin, h.waktu_pinjam FROM history as h LEFT JOIN member as m 
+             ON m.member_id = h.barcode_anggota) AS loker
+            GROUP BY YEAR(loker.waktu_pinjam)");
         }
         public function sirkulasi_prodi($kode_prodi){
             $this->slim = $this->load->database('slim',TRUE);
-            $sql = "SELECT * FROM (SELECT YEAR(loan_date) as tahun, 
+            $sql = "SELECT YEAR(loan_date) as tahun, 
             COUNT(CASE WHEN MONTH(loan_date)=1 THEN 1 END) AS januari, 
             COUNT(CASE WHEN MONTH(loan_date)=2 THEN 1 END) AS februari, 
             COUNT(CASE WHEN MONTH(loan_date)=3 THEN 1 END) AS maret, 
@@ -75,15 +101,14 @@
             COUNT(CASE WHEN MONTH(loan_date)=9 THEN 1 END) AS september, 
             COUNT(CASE WHEN MONTH(loan_date)=10 THEN 1 END) AS oktober, 
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
-            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = ?
-            and SUBSTRING(member_id,1,3) = ? GROUP BY YEAR(loan_date)) AS dok1 
-            JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = ?
-            and SUBSTRING(member_id,1,3) = ? GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun";
-            return $this->slim->query($sql, array('1',$kode_prodi,'1',$kode_prodi));
+            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember,
+            COUNT(*) as total FROM loan_history where is_lent = 1
+            and SUBSTRING(member_id,1,3) = ? GROUP BY YEAR(loan_date)";
+            return $this->slim->query($sql, array($kode_prodi));
         }
         public function sirkulasi_total(){
             $this->slim = $this->load->database('slim',TRUE);
-            return $this->slim->query("SELECT * FROM (SELECT YEAR(loan_date) as tahun, 
+            return $this->slim->query("SELECT YEAR(loan_date) as tahun, 
             COUNT(CASE WHEN MONTH(loan_date)=1 THEN 1 END) AS januari, 
             COUNT(CASE WHEN MONTH(loan_date)=2 THEN 1 END) AS februari, 
             COUNT(CASE WHEN MONTH(loan_date)=3 THEN 1 END) AS maret, 
@@ -95,14 +120,13 @@
             COUNT(CASE WHEN MONTH(loan_date)=9 THEN 1 END) AS september, 
             COUNT(CASE WHEN MONTH(loan_date)=10 THEN 1 END) AS oktober, 
             COUNT(CASE WHEN MONTH(loan_date)=11 THEN 1 END) AS november, 
-            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember FROM loan_history where is_lent = 1 
-            GROUP BY YEAR(loan_date)) AS dok1 
-        JOIN (SELECT YEAR(loan_date) AS tahun2, COUNT(*) AS total FROM loan_history where is_return = 1
-            GROUP BY YEAR(loan_date)) AS dok2 ON dok2.tahun2 = dok1.tahun");
+            COUNT(CASE WHEN MONTH(loan_date)=12 THEN 1 END) AS desember,
+            COUNT(*) as total FROM loan_history where is_lent = 1 
+            GROUP BY YEAR(loan_date)");
         }
         public function mandiri_prodi($kode_prodi){
             $this->digilib = $this->load->database('digilib',TRUE);
-            return $this->digilib->query("SELECT * FROM (SELECT YEAR(tgl_upload) as tahun, 
+            $sql = "SELECT YEAR(tgl_upload) as tahun, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=1 THEN 1 END) AS januari, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=2 THEN 1 END) AS februari, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=3 THEN 1 END) AS maret, 
@@ -114,14 +138,14 @@
                 COUNT(CASE WHEN MONTH(tgl_upload)=9 THEN 1 END) AS september, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=10 THEN 1 END) AS oktober, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=11 THEN 1 END) AS november, 
-                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1
-                and SUBSTRING(nim,1,3) = '$kode_prodi' GROUP BY YEAR(tgl_upload)) AS dok1 
-            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
-                and SUBSTRING(nim,1,3) = '$kode_prodi' GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
+                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember,
+                COUNT(*) as total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1
+                and SUBSTRING(nim,1,3) = ? GROUP BY YEAR(tgl_upload)";
+                return $this->digilib->query($sql, array($kode_prodi));
         }
         public function mandiri_total(){
             $this->digilib = $this->load->database('digilib',TRUE);
-            return $this->digilib->query("SELECT * FROM (SELECT YEAR(tgl_upload) as tahun, 
+            return $this->digilib->query("SELECT YEAR(tgl_upload) as tahun, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=1 THEN 1 END) AS januari, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=2 THEN 1 END) AS februari, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=3 THEN 1 END) AS maret, 
@@ -133,10 +157,9 @@
                 COUNT(CASE WHEN MONTH(tgl_upload)=9 THEN 1 END) AS september, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=10 THEN 1 END) AS oktober, 
                 COUNT(CASE WHEN MONTH(tgl_upload)=11 THEN 1 END) AS november, 
-                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
-                GROUP BY YEAR(tgl_upload)) AS dok1 
-            JOIN (SELECT YEAR(tgl_upload) AS tahun2, COUNT(*) AS total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
-                GROUP BY YEAR(tgl_upload)) AS dok2 ON dok2.tahun2 = dok1.tahun");
+                COUNT(CASE WHEN MONTH(tgl_upload)=12 THEN 1 END) AS desember,
+                COUNT(*) as total FROM dok_detail where no_klas IS NULL and op_id = 0 and status = 1 
+                GROUP BY YEAR(tgl_upload)");
         }
 
         public function cek_file($id){
