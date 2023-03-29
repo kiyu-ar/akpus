@@ -35,6 +35,13 @@
         }
 
 //---Informasi Pemustaka---
+        public function get_member_active(){
+            $this->slim = $this->load->database('slim',TRUE);
+            $sql = "SELECT count(member_id)
+            FROM member 
+            WHERE timestamp(expire_date) >= now() and is_pending = 0";
+            return $this->slim->query($sql)->result_array();
+        }
         public function get_prodi($postData){
             $id_fakultas = array('id_fakultas' => $postData['dfakultas']);
             return $this->db->get_where('tbl_prodi', $id_fakultas)->result();

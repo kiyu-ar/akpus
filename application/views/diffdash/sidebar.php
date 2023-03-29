@@ -34,7 +34,6 @@
 								<li id ="jeniscetak"><a href="<?= base_url('koleksi/jeniscetak')?>">Jenis Koleksi Cetak</a></li>
 								<li id ="jeniselektronik"><a href="<?= base_url('koleksi/jeniselektronik')?>">Jenis Koleksi Elektronik</a></li>
 								<li id ="statistik"><a href="<?= base_url('koleksi/statistik')?>">Data Statistik</a></li>
-								<li id ="metadata"><a href="<?= base_url('koleksi/metadata')?>">Metadata Export</a></li>
 							</ul>
 						</li>
 						<li class="">

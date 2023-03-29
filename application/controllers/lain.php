@@ -180,9 +180,10 @@ use PhpParser\Node\Expr\FuncCall;
                 if(file_exists("./assets/files/".$data_k->file)){
                     unlink("./assets/files/".$data_k->file);
                 }
-            $where = array ('id'=>$id);
+            $where = array('id' => $id);
+            $update_id = $this->m_main->get_last_id('changelog') + 1;
             $this->m_main->delete_data($where, 'list_kuesioner');
-            redirect('lain/kuesioner');
+            redirect('Home/insert_changelog/'.$update_id.'/'.$id.'/list_kuesioner/lain/kuesioner');
             }
         }
 
