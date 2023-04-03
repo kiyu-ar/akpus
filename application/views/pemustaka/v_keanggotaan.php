@@ -9,7 +9,7 @@
     <div>
         <h4>Keanggotaan Secara Luring</h4>
         <p><?php foreach($aktif_m as $key=>$value): ?></p>
-        <p>Banyak anggota yang aktif yaitu <td><?php echo $value ?></td></p> 
+        <p>Banyak anggota yang <span class="label label-success">aktif</span> yaitu <td><span class="label label-success"><?php echo $value ?></span></td></p> 
         <?php endforeach; ?>
     </div>
     <hr>

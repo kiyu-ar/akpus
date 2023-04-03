@@ -23,7 +23,7 @@
         <select name="id_prodi" id="id_prodi" class="custom-select" disabled>
             <option value="0">Prodi</option>
         </select>
-        <button type="button" class="btn btn-primary" id="submit-kunjungan">search</button>
+        <button type="button" class="btn btn-primary" id="submit-kunjungan">Search</button>
         </form>
         <iframe class="jframe" id="iframe-kunjungan" src="<?php echo base_url() ?>pemustaka/kunjungan_prodi/0" frameborder="0"></iframe>
     </div>

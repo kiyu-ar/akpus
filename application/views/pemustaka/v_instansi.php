@@ -31,7 +31,7 @@
             echo "<h3>Tidak ada data yang ditampilkan<h3>";
         }else{ ?>
         <div style="overflow-x: auto; overflow-y: auto;">
-            <table id="themed">
+            <table class="table">
                 <thead>
                     <tr style="background:#CCC">
                         <th>No</th>
@@ -39,7 +39,7 @@
                         <th>Nama Instansi</th>
                         <th>Tujuan Kunjungan</th>
                         <th>Jumlah Tamu</th>
-                        <th>Aksi</th>
+                        <th colspan=3 width=10%>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,15 +52,13 @@
                             <td><?php echo $row->instansi; ?></td>
                             <td><?php echo $row->tujuan; ?></td>
                             <td><?php echo $row->jumlah_tamu; ?></td>
-                            <td> 
                                 <div style="">
                                 <?php if($akses == '0' || $akses == '1'){ ?>
-                                    <a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-sm btn-block tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a>
-                                    <a class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a>
+                                    <td class="btnsq"><a href="<?php echo base_url('pemustaka/hapus_kunjungan/'.$row->id) ?>" class="btn btn-danger btn-xm btn-block tombol-hapus" title="Hapus Kunjungan"><i class="fa fa-trash"></i></a></td>
+                                    <td class="btnsq"><a class="btn btn-info btn-xm btn-block" data-toggle="modal" data-target="#edit<?php echo $row->id?>" title="Edit Kunjungan"><i class="fa fa-edit"></i></a></td>
                                 <?php } ?>
-                                <a class="btn btn-warning btn-sm btn-block" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a>
+                                    <td class="btnsq"><a class="btn btn-warning btn-xm btn-block" data-toggle="modal" data-target="#dokumentasi<?php echo $row->id?>" title="Lihat Dokumentasi Kunjungan"><i class="fa fa-eye"></i></a></td>
                                 </div>
-                            </td>
                             <?php $i++ ?>
                         </tr>
                     <?php }}

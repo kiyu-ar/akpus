@@ -103,7 +103,7 @@ use PhpParser\Node\Expr\FuncCall;
                 $bukti1 == '';
             }else{
                 $config['upload_path']   = './assets/files';
-                $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
+                $config['allowed_types'] = 'pdf|docx|doc';
                 $config['max_size']      = 51200;
                 
                 $this->load->library('upload',$config);
@@ -157,11 +157,11 @@ use PhpParser\Node\Expr\FuncCall;
             }
 
             $data = array(
-                'nama' => $nama,
-                'deskripsi' => $deskripsi,
-                'file_pertanyaan' => $bukti1,
-                'file_data' => $bukti2,
-                'file_laporan' => $bukti3,
+                'nama'              => $nama,
+                'deskripsi'         => $deskripsi,
+                'file_pertanyaan'   => $bukti1,
+                'file_data'         => $bukti2,
+                'file_laporan'      => $bukti3,
                 'update_id'         => $update_id,
             );
 
@@ -204,7 +204,7 @@ use PhpParser\Node\Expr\FuncCall;
             $bukti1 = $file_old;
         }else{
             $config['upload_path']   = './assets/files/promosi';
-            $config['allowed_types'] = 'png|jpg|pdf';
+            $config['allowed_types'] = 'pdf|docx|doc';
 
             $this->load->library('upload', $config);
             if(!$this->upload->do_upload('file_pertanyaan')){
@@ -218,7 +218,7 @@ use PhpParser\Node\Expr\FuncCall;
             $bukti2 = $file_old;
         }else{
             $config['upload_path']   = './assets/files/promosi';
-            $config['allowed_types'] = 'png|jpg|pdf';
+            $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
 
             $this->load->library('upload', $config);
             if(!$this->upload->do_upload('file_data')){
@@ -232,7 +232,7 @@ use PhpParser\Node\Expr\FuncCall;
             $bukti3 = $file_old;
         }else{
             $config['upload_path']   = './assets/files/promosi';
-            $config['allowed_types'] = 'png|jpg|pdf';
+            $config['allowed_types'] = 'pdf|docx|doc|xls|xlsx';
 
             $this->load->library('upload', $config);
             if(!$this->upload->do_upload('file_laporan')){
@@ -329,12 +329,12 @@ use PhpParser\Node\Expr\FuncCall;
         //     }
         // }
             $data = array(
-                'id'    => $id,
-                'nama' => $nama,
-                'deskripsi' => $deskripsi,
-                'file_pertanyaan' => $bukti1,
-                'file_data' => $bukti2,
-                'file_laporan' => $bukti3,
+                'id'                => $id,
+                'nama'              => $nama,
+                'deskripsi'         => $deskripsi,
+                'file_pertanyaan'   => $bukti1,
+                'file_data'         => $bukti2,
+                'file_laporan'      => $bukti3,
                 'update_id'         => $update_id,
             );
 

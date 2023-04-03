@@ -7,7 +7,7 @@
 <div>
 <?php 
     if(empty($sirkulasi_p)){
-        echo "<h4 style='background:cyan'>pilih fakultas dan prodi<h4>";
+        echo "<h4 style='background: #576CBC; color: white; padding:5px; border-radius:5px; font-weight: bold'>Pilih fakultas dan prodi<h4>";
     }else{?>
     <table id="themed"> 
         <tr>
