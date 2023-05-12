@@ -3,7 +3,7 @@
 				<!-- WEBSITE ANALYTICS -->
 				<div class="dashboard-section">
 					<div class="section-heading clearfix">
-						<h2 class="section-title"><i class="fa fa-pie-chart"></i> Statistik UPT Perpustakaan</h2>
+						<h2 class="section-title"><i class="fa fa-pie-chart"></i> .Statistik UPT Perpustakaan</h2>
 						<a href="#" class="right">View Full Analytics Reports</a>
 					</div>
 					<div class="panel-content">
